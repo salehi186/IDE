@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box ;
+}
+
+.App {
+    background-color: whitesmoke;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    top: 0px;
+    left: 0px;
+    padding:25px 0;
+    box-sizing: border-box;
+}
+
+.App .ToolBar {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 25px;
+    top: 0px;
+    left: 0px;
+    border: solid 1px black;
+}
+
+.App .StatusBar {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 25px;
+    bottom: 0px;
+    left: 0px;
+    border: solid 1px gray;
+}
+
+.App .MainContainer {
+    vertical-align: top;
+    display: inline-block;
+    width: calc(100% - 406px);
+    border: solid 1px blue;
+    height: 100%;
+}
+
+.App .RightSide {
+    vertical-align: top;
+    display: inline-block;
+    width: 200px;
+    border: solid 1px red;
+    height: 100%;
+}
+
+.App .LeftSide {
+    vertical-align: top;
+    display: inline-block;
+    width: 200px;
+    border: solid 1px yellow;
+    height: 100%;
+}

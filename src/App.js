@@ -1,11 +1,24 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
+import 'animate.css';
+import 'font-awesome/css/font-awesome.css'
+import DeviceManager from './DeviceManager';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        this is a Init Version
+        <div className="ToolBar">ToolBar</div>
+        <div className="LeftSide">
+          <DeviceManager/>
+        </div>
+        <div className="MainContainer">Main</div>
+        <div className="RightSide">
+
+properties
+
+        </div>
+        <div className="StatusBar">status</div>
       </div>
     );
   }
