@@ -3,6 +3,7 @@ import './App.css';
 import 'animate.css';
 import 'font-awesome/css/font-awesome.css'
 import DeviceManager from './DeviceManager';
+import Properties from './Properties'
 
 class App extends Component {
   render() {
@@ -15,7 +16,7 @@ class App extends Component {
         <div className="MainContainer">Main</div>
         <div className="RightSide">
 
-properties
+          <Properties properties={{name:"tetst", Temprature:"12"}}/>
 
         </div>
         <div className="StatusBar">status</div>
