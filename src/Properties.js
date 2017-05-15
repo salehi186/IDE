@@ -13,7 +13,11 @@ export default class Properties extends Component {
         }
     }
     render() {
-        return <table >
+        return <div className="properties">
+        <span>Properties </span>
+        <hr/>
+         <table >
+             <tbody>
             {Object.keys( this
                 .props.properties)
                 .map((p, idx) => {
@@ -22,11 +26,13 @@ export default class Properties extends Component {
                             {p}
                         </td>
                         <td>
-                           <input type="text" name={p} value={this.props.properties[p]} />
+                           <input type="text"  name={p} value={this.props.properties[p]} />
                         </td>
                     </tr>;
                 })}
-        </table>;
+            </tbody>
+        </table>
+        </div>;
     }
 
 }

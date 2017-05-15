@@ -1,5 +1,19 @@
-.DeviceManager .title {
-  float: right; }
+.DeviceManager ul {
+  list-style-type: none;
+  padding-left: 3px; }
 
-.DeviceManager .icon {
-  float: left; }
+.DeviceManager ul li {
+  display: block;
+  list-style-type: none;
+  text-align: left;
+  direction: rtl;
+  padding: 4px;
+  cursor: pointer;
+  border: solid; }
+
+.DeviceManager .toolbar a {
+  font-size: 30px;
+  padding: 5px; }
+
+.DeviceManager .toolbar a:hover {
+  text-shadow: 2px 2px gray; }
