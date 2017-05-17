@@ -8,7 +8,6 @@ export default class MessageWindow extends Component {
 
     render() {
         return <div className="MessageWindow">
-
             <div className="toolbar">
                 <Button onClick={this.callAction} text="Import" icon="fa-cloud-download"/>
                 <Button onClick={this.callAction} text="Add" icon="fa-image"/>
@@ -26,16 +25,11 @@ export default class MessageWindow extends Component {
                 Every thing is ok
             </div>
             <br/>
-
             <div className="imageContainer">
                 <img src="/images/1.bmp" alt="this is a test"/>
                 <img src="/images/8.bmp" alt="this is a test"/>
                 <img src="/images/16.bmp" alt="this is a test"/>
-
             </div>
-
         </div>;
-
     }
-
 }
