@@ -13,6 +13,18 @@ require("bootstrap/dist/js/bootstrap");
 import "react-bootstrap-ribbon/dist/react-bootstrap-ribbon.css";
 import {Button} from './UI';
 
+const MenuItem = (props) => {
+  return <RibbonGroupItem colClass="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <RibbonButton>
+      <div className="ribbon-icon">
+        <Button onClick={props.click} text={props.text} icon={props.icon} />
+      </div>
+      <div>{props.text}
+      </div>
+    </RibbonButton>
+  </RibbonGroupItem>
+
+}
 
 class App extends Component {
   render() {
@@ -26,25 +38,27 @@ class App extends Component {
           <li role="presentation">
             <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
           </li>
-         </ul>
+        </ul>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active" id="home">
             <Ribbon>
-              <RibbonGroup title="Clipboard" colClass="col-xs-12">
-                <RibbonGroupItem colClass="col-xs-2 col-sm-2 col-md-1 col-lg-1">
-                  <RibbonButton>
-                    <div className="ribbon-icon">
-                        <Button onClick={this.callAction} text="Import" icon="fa-cloud-download"/>
+              <div
+                style={{
+                whiteSpace: "wrap",
+                width: "100%"
+              }}>
 
-                    </div>
-                    <div>Pin</div>
-                  </RibbonButton>
-                </RibbonGroupItem>
-                
-              </RibbonGroup>
+                <RibbonGroup title="مدیریت تابلو ها" colClass="col-xs-6">
+                  <MenuItem text="بازخوانی اطلاعات" icon="fa-refresh" click={this.callAction}/>
+                  <MenuItem text="بررسی اتصال" icon="fa-plug" click={this.callAction}/>
+                  <MenuItem text="بررسی اتصال" icon="fa-plug" click={this.callAction}/>
+                  <MenuItem text="بررسی اتصال" icon="fa-plug" click={this.callAction}/>
+                  <MenuItem text="بررسی اتصال" icon="fa-plug" click={this.callAction}/>
+                  <MenuItem text="بررسی اتصال" icon="fa-plug" click={this.callAction}/>
 
-              
+                </RibbonGroup>
 
+              </div>
             </Ribbon>
           </div>
           <div role="tabpanel" className="tab-pane" id="profile">...</div>
