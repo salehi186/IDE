@@ -8,14 +8,6 @@ export default class MessageWindow extends Component {
 
     render() {
         return <div className="MessageWindow">
-            <div className="toolbar">
-                <Button onClick={this.callAction} text="Import" icon="fa-cloud-download"/>
-                <Button onClick={this.callAction} text="Add" icon="fa-image"/>
-                <Button onClick={this.callAction} text="Delete" icon=" fa-trash"/>
-                <Button onClick={this.callAction} text="Move Left" icon=" fa-mail-reply"/>
-                <Button onClick={this.callAction} text="Move Right" icon="fa-mail-forward"/>
-                <Button onClick={this.callAction} text="Send Picture" icon="fa-send"/>
-            </div>
             <div className="deviceInformation">
                 <br/>
                 Khayam VMS222

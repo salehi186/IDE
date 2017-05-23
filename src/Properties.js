@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-
+import {Button} from './UI'
+import './Properties.css'
 export default class Properties extends Component {
 
     status = {
@@ -14,24 +15,26 @@ export default class Properties extends Component {
     }
     render() {
         return <div className="properties">
-        <span>Properties </span>
-        <hr/>
-         <table >
-             <tbody>
-            {Object.keys( this
-                .props.properties)
-                .map((p, idx) => {
-                    return <tr key={"prop" + idx}>
-                        <td>
-                            {p}
-                        </td>
-                        <td>
-                           <input type="text"  name={p} value={this.props.properties[p]} />
-                        </td>
-                    </tr>;
-                })}
-            </tbody>
-        </table>
+            <span>Properties
+            </span>
+
+            <ul>
+                {Object
+                    .keys(this.props.Actions)
+                    .map((p, idx) => {
+                        return <li key={"prop" + idx}>
+                            <label>{p}</label>
+                            <input type="text" name={p} value={this.props.Actions[p]}/>
+                            <Button onClick={this.callAction} text="Send Picture" icon="fa-send"/>
+                        </li>;
+                    })}
+                <li>
+                    Submit All Properties
+                    <Button onClick={this.callAction} text="Send Picture" icon="fa-send"/>
+                </li>
+
+            </ul>
+
         </div>;
     }
 

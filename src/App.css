@@ -1,5 +1,6 @@
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  direction: rtl; }
 
 .App {
   background-color: whitesmoke;
@@ -9,23 +10,14 @@
   overflow: auto;
   top: 0px;
   left: 0px;
-  padding: 25px 0;
+  padding: 0px 0;
   box-sizing: border-box; }
 
 .tab-content div {
   white-space: normal; }
 
-.App .ToolBar {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 25px;
-  top: 0px;
-  left: 0px;
-  border: solid 1px black; }
-
 .App .StatusBar {
-  position: absolute;
+  position: relative;
   display: block;
   width: 100%;
   height: 25px;
@@ -33,23 +25,38 @@
   left: 0px;
   border: solid 1px gray; }
 
+.App .ContentHolder {
+  position: relative; }
+
 .App .MainContainer {
+  position: relative;
   vertical-align: top;
   display: inline-block;
-  width: calc(100% - 406px);
+  width: 100%;
   border: solid 1px blue;
-  height: 100%; }
+  height: 100%;
+  padding: 0  200px; }
 
-.App .RightSide {
+.App .SideBar {
+  position: absolute;
+  top: 0px;
   vertical-align: top;
   display: inline-block;
   width: 200px;
   border: solid 1px red;
   height: 100%; }
 
-.App .LeftSide {
+.App .SideBar {
+  position: absolute;
+  top: 0px;
   vertical-align: top;
   display: inline-block;
   width: 200px;
-  border: solid 1px yellow;
+  border: solid 1px red;
   height: 100%; }
+
+.left {
+  left: 0px; }
+
+.right {
+  right: 0px; }

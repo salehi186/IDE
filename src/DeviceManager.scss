@@ -1,6 +1,6 @@
 .DeviceManager ul {
     list-style-type: none;
-    padding-left: 3px;
+    padding: 0px;
     
 }
 
@@ -14,12 +14,3 @@
     border: solid;
  }
 
-
-.DeviceManager .toolbar a {
-    font-size: 30px;
-    padding: 5px;
-}
-
-.DeviceManager .toolbar a:hover {
-    text-shadow: 2px 2px gray;
-}

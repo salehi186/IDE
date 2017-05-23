@@ -1,59 +1,94 @@
 import React, {Component} from 'react';
 import './DeviceManager.css'
-import {Button} from './UI';
+//import {Button} from './UI';
 
+export default class DeviceManager extends Component {
+    constructor(props) {
+        super(props);
+        this._currentDevice = null;
+        this.state = {
+            Devices: [
+                {
+                    title: "test",
+                    VMS: [
+                        {
+                            name: "Shahid ghandi",
+                            id: "123"
+                        }, {
+                            name: "Kave",
+                            id: "124"
+                        }
+                    ]
+                }, {
+                    title: "large",
+                    VMS: [
+                        {
+                            name: "nikbakht",
+                            id: "122"
+                        }, {
+                            name: "ferdosi",
+                            id: "121"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+    set CurrentDevice(value) {
+        this._currentDevice = this.state.Devices[value];
+    }
+    get CurrentDevice() {
+        return this._currentDevice
+    }
 
-export default class DeviceManager extends Component{
-constructor(props){
-   super(props); 
-    this._currentDevice=null;
-this.state={    
-    Devices:[
-        {name:"Shahid ghandi", ip:"192.168.64.12",category:"" }
-        ,{name:"Kave", ip:"12.15.124.13",category:"" }
-        ,{name:"Emam Hosein", ip:"125.254.244.123",category:"" }
-        ,{name:"Falahati", ip:"172.254.244.22",category:"" }
-    ]}
+    refreshDeviceList() {
+        alert(this.state.CurrentDevice);
+
+    }
+
+    DeviceChange(idx) {
+        this.CurrentDevice = idx;
+        alert(this.CurrentDevice);
+    }
+
+    render() {
+
+        return <div className="DeviceManager">
+            <div className="searchBar">
+                <input type="text" placeholder="Search"/>
+                <span className="fa fa-search"></span>
+            </div>
+
+            <ul>
+                {this
+                    .state
+                    .Devices
+                    .map((cat, i) => {
+                        return <li key={"cat"+i}>
+                            {cat.title}
+                            <ul>
+                                {cat
+                                    .VMS
+                                    .map((vms, idx) => {
+                                        return <li
+                                            key={"Device" + idx}
+                                            onClick={this
+                                            .DeviceChange
+                                            .bind(this, i)}>
+                                            <span className="title">{vms.name}</span>
+                                            <span className={"icon fa " + (this.props.icon || " fa-television")}></span>
+
+                                        </li>
+                                    })
 }
-set CurrentDevice(value){ this._currentDevice=this.state.Devices[ value];}
-get  CurrentDevice(){return this._currentDevice}
+                            </ul>
+                        </li>
 
-refreshDeviceList(){
-    alert(this.state.CurrentDevice);
-
+                    })
 }
-
-DeviceChange(idx){
-    this.CurrentDevice=idx;
-    alert(this.CurrentDevice);
-}
-
-render(){
-
-    return <div className="DeviceManager">
-        <div className="toolbar" >
-            
-            <Button onClick={this.refreshDeviceList}   text="refresh" icon="fa-refresh" />
-            <Button onClick={this.refreshDeviceList}   text="refresh" icon="fa-plug" />
-            <Button onClick={this.refreshDeviceList}   text="refresh" icon="fa-close" />
-            <Button onClick={this.refreshDeviceList}   text="refresh" icon="fa-bar-chart" />
-            <Button onClick={this.refreshDeviceList}   text="refresh" icon="fa-search" />
-
-       </div>
-       <ul>
-       {
-           
-           this.state.Devices.map((d,i)=> 
-           <li key={"Device"+ i} onClick={this.DeviceChange.bind(this,i)} > 
-               <span className="title" >{d.name}</span> 
-               <span className={"icon fa "+ (this.props.icon||" fa-television")  } ></span> 
-           </li>
-           )
-
-       }
-       </ul>
+            </ul>
 
         </div>;
-}
+    }
 
 }

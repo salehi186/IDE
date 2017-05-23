@@ -1,0 +1,15 @@
+.properties input {
+  width: calc(100%-50px); }
+
+.properties label {
+  display: block; }
+
+.properties ul {
+  width: 100%;
+  padding: 0px; }
+
+.properties li {
+  border: 1px black solid;
+  list-style: none;
+  width: 100%;
+  padding: 2px; }
