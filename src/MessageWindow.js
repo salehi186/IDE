@@ -59,11 +59,11 @@ export default class MessageWindow extends Component {
             .map((p, idx) => {
                 let c = new fabric.Canvas(document.getElementById(p.id));
                 c.loadFromJSON(p.img);
-                c.selection = false;
-                c.forEachObject(function (o) {
-                    o.selectable = false;
-                    convasList[p.id] = c;
-                });
+                // c.selection = false;
+                // c.forEachObject(function (o) {
+                //     o.selectable = false;
+                //     convasList[p.id] = c;
+                // });
             });
         this.convasList = convasList;
     }
@@ -79,22 +79,39 @@ export default class MessageWindow extends Component {
                 {this.playlist.name}
 
             </div>
-            <br/>
-            <div className="imageContainer">
-                {this.playlist.items.length}
+            <div className="playlist">
                 {this
                     .playlist
                     .items
                     .map((m, idx) => <div className="itemContainer" key={"convas_id" + idx}>
+                        <div></div>
                         <div
                             className="imageItem"
                             style={{
                             width: 400,
                             height: 200
                         }}>
+
                             <canvas id={m.id} width="400" height="200"></canvas>
+                            <div className="btn-group" role="group" aria-label="...">
+                                
+                                <button type="button" className="btn btn-default fa fa-edit"></button>
+                                <div className="input-group col-xs-4">
+
+                                    <input type="number" className="form-control" defaultValue="30"/>
+                                    <span className="btn input-group-addon fa fa-clock-o"></span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>)}
+                <div className="itemContainer">
+                    <span
+                        className="fa  fa-plus-circle"
+                        style={{
+                        fontSize: "2em"
+                    }}/>
+                </div>
 
             </div>
         </div>;

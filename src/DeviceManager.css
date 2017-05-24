@@ -2,6 +2,9 @@
   list-style-type: none;
   padding: 0px; }
 
+.DeviceManager .searchBar input {
+  width: 100%; }
+
 .DeviceManager ul li {
   display: block;
   list-style-type: none;

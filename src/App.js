@@ -9,17 +9,19 @@ import "bootstrap/dist/css/bootstrap.css";
 global.jQuery = require('jquery');
 require("bootstrap/dist/js/bootstrap");
 import "react-bootstrap-ribbon/dist/react-bootstrap-ribbon.css";
+import "bootstrap-rtl/dist/css/bootstrap-rtl.css"
 
 const MenuItem = (props) => {
-  return <button type="button" className="btn btn-default btn-lg" onClick={props.click}>
-    <span className={"fa " + props.icon} aria-hidden="true"></span>
+  return <div className="col-xs-3 col-md-2 col-lg-1 btn btn-default">
+    <span className={"fa " + props.icon} style={{
+      fontSize: "x-large"
+    }}></span>
     <p style={{
       fontSize: "small"
     }}>
       {props.text}
     </p>
-  </button>
-
+  </div>
 }
 
 class App extends Component {
@@ -39,7 +41,7 @@ class App extends Component {
           </li>
         </ul>
         <div className="tab-content">
-          <div role="tabpanel" className="tab-pane active" id="home">
+          <div role="tabpanel" className="tab-pane active row" id="home">
             <MenuItem text="refresh" icon="fa-refresh"/>
             <MenuItem text="check" icon="fa-plug"/>
             <MenuItem text="Import" icon="fa-cloud-download"/>
@@ -49,31 +51,54 @@ class App extends Component {
             <MenuItem text="Move Right" icon="fa-mail-forward"/>
             <MenuItem text="Send Picture" icon="fa-send"/>
           </div>
-          <div role="tabpanel" className="tab-pane" id="profile">
+          <div role="tabpanel" className="tab-pane row" id="profile">
             <MenuItem text="PlayList" icon="fa-book"/>
             <MenuItem text="Devices" icon="fa-book"/>
             <MenuItem text="Rules" icon="fa-book"/>
           </div>
           <div role="tabpanel" className="tab-pane row" id="imageEdit">
 
-            <div className=" col-xs-1">
+            <div className=" col-xs-2 col-md-2 col-lg-1">
               <div className="input-group">
+                <span className="input-group-addon fa fa-paint-brush"></span>
                 <input type="color" className="form-control"/>
-                <span className="input-group-addon fa fa-pencil"></span>
-
               </div>
-            </div>
-            <div className=" col-xs-1">
-
               <div className="input-group">
-                <span className="input-group-addon fa fa-pencil-square"></span>
+                <span className="input-group-addon fa  fa-adn"></span>
                 <input type="color" className="form-control" defaultValue="#ffffff"/>
               </div>
             </div>
-            <div className="col-xs-6">
-              <MenuItem text="PlayList" icon="fa-book"/>
-              <MenuItem text="Devices" icon="fa-book"/>
-              <MenuItem text="Rules" icon="fa-book"/>
+            <div className="btn-group" role="group" aria-label="...">
+              <button type="button" className="btn btn-default fa fa-text-width"></button>
+              <button type="button" className="btn btn-default fa fa-circle-o"></button>
+              <button type="button" className="btn btn-default fa fa-square-o"></button>
+              <button type="button" className="btn btn-default fa fa-pencil"></button>
+              <button type="button" className="btn btn-default fa fa-mail-forward"></button>
+              <button type="button" className="btn btn-default fa fa-pencil"></button>
+
+              <div className="btn-group" role="group">
+                <button
+                  type="button"
+                  className="btn btn-default dropdown-toggle fa fa-image"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false">
+                  &nbsp; عکس
+                </button>
+                <div className="dropdown-menu">
+                  <div>
+                    <input type="text" placeholder="جست و جو"/>
+                  </div>
+                  <ul >
+                    <li>
+                      <a href="#">Dropdown link</a>
+                    </li>
+                    <li>
+                      <a href="#">Dropdown link</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -82,7 +107,6 @@ class App extends Component {
         <div className="ContentHolder">
           <div className="MainContainer">
             <MessageWindow/>
-
           </div>
           <div className="SideBar right">
             <DeviceManager/>

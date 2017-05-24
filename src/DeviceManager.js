@@ -54,10 +54,12 @@ export default class DeviceManager extends Component {
     render() {
 
         return <div className="DeviceManager">
-            <div className="searchBar">
-                <input type="text" placeholder="Search"/>
-                <span className="fa fa-search"></span>
-            </div>
+            <div className="input-group">
+                                <input type="text" className="form-control" placeholder="جست و جو" />
+                                <span className="input-group-addon fa fa-search btn"></span>
+
+                            </div>
+            
 
             <ul>
                 {this
@@ -79,13 +81,11 @@ export default class DeviceManager extends Component {
                                             <span className={"icon fa " + (this.props.icon || " fa-television")}></span>
 
                                         </li>
-                                    })
-}
+                                    })}
                             </ul>
                         </li>
 
-                    })
-}
+                    })}
             </ul>
 
         </div>;
