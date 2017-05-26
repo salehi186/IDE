@@ -24,7 +24,7 @@ export default class Properties extends Component {
                     .map((p, idx) => {
                         return <li key={"prop" + idx}>
                             <label>{p}</label>
-                            <input type="text" name={p} value={this.props.Actions[p]}/>
+                            <input type="text" name={p} defaultValue={this.props.Actions[p]}/>
                             <Button onClick={this.callAction} text="Send Picture" icon="fa-send"/>
                         </li>;
                     })}

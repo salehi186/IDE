@@ -31,14 +31,15 @@ class App extends Component {
 
         <ul className="nav nav-tabs" role="tablist">
           <li role="presentation" className="active">
-            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
-          </li>
-          <li role="presentation">
-            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Forms</a>
+            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">مدیریت VMS</a>
           </li>
           <li role="presentation">
             <a href="#imageEdit" aria-controls="imageEdit" role="tab" data-toggle="tab">ویرایش عکس</a>
           </li>
+          <li role="presentation">
+            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">مدیریت اطلاعات پایه</a>
+          </li>
+
         </ul>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active row" id="home">

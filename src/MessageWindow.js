@@ -6,8 +6,8 @@ export default class MessageWindow extends Component {
 
     constructor(props) {
         super();
-        this.playlist = {
-            id: 12,
+        let playlist = {
+            id: 12,     
             name: "test",
             items: [
                 {
@@ -47,25 +47,33 @@ export default class MessageWindow extends Component {
                     name: "firstImage"
                 }
             ]
+
+        }
+        this.state = {
+            currentConvas: 123,
+            playlist: props.playlist || playlist
         }
     }
 
     callAction(action) {}
     componentDidMount() {
-        let convasList = {};
+        let convasList =this.convasList= {};
         this
+            .state
             .playlist
             .items
-            .map((p, idx) => {
-                let c = new fabric.Canvas(document.getElementById(p.id));
+            .forEach((p, idx) => {
+                let c = this.convasList[p.id]|| new fabric.Canvas(document.getElementById(p.id));
                 c.loadFromJSON(p.img);
-                // c.selection = false;
-                // c.forEachObject(function (o) {
-                //     o.selectable = false;
-                //     convasList[p.id] = c;
-                // });
-            });
-        this.convasList = convasList;
+                if (p.id !== this.state.currentConvas) {
+                    c.selection = false;
+                    c.forEachObject(function (o) {
+                        o.selectable = false;
+                        convasList[p.id] = c;
+                    });
+                }
+            }); 
+         
     }
     componentWillUnmount() {
         this
@@ -76,14 +84,14 @@ export default class MessageWindow extends Component {
     render() {
         return <div className="MessageWindow">
             <div className="deviceInformation">
-                {this.playlist.name}
-
+                {this.state.playlist.name}
             </div>
             <div className="playlist">
                 {this
+                    .state
                     .playlist
                     .items
-                    .map((m, idx) => <div className="itemContainer" key={"convas_id" + idx}>
+                    .map((p, idx) => <div className="itemContainer" key={"convas_id" + idx}>
                         <div></div>
                         <div
                             className="imageItem"
@@ -92,17 +100,18 @@ export default class MessageWindow extends Component {
                             height: 200
                         }}>
 
-                            <canvas id={m.id} width="400" height="200"></canvas>
-                            <div className="btn-group" role="group" aria-label="...">
-                                
-                                <button type="button" className="btn btn-default fa fa-edit"></button>
-                                <div className="input-group col-xs-4">
+                            <canvas id={p.id} width="400" height="200"></canvas>
+                            <div className="row">
+                                <a href={p.id===this.state.currentConvas? "#SaveImage?" + p.id :"#EditImage?" + p.id} 
+                                className={"btn btn-default fa col-xs-2 " +(p.id===this.state.currentConvas? "fa-save":"fa-edit")}></a>
+                                <div className="col-xs-7"></div>
+                                <div className="input-group col-xs-3">
 
                                     <input type="number" className="form-control" defaultValue="30"/>
                                     <span className="btn input-group-addon fa fa-clock-o"></span>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>)}
                 <div className="itemContainer">
