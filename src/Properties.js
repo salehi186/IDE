@@ -24,15 +24,20 @@ export default class Properties extends Component {
                     .map((p, idx) => {
                         return <li key={"prop" + idx}>
                             <label>{p}</label>
-                            <input type="text" name={p} defaultValue={this.props.Actions[p]}/>
-                            <Button onClick={this.callAction} text="Send Picture" icon="fa-send"/>
+                            
+                            <div className="input-group">
+                            <input type="text" name={p} defaultValue={this.props.Actions[p]} className="form-control"/>
+                           <span className="input-group-addon fa fa-send btn"></span>
+                            </div>
                         </li>;
                     })}
-                <li>
-                    Submit All Properties
-                    <Button onClick={this.callAction} text="Send Picture" icon="fa-send"/>
+                <li className="center">
+                    <br/>
+                    <span className="btn btn-default fa fa-send">Submit All Properties</span>
+                    <br/>
+                    
                 </li>
-
+  
             </ul>
 
         </div>;

@@ -104,7 +104,14 @@ export default class MessageWindow extends Component {
                             <div className="row">
                                 <a href={p.id===this.state.currentConvas? "#SaveImage?" + p.id :"#EditImage?" + p.id} 
                                 className={"btn btn-default fa col-xs-2 " +(p.id===this.state.currentConvas? "fa-save":"fa-edit")}></a>
-                                <div className="col-xs-7"></div>
+                                <a href={ "#DeleteImage?" + p.id} 
+                                className={"btn btn-default fa col-xs-2 fa-trash"}></a>
+                                <a href={ "#MoveDownImage?" + p.id} 
+                                className={"btn btn-default fa col-xs-2 fa-arrow-up"}></a>
+                                <a href={ "#MoveUpImage?" + p.id} 
+                                className={"btn btn-default fa col-xs-2 fa-arrow-down"}></a>
+
+                                <div className="col-xs-5"></div>
                                 <div className="input-group col-xs-3">
 
                                     <input type="number" className="form-control" defaultValue="30"/>

@@ -22,18 +22,26 @@ export const FilterVMS=(filterText)=>{
     }
 }
 
+export const PlayListActions={
+ADD_IMAGE:"ADD_IMAGE",
+IMPORT_IMAGE:"IMPORT_IMAGE",
+DELETE_IMAGE:"DELETE_IMAGE",
+SAVE_IMAGE:"SAVE_IMAGE",
+SAVE_PLAYLIST:"SAVE_PLAYLIST"
+}
+
 ///Message Window
 var newImageId=-1;
 export const AddImage=()=>{
     return{
-        type:"ADD_IMAGE",
-        id= (--newImageId)
+        type:PlayListActions.AddImage,
+        id: (--newImageId)
     }
 }
 
 export const ImportImage=(id,image)=>{
 return{
-    type:"IMPORT_IMAGE",
+    type:PlayListActions.IMPORT_IMAGE,
     id,
     image,
     delay:20
@@ -42,20 +50,20 @@ return{
 
 export const DeleteImage=(id)=>{
     return{
-        type:"DELETE_IMAGE",
+        type:PlayListActions.DELETE_IMAGE,
         id
     }
 }
 export const SaveImage=(id)=>{
 return{
-    type:"SAVE_IMAGE",
+    type:PlayListActions.SAVE_IMAGE,
     id
 
 }
 }
 export const SavePlayList=(id)=>{
 return{
-    type:"SAVE_PLAYLIST",
+    type:PlayListActions.SAVE_PLAYLIST,
     id
 }
 
