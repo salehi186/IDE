@@ -1,24 +1,31 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
-
-import './App.css';
 import 'animate.css';
 import 'font-awesome/css/font-awesome.css'
-import DeviceManager from './DeviceManager';
-import Properties from './Properties'
-import MessageWindow from './MessageWindow'
 import "bootstrap/dist/css/bootstrap.css";
 global.jQuery = require('jquery');
 require("bootstrap/dist/js/bootstrap");
 import "react-bootstrap-ribbon/dist/react-bootstrap-ribbon.css";
 import "bootstrap-rtl/dist/css/bootstrap-rtl.css"
-import {Menu} from './Menu'
+
+import './App.css';
+//import DeviceManager from './components/DeviceManager';
+import VisibleVMSList from './containers/VMSContainer'
+import Properties from './components/Properties'
+import MessageWindow from './components/MessageWindow'
+import {Menu} from './components/Menu'
+
+import IDE_REDUX from './reducers'
+
+
+let store = createStore(IDE_REDUX)
+
 
 class App extends Component {
   render() {
     return (
-      <Provider>
+      <Provider store={store}>
         <div className="App">
           <Menu/>
           <div className="ContentHolder">
@@ -26,7 +33,7 @@ class App extends Component {
               <MessageWindow/>
             </div>
             <div className="SideBar right">
-              <DeviceManager/>
+              <VisibleVMSList/>
             </div>
             <div className="SideBar left">
               <Properties

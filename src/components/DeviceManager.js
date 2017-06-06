@@ -6,36 +6,10 @@ export default class DeviceManager extends Component {
     constructor(props) {
         super(props);
         this._currentDevice = null;
-        this.state = {
-            Devices: [
-                {
-                    title: "test",
-                    VMS: [
-                        {
-                            name: "Shahid ghandi",
-                            id: "123"
-                        }, {
-                            name: "Kave",
-                            id: "124"
-                        }
-                    ]
-                }, {
-                    title: "large",
-                    VMS: [
-                        {
-                            name: "nikbakht",
-                            id: "122"
-                        }, {
-                            name: "ferdosi",
-                            id: "121"
-                        }
-                    ]
-                }
-            ]
-        }
+        this.Devices = this.props.VMSList || [];
     }
     set CurrentDevice(value) {
-        this._currentDevice = this.state.Devices[value];
+        this._currentDevice = this.Devices[value];
     }
     get CurrentDevice() {
         return this._currentDevice
@@ -62,9 +36,7 @@ export default class DeviceManager extends Component {
             
 
             <ul>
-                {this
-                    .state
-                    .Devices
+                {this.Devices
                     .map((cat, i) => {
                         return <li key={"cat"+i}>
                             {cat.title}
@@ -74,8 +46,7 @@ export default class DeviceManager extends Component {
                                     .map((vms, idx) => {
                                         return <li
                                             key={"Device" + idx}
-                                            onClick={this
-                                            .DeviceChange
+                                            onClick={this.props.onDeviceSelect
                                             .bind(this, i)}>
                                             <span className="title">{vms.name}</span>
                                             <span className={"icon fa " + (this.props.icon || " fa-television")}></span>

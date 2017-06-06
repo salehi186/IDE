@@ -22,6 +22,13 @@ export const FilterVMS=(filterText)=>{
     }
 }
 
+export const SelectVMS=(id)=>{
+    return {
+        type:"SELECT_VMS",
+        id
+    }
+}
+
 export const PlayListActions={
 ADD_IMAGE:"ADD_IMAGE",
 IMPORT_IMAGE:"IMPORT_IMAGE",
