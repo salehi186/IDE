@@ -11,9 +11,9 @@ import "bootstrap-rtl/dist/css/bootstrap-rtl.css"
 
 import './App.css';
 //import DeviceManager from './components/DeviceManager';
-import VisibleVMSList from './containers/VMSContainer'
-import Properties from './components/Properties'
-import MessageWindow from './components/MessageWindow'
+import VisibleVMSList from './containers/VMSList'
+import PropertyList from './containers/PropertyList'
+import PlayList from './containers/PlayList'
 import {Menu} from './components/Menu'
 
 import IDE_REDUX from './reducers'
@@ -30,17 +30,13 @@ class App extends Component {
           <Menu/>
           <div className="ContentHolder">
             <div className="MainContainer">
-              <MessageWindow/>
+              <PlayList/>
             </div>
             <div className="SideBar right">
               <VisibleVMSList/>
             </div>
             <div className="SideBar left">
-              <Properties
-                Actions={{
-                name: "tetst",
-                Temprature: "12"
-              }}/>
+              <PropertyList/>
             </div>
 
           </div>

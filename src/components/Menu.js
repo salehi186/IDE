@@ -33,6 +33,8 @@ return <div>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active row" id="home">
             <MenuItem text="refresh" icon="fa-refresh"/>
+            
+            <MenuItem text="refresh" icon="fa-refresh"/>
             <MenuItem text="check" icon="fa-plug"/>
             <MenuItem text="Import" icon="fa-cloud-download"/>
             <MenuItem text="Add" icon="fa-image"/>

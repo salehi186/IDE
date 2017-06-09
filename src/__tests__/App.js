@@ -7,6 +7,16 @@ import App from '../App';
 //   ReactDOM.render(<App />, div);
 // });
 
-it(" check test",()=>{
+//let dd=12;
+//console.log(12);
 
+it('renders without crashing', () => { 
+  //debugger;
+  const div = document.createElement('div');
+  ReactDOM.render(<App />, div);
+});
+
+
+it(" check test",()=>{
+    let a=12;
 })
