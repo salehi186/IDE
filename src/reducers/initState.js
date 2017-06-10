@@ -34,6 +34,7 @@
         CurrentCanvas:1
     },
     PlayList:{
+            activeItem:1,
             id: 12,     
             name: "test",
             items: [

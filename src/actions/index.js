@@ -30,7 +30,8 @@ export const PlayListActions = {
     IMPORT_IMAGE: "IMPORT_IMAGE",
     DELETE_IMAGE: "DELETE_IMAGE",
     SAVE_IMAGE: "SAVE_IMAGE",
-    SAVE_PLAYLIST: "SAVE_PLAYLIST"
+    SAVE_PLAYLIST: "SAVE_PLAYLIST",
+    CHANGE_ACTIVE_ITEM:"CHANGE_ACTIVE_ITEM"
 }
 
 ///Message Window
@@ -56,21 +57,22 @@ export const SavePlayList = (id) => {
     return {type: PlayListActions.SAVE_PLAYLIST, id}
 
 }
+export const ChangeActiveItem=(id)=>{
+    return {type:PlayListActions.CHANGE_ACTIVE_ITEM,id};
 
-/// Image Manipulation
-export const CanvasChange = (canvas) => {
-    return {type:CanvasActions.ChangeCurrentCanvas ,FabricjsCanvas:canvas }
 }
+
 export const InsertObject=(type,ObjectType,defaultProps)=>{
         return{
             type:CanvasActions.InsertObject,
-            ObjectType,
-            defaultProps
+            shape:ObjectType,
+            defaults:defaultProps
         }
 }
 
 
 export const CanvasActions = {
+    INSERT_OBJECT:"INSERT_OBJECT",
     ChangeCurrentCanvas:"ChangeCurrentCanvas",
     ADD_IMAGE: "INSERTIMAGE",
     ADD_TEXT: "ADD_TEXT",

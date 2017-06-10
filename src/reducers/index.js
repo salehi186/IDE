@@ -35,6 +35,8 @@ function PlayListReducer(state = stateTree.PlayList ,action) {
             break;
         case ACTIONS.PlayListActions.IMPORT_IMAGE:
             break;
+        case ACTIONS.PlayListActions.CHANGE_ACTIVE_ITEM:
+            return Object.assign({},state,{activeItem:action.id});    
       default:
             return state;
     }
@@ -57,7 +59,8 @@ function PropertiesReducer(state = stateTree.CurrentVMS.Props, action) {
 ///Convas manipulation
 function CanvasReducer(state=null,action){
     switch (action.type) {
-        case ACTIONS.CanvasActions.ADD_CIRCLE:
+        case ACTIONS.CanvasActions.INSERT_OBJECT:
+                state.
             
             break;
     

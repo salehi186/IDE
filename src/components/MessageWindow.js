@@ -17,7 +17,7 @@ export default class MessageWindow extends Component {
         this.props.playList
             .items
             .forEach((p, idx) => {
-                let c = this.convasList[p.id]|| new fabric.Canvas(document.getElementById(p.id));
+                let c = this.convasList[p.id]|| (document.getElementById(p.id).fabric= new fabric.Canvas(document.getElementById(p.id)));
                 c.loadFromJSON(p.img);
                 if (p.id !== this.state.currentConvas) {
                     c.selection = false;
