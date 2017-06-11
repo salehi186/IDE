@@ -4,7 +4,6 @@
 .MessageWindow .imageItem {
   position: relative;
   display: inline-block;
-  border: 1px solid black;
   text-align: center; }
 
 .MessageWindow .imageItem canvas {
@@ -15,4 +14,9 @@
   left: auto; }
 
 .MessageWindow .itemContainer {
-  padding: 20px 0; }
+  padding: 10px 0 30px;
+  width: 98%;
+  display: inline-block; }
+
+.MessageWindow .itemContainer.editMode {
+  border-right: 3px solid red; }

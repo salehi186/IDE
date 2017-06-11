@@ -6,9 +6,7 @@ export default class MessageWindow extends Component {
 
     constructor(props) {
         super();
-        this.state = {
-            currentConvas: 123,
-        }
+       
     }
 
     callAction(action) {}
@@ -19,7 +17,7 @@ export default class MessageWindow extends Component {
             .forEach((p, idx) => {
                 let c = this.convasList[p.id]|| (document.getElementById(p.id).fabric= new fabric.Canvas(document.getElementById(p.id)));
                 c.loadFromJSON(p.img);
-                if (p.id !== this.state.currentConvas) {
+                if (p.id !== this.props.currentConvas) {
                     c.selection = false;
                     c.forEachObject(function (o) {
                         o.selectable = false;
@@ -45,7 +43,7 @@ export default class MessageWindow extends Component {
                     .props
                     .playList
                     .items
-                    .map((p, idx) => <div className="itemContainer" key={"convas_id" + idx}>
+                    .map((p, idx) => <div className={"itemContainer "+ (p.isChanged?"editMode":"")} key={"convas_id" + idx}>
                         <div></div>
                         <div
                             className="imageItem"
@@ -56,8 +54,8 @@ export default class MessageWindow extends Component {
 
                             <canvas id={p.id} width="400" height="200"></canvas>
                             <div className="row">
-                                <a href={p.id===this.state.currentConvas? "#SaveImage?" + p.id :"#EditImage?" + p.id} 
-                                className={"btn btn-default fa col-xs-2 " +(p.id===this.state.currentConvas? "fa-save":"fa-edit")}></a>
+                                <a href={p.id===this.props.currentConvas? "#SaveImage?" + p.id :"#EditImage?" + p.id} 
+                                className={"btn btn-default fa col-xs-2 " +(p.id===this.props.currentConvas? "fa-save":"fa-edit")}></a>
                                 <a href={ "#DeleteImage?" + p.id} 
                                 className={"btn btn-default fa col-xs-2 fa-trash"}></a>
                                 <a href={ "#MoveDownImage?" + p.id} 

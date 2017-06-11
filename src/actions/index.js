@@ -1,4 +1,4 @@
-//Properties Component
+///Properties Component
 export const PropertiesActions = {
     SET_PROPS: "SET_PROPS",
     SET_All: "SET_All",

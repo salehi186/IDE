@@ -5,7 +5,9 @@ import * as actions from '../actions'
 
 
 const mapStateToProps = (state) => {
-return { playList: state.CurrentVMS.Playlist}
+return { playList: state.CurrentVMS.Playlist,
+    currentConvas:state.CurrentVMS.Playlist.activeItem
+}
 }
 
 const mapDispatchToProps = (dispatch) => {

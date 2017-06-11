@@ -1,6 +1,7 @@
-import {combineReducers} from 'redux'
 import * as ACTIONS from '../actions';
 import stateTree from './initState';
+import {combineReducers} from 'redux'
+import {CanvasReducer} from "./CanvasReducer"
 
 function DeviceReducer(state = stateTree.VMSGroups, action) {
     switch (action.type) {
@@ -9,12 +10,25 @@ function DeviceReducer(state = stateTree.VMSGroups, action) {
                 return state;
             else 
                 return state.reduce(p => p.title.indexOf(action.filterText) > -1);
+            default:
+            return state;
+    }
+}
+
+function PropertiesReducer(state = stateTree.CurrentVMS.Props, action) {
+    switch (action.type) {
+        case ACTIONS.PropertiesActions.RELOAD_PROPS:
+            return state;
+        case ACTIONS.PropertiesActions.SET_All:
+            return state;
+        case ACTIONS.PropertiesActions.SET_PROPS:
+            return state;
         default:
             return state;
     }
 }
 
-function PlayListReducer(state = stateTree.PlayList ,action) {
+function PlayListReducer(state = stateTree.PlayList, action) {
     switch (action.type) {
         case ACTIONS.PlayListActions.ADD_IMAGE:
             return Object.assign({}, state, {
@@ -36,55 +50,17 @@ function PlayListReducer(state = stateTree.PlayList ,action) {
         case ACTIONS.PlayListActions.IMPORT_IMAGE:
             break;
         case ACTIONS.PlayListActions.CHANGE_ACTIVE_ITEM:
-            return Object.assign({},state,{activeItem:action.id});    
-      default:
-            return state;
-    }
+            return Object.assign({}, state, {activeItem: action.id});
 
-}
-
-function PropertiesReducer(state = stateTree.CurrentVMS.Props, action) {
-    switch (action.type) {
-        case ACTIONS.PropertiesActions.RELOAD_PROPS:
-            return state;
-        case ACTIONS.PropertiesActions.SET_All:
-            return state;
-        case ACTIONS.PropertiesActions.SET_PROPS:
-            return state;
         default:
             return state;
     }
-}
 
-///Convas manipulation
-function CanvasReducer(state=null,action){
-    switch (action.type) {
-        case ACTIONS.CanvasActions.INSERT_OBJECT:
-                state.
-            
-            break;
-    
-        default:
-            return state;
-    }
 }
 
 
-const CurrentVMS=combineReducers(
-         {
-             VMSProps:PropertiesReducer,
-             Playlist: PlayListReducer,
-             CurrentCanvas:CanvasReducer
-         }
-);
+const CurrentVMS = combineReducers({VMSProps: PropertiesReducer, Playlist: PlayListReducer, CurrentCanvas: CanvasReducer});
 
-const IDE_REDUX = combineReducers(
-    {
-     VMSGroups: DeviceReducer,
-     CurrentVMS:CurrentVMS
-    });
+const IDE_REDUX = combineReducers({VMSGroups: DeviceReducer, CurrentVMS: CurrentVMS});
 
 export default IDE_REDUX;
-
-
-
