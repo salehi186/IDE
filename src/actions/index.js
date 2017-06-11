@@ -57,8 +57,8 @@ export const SavePlayList = (id) => {
     return {type: PlayListActions.SAVE_PLAYLIST, id}
 
 }
-export const ChangeActiveItem=(id)=>{
-    return {type:PlayListActions.CHANGE_ACTIVE_ITEM,id};
+export const ChangeActiveItem=(id,facricCanvas)=>{
+    return {type:PlayListActions.CHANGE_ACTIVE_ITEM,id,facricCanvas};
 
 }
 

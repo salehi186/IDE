@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const MenuItem = (props) => {
-  return <div className="col-xs-3 col-md-2 col-lg-1 btn btn-default">
+const MenuItem = (props) => {
+  return <div className="col-xs-3 col-md-2 col-lg-1 btn btn-default" onClick={props.action?()=>props.click(props.action):null}>
     <span className={"fa " + props.icon} style={{
       fontSize: "x-large"
     }}></span>
@@ -15,7 +15,8 @@ export const MenuItem = (props) => {
 
 
 
-export const Menu=function(){
+
+const Menu=function(props){
 return <div>
 
         <ul className="nav nav-tabs" role="tablist">
@@ -34,7 +35,7 @@ return <div>
           <div role="tabpanel" className="tab-pane active row" id="home">
             <MenuItem text="refresh" icon="fa-refresh"/>
             
-            <MenuItem text="refresh" icon="fa-refresh"/>
+            <MenuItem text="refresh" action="refresh" icon="fa-refresh"/>
             <MenuItem text="check" icon="fa-plug"/>
             <MenuItem text="Import" icon="fa-cloud-download"/>
             <MenuItem text="Add" icon="fa-image"/>
@@ -61,7 +62,7 @@ return <div>
               </div>
             </div>
             <div className="btn-group" role="group" aria-label="...">
-              <button type="button" className="btn btn-default fa fa-text-width"></button>
+              <button type="button" className="btn btn-default fa fa-text-width" onClick={()=>props.onItemClick("AddText")}></button>
               <button type="button" className="btn btn-default fa fa-circle-o"></button>
               <button type="button" className="btn btn-default fa fa-square-o"></button>
               <button type="button" className="btn btn-default fa fa-pencil"></button>
@@ -100,3 +101,5 @@ return <div>
     </div>;
 
 }
+
+export default Menu;

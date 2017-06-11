@@ -1,16 +1,12 @@
-
 import * as ACTIONS from '../actions';
 import stateTree from './initState';
-global.jQuery = require('jquery');
 import {fabric} from 'fabric/dist/fabric';
 
 ///Convas manipulation
 export function CanvasReducer(state = {}, action) {
     switch (action.type) {
         case ACTIONS.CanvasActions.INSERT_OBJECT:
-            let fbc = global
-                .jQuery(state.id)
-                .fabric;
+            let fbc = action.fabricCanvas.fabric;
             let shape;
             switch (action.type) {
                 case "circle":
@@ -31,7 +27,7 @@ export function CanvasReducer(state = {}, action) {
                     break;
             }
             fbc.add(shape);
-            return Object.assign({},state,{isChanged:true});
+            return Object.assign({}, state, {isChanged: true});
 
         default:
             return state;

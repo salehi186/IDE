@@ -1,7 +1,8 @@
 import * as ACTIONS from '../actions';
 import stateTree from './initState';
 import {combineReducers} from 'redux'
-import {CanvasReducer} from "./CanvasReducer"
+import {CanvasReducer} from "./CanvasReducer";
+import {PlayListReducer} from "./PlayListReducer";
 
 function DeviceReducer(state = stateTree.VMSGroups, action) {
     switch (action.type) {
@@ -28,35 +29,6 @@ function PropertiesReducer(state = stateTree.CurrentVMS.Props, action) {
     }
 }
 
-function PlayListReducer(state = stateTree.PlayList, action) {
-    switch (action.type) {
-        case ACTIONS.PlayListActions.ADD_IMAGE:
-            return Object.assign({}, state, {
-                items: [
-                    ...state.items, {
-                        Id: action.id,
-                        Name: "NoTitle"
-                    }
-                ]
-            });
-        case ACTIONS.PlayListActions.DELETE_IMAGE:
-            return state
-                .items
-                .reduce(p => p.id !== action.id);
-        case ACTIONS.PlayListActions.SAVE_IMAGE:
-            break;
-        case ACTIONS.PlayListActions.SAVE_PLAYLIST:
-            break;
-        case ACTIONS.PlayListActions.IMPORT_IMAGE:
-            break;
-        case ACTIONS.PlayListActions.CHANGE_ACTIVE_ITEM:
-            return Object.assign({}, state, {activeItem: action.id});
-
-        default:
-            return state;
-    }
-
-}
 
 
 const CurrentVMS = combineReducers({VMSProps: PropertiesReducer, Playlist: PlayListReducer, CurrentCanvas: CanvasReducer});

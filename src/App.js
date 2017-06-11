@@ -14,7 +14,7 @@ import './App.css';
 import VisibleVMSList from './containers/VMSList'
 import PropertyList from './containers/PropertyList'
 import PlayList from './containers/PlayList'
-import {Menu} from './components/Menu'
+import MenuContainer from './containers/MenuContainer';
 
 import IDE_REDUX from './reducers'
 
@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <Menu/>
+          <MenuContainer/>
           <div className="ContentHolder">
             <div className="MainContainer">
               <PlayList/>
