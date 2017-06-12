@@ -6,27 +6,56 @@ export default class MessageWindow extends Component {
 
     constructor(props) {
         super();
-       
     }
 
-    callAction(action) {}
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.currentConvas !== this.props.currentConvas) {
+            let c = document
+                .getElementById(nextProps.currentConvas);
+                
+            if (c) {
+                c.fabric.selection = true;
+                c.fabric.forEachObject(function (o) {
+                    o.selectable = true;
+                });
+            }
+           let d = document
+                .getElementById(this.props.currentConvas)
+                
+            if (d) {
+                d.fabric.selection = false;
+                d.fabric.forEachObject(function (o) {
+                    o.selectable = false;
+                });
+            }
+        }
+
+    }
     componentDidMount() {
-        let convasList =this.convasList= {};
-        this.props.playList
+        let convasList = this.convasList = {};
+        this
+            .props
+            .playList
             .items
             .forEach((p, idx) => {
-                let c = this.convasList[p.id]|| (document.getElementById(p.id).fabric= new fabric.Canvas(document.getElementById(p.id)));
+                let c = this.convasList[p.id] || (document.getElementById(p.id).fabric = new fabric.Canvas(document.getElementById(p.id)));
                 c.loadFromJSON(p.img);
-                if (p.id !== this.props.currentConvas) {
-                    c.selection = false;
+                c.selection = false;
+                if (p.id !== this.props.currentConvas) 
                     c.forEachObject(function (o) {
                         o.selectable = false;
                         convasList[p.id] = c;
                     });
                 }
-            }); 
-         
+            );
+
     }
+    componentWillmount() {
+        this
+            .convasList
+            .each((i, p) => {})
+    }
+
     componentWillUnmount() {
         this
             .convasList
@@ -34,7 +63,7 @@ export default class MessageWindow extends Component {
     }
 
     render() {
-        return <div className="MessageWindow">
+        const retValue = <div className="MessageWindow">
             <div className="deviceInformation">
                 {this.props.playList.name}
             </div>
@@ -43,7 +72,11 @@ export default class MessageWindow extends Component {
                     .props
                     .playList
                     .items
-                    .map((p, idx) => <div className={"itemContainer "+ (p.isChanged?"editMode":"")} key={"convas_id" + idx}>
+                    .map((p, idx) => <div
+                        className={"itemContainer " + (p.isChanged
+                        ? "editMode"
+                        : "")}
+                        key={"convas_id" + idx}>
                         <div></div>
                         <div
                             className="imageItem"
@@ -52,16 +85,28 @@ export default class MessageWindow extends Component {
                             height: 200
                         }}>
 
-                            <canvas id={p.id} width="400" height="200"></canvas>
+                            <canvas id={p.id} width="400" height="200" ref="canvas"></canvas>
                             <div className="row">
-                                <a href={p.id===this.props.currentConvas? "#SaveImage?" + p.id :"#EditImage?" + p.id} 
-                                className={"btn btn-default fa col-xs-2 " +(p.id===this.props.currentConvas? "fa-save":"fa-edit")}></a>
-                                <a href={ "#DeleteImage?" + p.id} 
-                                className={"btn btn-default fa col-xs-2 fa-trash"}></a>
-                                <a href={ "#MoveDownImage?" + p.id} 
-                                className={"btn btn-default fa col-xs-2 fa-arrow-up"}></a>
-                                <a href={ "#MoveUpImage?" + p.id} 
-                                className={"btn btn-default fa col-xs-2 fa-arrow-down"}></a>
+                                <a
+                                    onClick={p.id === this.props.currentConvas
+                                    ? () => this
+                                        .props
+                                        .save(p.id, this.refs.canvas.fabric)
+                                    : () => this
+                                        .props
+                                        .Edit(p.id, this.refs.canvas.fabric)}
+                                    className={"btn btn-default fa col-xs-2 " + (p.id === this.props.currentConvas
+                                    ? "fa-save"
+                                    : "fa-edit")}></a>
+                                <a
+                                    href={"#DeleteImage?" + p.id}
+                                    className={"btn btn-default fa col-xs-2 fa-trash"}></a>
+                                <a
+                                    href={"#MoveDownImage?" + p.id}
+                                    className={"btn btn-default fa col-xs-2 fa-arrow-up"}></a>
+                                <a
+                                    href={"#MoveUpImage?" + p.id}
+                                    className={"btn btn-default fa col-xs-2 fa-arrow-down"}></a>
 
                                 <div className="col-xs-5"></div>
                                 <div className="input-group col-xs-3">
@@ -83,5 +128,8 @@ export default class MessageWindow extends Component {
 
             </div>
         </div>;
+
+        return retValue;
+
     }
 }

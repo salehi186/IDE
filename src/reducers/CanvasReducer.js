@@ -6,9 +6,9 @@ import {fabric} from 'fabric/dist/fabric';
 export function CanvasReducer(state = {}, action) {
     switch (action.type) {
         case ACTIONS.CanvasActions.INSERT_OBJECT:
-            let fbc = action.fabricCanvas.fabric;
+            let fbc = action.Canvas;
             let shape;
-            switch (action.type) {
+            switch (action.shape) {
                 case "circle":
                     shape = new fabric.Circle({radius: 20, fill: 'green', left: 100, top: 100});
 
@@ -18,10 +18,8 @@ export function CanvasReducer(state = {}, action) {
 
                     break;
                 case "text":
-                    shape = new fabric.Text('Add Some Text', {
-                        left: 100,
-                        top: 100
-                    });
+                    shape = new fabric.Text('Add Some Text', { left: 100, top: 100  });
+                    
                     break;
                 default:
                     break;

@@ -34,7 +34,7 @@
         CurrentCanvas:1
     },
     PlayList:{
-            activeItem:123,
+            activeItem:-1,
             id: 12,     
             name: "test",
             items: [
@@ -61,7 +61,7 @@
                     width: 500,
                     height: 500,
                     name: "firstImage",
-                    isChanged:true
+                    isChanged:false
                 }, {
                     img: '{"objects":[{"type":"rect","left":50,"top":50,"width":20,"height":20,"fill":"gre' +
                             'en","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"sca' +

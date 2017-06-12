@@ -2,6 +2,7 @@ import * as ACTIONS from '../actions';
 import stateTree from './initState';
 
 export function PlayListReducer(state = stateTree.PlayList, action) {
+    let newState={};
     switch (action.type) {
         case ACTIONS.PlayListActions.ADD_IMAGE:
             return Object.assign({}, state, {
@@ -23,7 +24,7 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
         case ACTIONS.PlayListActions.IMPORT_IMAGE:
             break;
         case ACTIONS.PlayListActions.CHANGE_ACTIVE_ITEM:
-            return Object.assign({}, state, {activeItem: action.id});
+            return Object.assign({}, state, {activeItem: action.id,canvas:action.facricCanvas});
 
         default:
             return state;

@@ -59,12 +59,11 @@ export const SavePlayList = (id) => {
 }
 export const ChangeActiveItem=(id,facricCanvas)=>{
     return {type:PlayListActions.CHANGE_ACTIVE_ITEM,id,facricCanvas};
-
 }
 
-export const InsertObject=(type,ObjectType,defaultProps)=>{
+export const InsertObject=(ObjectType,defaultProps)=>{
         return{
-            type:CanvasActions.InsertObject,
+            type:CanvasActions.INSERT_OBJECT,
             shape:ObjectType,
             defaults:defaultProps
         }

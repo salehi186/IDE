@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch) => {
 return {
     onItemClick:(args)=>{
         alert(args);
+        dispatch(actions.InsertObject(args));
     }
     };
 }

@@ -29,9 +29,9 @@ function PropertiesReducer(state = stateTree.CurrentVMS.Props, action) {
     }
 }
 
+ 
 
-
-const CurrentVMS = combineReducers({VMSProps: PropertiesReducer, Playlist: PlayListReducer, CurrentCanvas: CanvasReducer});
+const CurrentVMS = combineReducers({VMSProps: PropertiesReducer, Playlist: PlayListReducer});
 
 const IDE_REDUX = combineReducers({VMSGroups: DeviceReducer, CurrentVMS: CurrentVMS});
 
