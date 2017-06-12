@@ -1,3 +1,6 @@
+import store from '../store';
+
+
 ///Properties Component
 export const PropertiesActions = {
     SET_PROPS: "SET_PROPS",
@@ -57,15 +60,17 @@ export const SavePlayList = (id) => {
     return {type: PlayListActions.SAVE_PLAYLIST, id}
 
 }
-export const ChangeActiveItem=(id,facricCanvas)=>{
-    return {type:PlayListActions.CHANGE_ACTIVE_ITEM,id,facricCanvas};
+export const ChangeActiveItem=(id,canvas)=>{
+    return {type:PlayListActions.CHANGE_ACTIVE_ITEM,Id:id,Canvas: canvas};
 }
 
 export const InsertObject=(ObjectType,defaultProps)=>{
         return{
             type:CanvasActions.INSERT_OBJECT,
             shape:ObjectType,
-            defaults:defaultProps
+            defaults:defaultProps,
+            canvas:window.store.getState().CurrentVMS.Playlist.canvas
+
         }
 }
 

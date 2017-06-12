@@ -1,11 +1,12 @@
 import * as ACTIONS from '../actions';
 import stateTree from './initState';
+import {CanvasReducer} from './CanvasReducer';
 
 export function PlayListReducer(state = stateTree.PlayList, action) {
     let newState={};
     switch (action.type) {
         case ACTIONS.PlayListActions.ADD_IMAGE:
-            return Object.assign({}, state, {
+            return Object.assign(newState, state, {
                 items: [
                     ...state.items, {
                         Id: action.id,
@@ -14,9 +15,9 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
                 ]
             });
         case ACTIONS.PlayListActions.DELETE_IMAGE:
-            return state
-                .items
-                .reduce(p => p.id !== action.id);
+            return Object.assign(newState, state, {
+                items:state.items.reduce(p => p.id !== action.id)
+            });
         case ACTIONS.PlayListActions.SAVE_IMAGE:
             break;
         case ACTIONS.PlayListActions.SAVE_PLAYLIST:
@@ -24,10 +25,11 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
         case ACTIONS.PlayListActions.IMPORT_IMAGE:
             break;
         case ACTIONS.PlayListActions.CHANGE_ACTIVE_ITEM:
-            return Object.assign({}, state, {activeItem: action.id,canvas:action.facricCanvas});
+            return Object.assign(newState, state, {activeItem: action.Id,Canvas:action.Canvas});
 
         default:
-            return state;
+            Object.assign(newState,state,{Canvas: CanvasReducer(state.activeItem,action)});
+            return newState;
     }
 
 }

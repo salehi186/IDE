@@ -62,12 +62,10 @@ return <div>
               </div>
             </div>
             <div className="btn-group" role="group" aria-label="...">
-              <button type="button" className="btn btn-default fa fa-text-width" onClick={()=>props.onItemClick("AddText")}></button>
-              <button type="button" className="btn btn-default fa fa-circle-o"></button>
-              <button type="button" className="btn btn-default fa fa-square-o"></button>
-              <button type="button" className="btn btn-default fa fa-pencil"></button>
-              <button type="button" className="btn btn-default fa fa-mail-forward"></button>
-              <button type="button" className="btn btn-default fa fa-pencil"></button>
+              <button type="button" className="btn btn-default fa fa-text-width" onClick={()=>props.onItemClick("text")}></button>
+              <button type="button" className="btn btn-default fa fa-circle-o" onClick={()=>props.onItemClick("circle")}></button>
+              <button type="button" className="btn btn-default fa fa-square-o" onClick={()=>props.onItemClick("triangle")}></button>
+              <button type="button" className="btn btn-default fa fa-pencil" onClick={()=>props.onItemClick("draw")}></button>
 
               <div className="btn-group" role="group">
                 <button

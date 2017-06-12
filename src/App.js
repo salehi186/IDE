@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux'
-import {createStore} from 'redux'
+import store from './store';
 import 'animate.css';
 import 'font-awesome/css/font-awesome.css'
 import "bootstrap/dist/css/bootstrap.css";
@@ -8,7 +8,6 @@ global.jQuery = require('jquery');
 require("bootstrap/dist/js/bootstrap");
 import "react-bootstrap-ribbon/dist/react-bootstrap-ribbon.css";
 import "bootstrap-rtl/dist/css/bootstrap-rtl.css"
-
 import './App.css';
 //import DeviceManager from './components/DeviceManager';
 import VisibleVMSList from './containers/VMSList'
@@ -16,10 +15,7 @@ import PropertyList from './containers/PropertyList'
 import PlayList from './containers/PlayList'
 import MenuContainer from './containers/MenuContainer';
 
-import IDE_REDUX from './reducers'
 
-
-let store = createStore(IDE_REDUX)
 
 
 class App extends Component {

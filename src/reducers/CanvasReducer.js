@@ -1,19 +1,19 @@
 import * as ACTIONS from '../actions';
 import stateTree from './initState';
 import {fabric} from 'fabric/dist/fabric';
-
 ///Convas manipulation
 export function CanvasReducer(state = {}, action) {
     switch (action.type) {
         case ACTIONS.CanvasActions.INSERT_OBJECT:
-            let fbc = action.Canvas;
+            if(!state)
+            return state;
             let shape;
             switch (action.shape) {
                 case "circle":
                     shape = new fabric.Circle({radius: 20, fill: 'green', left: 100, top: 100});
 
                     break;
-                case "rectangle":
+                case "triangle":
                     shape = new fabric.Triangle({width: 20, height: 30, fill: 'blue', left: 50, top: 50});
 
                     break;
@@ -24,8 +24,12 @@ export function CanvasReducer(state = {}, action) {
                 default:
                     break;
             }
-            fbc.add(shape);
+            document.getElementById(state).fabric.add(shape);
             return Object.assign({}, state, {isChanged: true});
+            
+             
+
+        
 
         default:
             return state;
