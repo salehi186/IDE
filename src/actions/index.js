@@ -1,5 +1,7 @@
 import store from '../store';
+import * as DeviceManager from '../actions/DeviceManager';
 
+export const sss=DeviceManager;
 
 ///Properties Component
 export const PropertiesActions = {
@@ -19,16 +21,9 @@ export const ReloadProps = () => {
     return {type: PropertiesActions.RELOAD_PROPS}
 }
 
-///Device Manager
-export const FilterVMS = (filterText) => {
-    return {type: "FILTER_VMS", filterText}
-}
-
-export const SelectVMS = (id) => {
-    return {type: "SELECT_VMS", id}
-}
 
 export const PlayListActions = {
+    INSERT_OBJECT:"INSERT_OBJECT",
     ADD_IMAGE: "ADD_IMAGE",
     IMPORT_IMAGE: "IMPORT_IMAGE",
     DELETE_IMAGE: "DELETE_IMAGE",
@@ -66,17 +61,14 @@ export const ChangeActiveItem=(id,canvas)=>{
 
 export const InsertObject=(ObjectType,defaultProps)=>{
         return{
-            type:CanvasActions.INSERT_OBJECT,
+            type:PlayListActions.INSERT_OBJECT,
             shape:ObjectType,
-            defaults:defaultProps,
-            canvas:window.store.getState().CurrentVMS.Playlist.canvas
-
+            defaults:defaultProps
         }
 }
 
 
 export const CanvasActions = {
-    INSERT_OBJECT:"INSERT_OBJECT",
     ChangeCurrentCanvas:"ChangeCurrentCanvas",
     ADD_IMAGE: "INSERTIMAGE",
     ADD_TEXT: "ADD_TEXT",

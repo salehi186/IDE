@@ -16,7 +16,9 @@ export default class MessageWindow extends Component {
             if (c) {
                 c.fabric.selection = true;
                 c.fabric.forEachObject(function (o) {
+                    o.editable=true;
                     o.selectable = true;
+                    
                 });
             }
            let d = document
@@ -25,7 +27,11 @@ export default class MessageWindow extends Component {
             if (d) {
                 d.fabric.selection = false;
                 d.fabric.forEachObject(function (o) {
+                    o.exitEditing?o.exitEditing():null;
+                    o.editable=false;
                     o.selectable = false;
+
+                    
                 });
             }
         }
@@ -36,7 +42,7 @@ export default class MessageWindow extends Component {
         this
             .props
             .playList
-            .items
+            .Items
             .forEach((p, idx) => {
                 let c = this.convasList[p.id] || (document.getElementById(p.id).fabric = new fabric.Canvas(document.getElementById(p.id)));
                 c.loadFromJSON(p.img);
@@ -44,6 +50,7 @@ export default class MessageWindow extends Component {
                 if (p.id !== this.props.currentConvas) 
                     c.forEachObject(function (o) {
                         o.selectable = false;
+                        o.editable=false;
                         convasList[p.id] = c;
                     });
                 }
@@ -71,7 +78,7 @@ export default class MessageWindow extends Component {
                 {this
                     .props
                     .playList
-                    .items
+                    .Items
                     .map((p, idx) => <div
                         className={"itemContainer " + (p.isChanged
                         ? "editMode"

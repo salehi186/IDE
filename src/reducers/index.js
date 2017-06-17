@@ -1,17 +1,22 @@
 import * as ACTIONS from '../actions';
 import stateTree from './initState';
 import {combineReducers} from 'redux'
-import {CanvasReducer} from "./CanvasReducer";
 import {PlayListReducer} from "./PlayListReducer";
+import store from  "../store";
+
 
 function DeviceReducer(state = stateTree.VMSGroups, action) {
     switch (action.type) {
-        case "FILTER_VMS":
-            if (action.filterText.trim() === "") 
-                return state;
-            else 
-                return state.reduce(p => p.title.indexOf(action.filterText) > -1);
-            default:
+        case ACTIONS.sss.DeviceActions.FILTER:
+            return Object.assign({},state,{filterExpr:action.filterText});
+        case ACTIONS.sss.DeviceActions.FETCH_STARTED:
+            return Object.assign({},state,{IsFetching:true});
+        case ACTIONS.sss.DeviceActions.FETCH_SUCCESS:
+            return Object.assign({},state,{IsFetching:false,List:action.data});
+        case ACTIONS.sss.DeviceActions.FETCH_FAILED:
+            return Object.assign({},state,{IsFetching:false});
+
+        default:
             return state;
     }
 }
@@ -28,8 +33,6 @@ function PropertiesReducer(state = stateTree.CurrentVMS.Props, action) {
             return state;
     }
 }
-
- 
 
 const CurrentVMS = combineReducers({VMSProps: PropertiesReducer, Playlist: PlayListReducer});
 

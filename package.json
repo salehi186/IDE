@@ -6,20 +6,24 @@
     "animate.css": "^3.5.2",
     "bootstrap": "^3.3.7",
     "bootstrap-rtl": "^3.3.4",
+    "es6-promise": "^4.1.0",
     "fabric": "^1.7.11",
     "font-awesome": "^4.7.0",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.2.1",
     "react": "^15.5.4",
     "react-bootstrap-ribbon": "^1.0.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "jsdom": "3.x.x",
     "node-sass": "^4.5.2",
     "npm-run-all": "^4.0.2",
     "react-scripts": "0.9.5",
-    "jsdom": "3.x.x"
+    "redux-devtools": "^3.4.0"
   },
   "scripts": {
     "build-css": "node-sass src/ -o src/",

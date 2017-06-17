@@ -7,18 +7,16 @@ import * as actions from '../actions'
 const mapStateToProps = (state) => {
     return {
         playList: state.CurrentVMS.Playlist,
-        currentConvas: state.CurrentVMS.Playlist.activeItem
+        currentConvas: state.CurrentVMS.Playlist.ActiveItem
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         Edit:(id, fbc)=>{
-            console.log(id,fbc);
             dispatch(actions.ChangeActiveItem(id,fbc));
         },
         Save:(id,fbc)=>{
-            console.log(id,fbc);
 
         }
         
