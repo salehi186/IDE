@@ -1,7 +1,7 @@
 import store from '../store';
-import * as DeviceManager from '../actions/DeviceManager';
+import * as _deviceManager from '../actions/DeviceManager';
 
-export const sss=DeviceManager;
+export const DeviceManager=_deviceManager;
 
 ///Properties Component
 export const PropertiesActions = {

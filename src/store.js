@@ -11,7 +11,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   ));
 
 
-  store.dispatch(actions.sss.FetchList() );
+  store.dispatch(actions.DeviceManager.FetchList() );
 
   // const store =window.__REDUX_DEVTOOLS_EXTENSION__  ? createStore(
   //  IDE_REDUX, /* preloadedState, */ 

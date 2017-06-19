@@ -7,13 +7,13 @@ import store from  "../store";
 
 function DeviceReducer(state = stateTree.VMSGroups, action) {
     switch (action.type) {
-        case ACTIONS.sss.DeviceActions.FILTER:
+        case ACTIONS.DeviceManager.DeviceActions.FILTER:
             return Object.assign({},state,{filterExpr:action.filterText});
-        case ACTIONS.sss.DeviceActions.FETCH_STARTED:
+        case ACTIONS.DeviceManager.DeviceActions.FETCH_STARTED:
             return Object.assign({},state,{IsFetching:true});
-        case ACTIONS.sss.DeviceActions.FETCH_SUCCESS:
+        case ACTIONS.DeviceManager.DeviceActions.FETCH_SUCCESS:
             return Object.assign({},state,{IsFetching:false,List:action.data});
-        case ACTIONS.sss.DeviceActions.FETCH_FAILED:
+        case ACTIONS.DeviceManager.DeviceActions.FETCH_FAILED:
             return Object.assign({},state,{IsFetching:false});
 
         default:
