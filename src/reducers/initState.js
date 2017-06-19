@@ -66,7 +66,8 @@ const stateTree = {
                 width: 500,
                 height: 500,
                 name: "firstImage",
-                isChanged: false
+                isChanged: false,
+                order:2
             }, {
                 img: '{"objects":[{"type":"rect","left":50,"top":50,"width":20,"height":20,"fill":"gre' +
                         'en","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"sca' +
@@ -79,7 +80,8 @@ const stateTree = {
                 width: 500,
                 height: 500,
                 name: "firstImage",
-                isChanged: false
+                isChanged: false,
+                order:1
             }
         ]
 

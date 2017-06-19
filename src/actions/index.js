@@ -29,10 +29,20 @@ export const PlayListActions = {
     DELETE_IMAGE: "DELETE_IMAGE",
     SAVE_IMAGE: "SAVE_IMAGE",
     SAVE_PLAYLIST: "SAVE_PLAYLIST",
-    CHANGE_ACTIVE_ITEM:"CHANGE_ACTIVE_ITEM"
+    CHANGE_ACTIVE_ITEM:"CHANGE_ACTIVE_ITEM",
+    SWAP_IMAGE:"SWAP_IMAGE"
+
 }
 
 ///Message Window
+
+export const SwapItems=(id,TargetId)=>{
+    return {
+        type:PlayListActions.SWAP_IMAGE,
+        id,TargetId
+    }
+
+}
 var newImageId = -1;
 export const AddImage = () => {
     return {

@@ -4,6 +4,9 @@ import {
 import MessageWindow from '../components/MessageWindow';
 import * as actions from '../actions'
 
+
+
+
 const mapStateToProps = (state) => {
     return {
         playList: state.CurrentVMS.Playlist,
@@ -18,8 +21,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         Save:(id,fbc)=>{
 
+        },
+        SwapItems:(id,TargetId)=>{
+            dispatch(actions.SwapItems(id,TargetId));
         }
-        
 
     };
 }

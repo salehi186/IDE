@@ -79,7 +79,7 @@ export default class MessageWindow extends Component {
                     .props
                     .playList
                     .Items
-                    .map((p, idx) => <div
+                    .map((p, idx) => <div ref="ListItem" data-id={p.id}
                         className={"itemContainer " + (p.isChanged
                         ? "editMode"
                         : "")}
@@ -98,7 +98,7 @@ export default class MessageWindow extends Component {
                                     onClick={p.id === this.props.currentConvas
                                     ? () => this
                                         .props
-                                        .save(p.id, this.refs.canvas.fabric)
+                                        .Save(p.id, this.refs.canvas.fabric)
                                     : () => this
                                         .props
                                         .Edit(p.id, this.refs.canvas.fabric)}
@@ -108,10 +108,16 @@ export default class MessageWindow extends Component {
                                 <a
                                     href={"#DeleteImage?" + p.id}
                                     className={"btn btn-default fa col-xs-2 fa-trash"}></a>
-                                <a
+                                <a onClick={()=>
+                                    {
+                                        this.props.SwapItems(p.id, this.refs.ListItem.previousSibling.dataset.id )
+                                        }
+                                        }
                                     href={"#MoveDownImage?" + p.id}
                                     className={"btn btn-default fa col-xs-2 fa-arrow-up"}></a>
-                                <a
+                                <a  onClick={()=>{
+                                    this.props.SwapItems(p.id, this.refs.ListItem.nextSibling.dataset.id )
+                                    }}
                                     href={"#MoveUpImage?" + p.id}
                                     className={"btn btn-default fa col-xs-2 fa-arrow-down"}></a>
 
