@@ -30,16 +30,17 @@ export const PlayListActions = {
     SAVE_IMAGE: "SAVE_IMAGE",
     SAVE_PLAYLIST: "SAVE_PLAYLIST",
     CHANGE_ACTIVE_ITEM:"CHANGE_ACTIVE_ITEM",
-    SWAP_IMAGE:"SWAP_IMAGE"
+    SWAP_IMAGE:"SWAP_IMAGE",
+    CHANGE_ITEM_DELAY:"CHANGE_ITEM_DELAY"
 
 }
 
 ///Message Window
 
-export const SwapItems=(id,TargetId)=>{
+export const SwapItems=(id,TargetId,currentImage,nextImage)=>{
     return {
         type:PlayListActions.SWAP_IMAGE,
-        id,TargetId
+        id,TargetId,currentImage,nextImage
     }
 
 }

@@ -1,6 +1,6 @@
 ///Device Manager
 import fetch from 'isomorphic-fetch'
-const DeviceUrl="http://192.168.56.101:45455/VMss/VMs_List_Group";
+const DeviceUrl="http://192.168.70.141:45455/VMss/VMs_List_Group";
 
 export const DeviceActions={
     FILTER:"FILTER_VMS",

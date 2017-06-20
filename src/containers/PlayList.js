@@ -8,6 +8,7 @@ import * as actions from '../actions'
 
 
 const mapStateToProps = (state) => {
+   
     return {
         playList: state.CurrentVMS.Playlist,
         currentConvas: state.CurrentVMS.Playlist.ActiveItem
@@ -22,8 +23,8 @@ const mapDispatchToProps = (dispatch) => {
         Save:(id,fbc)=>{
 
         },
-        SwapItems:(id,TargetId)=>{
-            dispatch(actions.SwapItems(id,TargetId));
+        SwapItems:(id,TargetId,currentImage,nextImage)=>{
+            dispatch(actions.SwapItems(id,TargetId,currentImage,nextImage));
         }
 
     };

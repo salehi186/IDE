@@ -1,8 +1,6 @@
 import * as ACTIONS from '../actions';
 import stateTree from './initState';
-import {
-    CanvasReducer
-} from './CanvasReducer';
+import {CanvasReducer} from './CanvasReducer';
 
 export function PlayListReducer(state = stateTree.PlayList, action) {
     let newState = Object.assign({}, state);
@@ -29,41 +27,56 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
         case ACTIONS.PlayListActions.IMPORT_IMAGE:
             break;
         case ACTIONS.PlayListActions.SWAP_IMAGE:
+            if (action.TargetId) {
+                let currentOrder = newState
+                    .Items
+                    .find(p => p.id === action.id)
+                    .order;
+                let nextOrder = newState
+                    .Items
+                    .find(p => p.id === action.TargetId)
+                    .order;
 
-            Object.assign(newState, {
-                Items: state.Items.map(p => (p.id === action.id || p.id === action.TargetId) ? Object.assign({}, p,{isChanged:true}) : p)
-            });
-            let pre= newState.Items.find(p=>p.id===action.id);
-            let next= newState.Items.find(p=>p.id===action.TargetId);
-             let tempOrder=pre.order;
-             pre.order=next.order;
-             next.order=tempOrder;
+                
+                Object.assign(newState, {
+                    Items: state
+                        .Items
+                        .map(p => {
 
-            //newState.find();
-
+                            if (p.id === action.id) 
+                                return Object.assign({}, p, {
+                                    isChanged: true,
+                                    order: nextOrder,
+                                    img:action.currentImage
+                                });
+                            if (p.id === action.TargetId) 
+                                return Object.assign({}, p, {
+                                    isChanged: true,
+                                    order: currentOrder,
+                                    img:action.nextImage                                
+                                });
+                            return p;
+                        })
+                });
+            }
 
             break;
 
-
         case ACTIONS.PlayListActions.CHANGE_ACTIVE_ITEM:
-            Object.assign(newState, {
-                ActiveItem: action.Id
-            });
+            Object.assign(newState, {ActiveItem: action.Id});
             break;
         case ACTIONS.PlayListActions.INSERT_OBJECT:
             Object.assign(newState, {
                 Items: state
                     .Items
                     .map((p) => {
-                        if (p.id !== state.ActiveItem ?
-                            true :
-                            false)
+                        if (p.id !== state.ActiveItem
+                            ? true
+                            : false) 
                             return p;
                         else {
                             CanvasReducer(state.ActiveItem, action);
-                            return Object.assign({}, p, {
-                                isChanged: true
-                            });
+                            return Object.assign({}, p, {isChanged: true});
                         }
                     })
             });
