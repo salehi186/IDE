@@ -6,7 +6,7 @@ import * as actions from './actions';
 /* eslint-disable no-underscore-dangle */
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
- const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
+ const store =window.store= createStore(reducer, /* preloadedState, */ composeEnhancers(
     applyMiddleware(thunkMiddleware)
   ));
 
