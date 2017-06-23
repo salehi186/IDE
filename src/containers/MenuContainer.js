@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch) => {
                 alert("NO ACTIVE VMS FOUND");
                 return;
             }
-          fetch("http://192.168.1.4:45455/VMss/ShowPlayListinVMS?VMSID="+pl.VMSID+"&PlayListid="+pl.Id)
+          fetch(window.baseURL+ "/VMss/ShowPlayListinVMS?VMSID="+pl.VMSID+"&PlayListid="+pl.Id)
           .then(
               res=>res.json(),
               err=>alert(err)

@@ -1,7 +1,7 @@
 ///Device Manager
 import fetch from 'isomorphic-fetch'
-const DeviceUrl="http://192.168.1.4:45455/VMss/VMs_List_Group";
-const DeviceDetailsURL="http://192.168.1.4:45455/VMss/VMs_Details?Id=";
+const DeviceUrl= "VMss/VMs_List_Group";
+const DeviceDetailsURL="VMss/VMs_Details?Id=";
 
 
 export const DeviceActions={
@@ -23,7 +23,7 @@ export const FilterVMS = (filterText) => {
 export const SelectVMS = (id) => {
     return (dispatch)=> {
        dispatch({ type: DeviceActions.FETCH_VMS_DETAILS_STARTED, id});
-       fetch(DeviceDetailsURL+id,{})
+       fetch(window.baseURL+DeviceDetailsURL+id,{})
        .then(res=>res.json(),
             err=>{alert(err); dispatch({type:DeviceActions.FETCH_FAILED,err})}
        ).then(
@@ -42,7 +42,7 @@ export const SelectVMS = (id) => {
 export const FetchList=()=>{
     return (dispatch)=>{
         dispatch({type:DeviceActions.FETCH_STARTED});
-        fetch(DeviceUrl,{
+        fetch(window.baseURL+DeviceUrl,{
 })
         .then(
             res=>res.json(),

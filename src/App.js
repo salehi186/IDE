@@ -15,6 +15,10 @@ import PropertyList from './containers/PropertyList'
 import PlayList from './containers/PlayList'
 import MenuContainer from './containers/MenuContainer';
 
+
+window.baseURL="http://192.168.1.2:45455/"
+
+
 class App extends Component {
   render() {
     return (

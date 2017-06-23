@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-const baseurl = "http://192.168.1.4:45455/";
 
 const MenuItem = (props) => {
   return <div
@@ -65,7 +64,7 @@ const showDialog = window.showDialog = (url, title, params) => {
   $("#testModal")
     .modal()
     .find("iframe")
-    .attr("src", baseurl + url)
+    .attr("src", window.baseURL+ url)
 }
 
 const Menu = function (props) {

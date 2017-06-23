@@ -19,6 +19,7 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "canvas": "^1.6.5",
     "jsdom": "3.x.x",
     "node-sass": "^4.5.2",
     "npm-run-all": "^4.0.2",
