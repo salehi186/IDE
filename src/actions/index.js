@@ -2,6 +2,25 @@ import * as _deviceManager from '../actions/DeviceManager';
 
 export const DeviceManager=_deviceManager;
 
+export const RootActions={
+    LOAD_DATA_FROM_SERVER:"LOAD_DATA_FROM_SERVER",
+    LOAD_DATA_STARTED:"LOAD_DATA_STARTED",
+    LOAD_DATA_SUCCESS:"LOAD_DATA_SUCCESS",
+    LOAD_DATA_FAILED:"LOAD_DATA_FAILED"
+}
+
+export const LoadFromServer=( )=>{
+    return (dispatch)=>{
+        fetch("",{})
+        .then(
+            res=>res.json(),
+            err=>{alert(err); dispatch({type:RootActions.LOAD_DATA_FAILED,err});}
+        )
+        .then(json=> dispatch({type:RootActions.LOAD_DATA_SUCCESS,data:json}))
+    }
+}
+
+
 ///Properties Component
 export const PropertiesActions = {
     SET_PROPS: "SET_PROPS",
@@ -19,6 +38,7 @@ export const SetAllProps = (propList) => {
 export const ReloadProps = () => {
     return {type: PropertiesActions.RELOAD_PROPS}
 }
+
 
 
 export const PlayListActions = {
