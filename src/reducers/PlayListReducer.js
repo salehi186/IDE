@@ -1,6 +1,5 @@
 import * as ACTIONS from '../actions';
 import stateTree from './initState';
-import {CanvasReducer} from './CanvasReducer';
 
 export function PlayListReducer(state = stateTree.PlayList, action) {
     let newState = Object.assign({}, state);
@@ -26,6 +25,23 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
             break;
         case ACTIONS.PlayListActions.IMPORT_IMAGE:
             break;
+        
+        case ACTIONS.PlayListActions.PLAYLIST_CHANGE:
+        return Object.assign( action.data, {ActiveItem:-1,
+            Items:action.data.Items.map((p,id)=>{
+                return  Object.assign(p,
+                {
+                id:p.PlayListTemplateItemID,
+                img:p.ImageContent||""
+                ,delay: p.Delay,
+                
+                // width: p.Width,
+                // height: p.Height,
+                name: p.ImageName,
+                isChanged: false,
+                order:p.PlayOrder
+            }) })
+        });
         case ACTIONS.PlayListActions.SWAP_IMAGE:
             if (action.TargetId) {
                 let currentOrder = newState
@@ -75,7 +91,6 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
                             : false) 
                             return p;
                         else {
-                            CanvasReducer(state.ActiveItem, action);
                             return Object.assign({}, p, {isChanged: true});
                         }
                     })

@@ -2,12 +2,6 @@ import {connect} from 'react-redux';
 import DeviceManager from '../components/DeviceManager';
 import * as actions from '../actions'
 
-function FilterVMSList(list, filter) {
-  if (!filter) 
-    return list;
-  else 
-    return list.map(p=>{  })
-  }
 
 const mapStateToProps = (state) => {
   return {

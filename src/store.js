@@ -1,17 +1,16 @@
 import reducer from './reducers';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import * as actions from './actions';
+//import * as actions from './actions';
 
 /* eslint-disable no-underscore-dangle */
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
- const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
+ const store=window.store = createStore(reducer, /* preloadedState, */ composeEnhancers(
     applyMiddleware(thunkMiddleware)
   ));
 
 
-  store.dispatch(actions.DeviceManager.FetchList() );
 
   // const store =window.__REDUX_DEVTOOLS_EXTENSION__  ? createStore(
   //  IDE_REDUX, /* preloadedState, */ 

@@ -63,7 +63,7 @@ export class PlayListItem extends Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.editMode === nextProps.editMode && this.props.item.id === nextProps.item.id) 
             return;
-        if (this.props.item.id != nextProps.item.id) {
+        if (this.props.item.id !== nextProps.item.id) {
             this
                 .refs
                 .canvas
@@ -168,13 +168,16 @@ export class PlayListItem extends Component {
                     }}
                         className={"btn btn-default fa col-xs-2 fa-arrow-up"}></a>
 
-                    <div className="col-xs-5"></div>
+                    <a onClick={() => {
+                        window.showDialog("Images/Index","انتخاب عکس از‌ آلبوم")
+                        }} className={"btn btn-default fa col-xs-1 fa-folder-open"}></a>
+
+                    
                     <div className="input-group col-xs-3">
 
-                        <input type="number" className="form-control" value={p.delay}/>
+                        <input type="number" className="form-control" defaultValue={p.delay}/>
                         <span className="btn input-group-addon fa fa-clock-o"></span>
                     </div>
-                    
 
                 </div>
             </div>

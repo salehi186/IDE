@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import properties  from '../components/Properties';
-import * as actions from '../actions'
+//import * as actions from '../actions'
 
 
 

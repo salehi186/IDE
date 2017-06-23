@@ -1,4 +1,3 @@
-import store from '../store';
 import * as _deviceManager from '../actions/DeviceManager';
 
 export const DeviceManager=_deviceManager;
@@ -31,7 +30,8 @@ export const PlayListActions = {
     SAVE_PLAYLIST: "SAVE_PLAYLIST",
     CHANGE_ACTIVE_ITEM:"CHANGE_ACTIVE_ITEM",
     SWAP_IMAGE:"SWAP_IMAGE",
-    CHANGE_ITEM_DELAY:"CHANGE_ITEM_DELAY"
+    CHANGE_ITEM_DELAY:"CHANGE_ITEM_DELAY",
+    PLAYLIST_CHANGE:"PLAYLIST_CHANGE"
 
 }
 

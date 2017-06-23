@@ -2,19 +2,31 @@ import * as ACTIONS from '../actions';
 import stateTree from './initState';
 import {combineReducers} from 'redux'
 import {PlayListReducer} from "./PlayListReducer";
-import store from  "../store";
+//import store from  "../store";
 
 
 function DeviceReducer(state = stateTree.VMSGroups, action) {
     switch (action.type) {
         case ACTIONS.DeviceManager.DeviceActions.FILTER:
             return Object.assign({},state,{filterExpr:action.filterText});
+        
         case ACTIONS.DeviceManager.DeviceActions.FETCH_STARTED:
             return Object.assign({},state,{IsFetching:true});
         case ACTIONS.DeviceManager.DeviceActions.FETCH_SUCCESS:
             return Object.assign({},state,{IsFetching:false,List:action.data});
         case ACTIONS.DeviceManager.DeviceActions.FETCH_FAILED:
             return Object.assign({},state,{IsFetching:false});
+        
+        case ACTIONS.DeviceManager.DeviceActions.FETCH_VMS_DETAILS_STARTED:
+            return Object.assign({},state,{IsFetching:true});
+        case ACTIONS.DeviceManager.DeviceActions.FETCH_VMS_DETAILS_SUCCESS:
+            return Object.assign({},state
+            ,{IsFetching:true, 
+            ActiveVMS:action.data.VMSID,    
+                Details:Object.assign({},state.Details||{},{[action.data.VMSID]:action.data})});
+        case ACTIONS.DeviceManager.DeviceActions.FETCH_VMS_DETAILS_FAILED:
+            return Object.assign({},state,{IsFetching:false});
+            
 
         default:
             return state;

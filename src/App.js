@@ -15,14 +15,15 @@ import PropertyList from './containers/PropertyList'
 import PlayList from './containers/PlayList'
 import MenuContainer from './containers/MenuContainer';
 
-
-
-
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
+
         <div className="App">
+
+
+         
           <MenuContainer/>
           <div className="ContentHolder">
             <div className="MainContainer">
@@ -37,7 +38,9 @@ class App extends Component {
 
           </div>
           <div className="StatusBar">status</div>
+
         </div>
+
       </Provider>
     );
   }
