@@ -48,7 +48,6 @@ export class PlayListItem extends Component {
     }
 
     componentDidMount() {
-
         let c = this.refs.canvas.fabric = new fabric.Canvas(this.refs.canvas);
         c.loadFromJSON(this.props.item.img);
         c.selection = false;

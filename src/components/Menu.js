@@ -64,7 +64,7 @@ const showDialog = window.showDialog = (url, title, params) => {
   $("#testModal")
     .modal()
     .find("iframe")
-    .attr("src", window.baseURL+ url)
+    .attr("src", window.baseURL + url)
 }
 
 const Menu = function (props) {
@@ -100,16 +100,18 @@ const Menu = function (props) {
         <MenuItem
           text="به روز رسانی مجدد"
           icon="fa-refresh"
-          Click={() => props.refresh()}/>
-        {/*<MenuItem text="check" icon="fa-plug"/>
+          Click={() => props.refresh()}/> {/*<MenuItem text="check" icon="fa-plug"/>
         <MenuItem text="Import" icon="fa-cloud-download"/>
         <MenuItem text="Add" icon="fa-image"/>
         <MenuItem text="Delete" icon=" fa-trash"/>
         <MenuItem text="Move Left" icon=" fa-mail-reply"/>
         <MenuItem text="Move Right" icon="fa-mail-forward"/>*/}
-        <MenuItem text="Send Picture" icon="fa-send"
-          Click={()=>{ props.SendPlaylistToServer()}}
-        />
+        <MenuItem
+          text="Send Picture"
+          icon="fa-send"
+          Click={() => {
+          props.SendPlaylistToServer()
+        }}/>
       </div>
       <div role="tabpanel" className="tab-pane row" id="profile">
         <MenuItem text="PlayList" icon="fa-book"/>
@@ -120,36 +122,59 @@ const Menu = function (props) {
 
         <div className=" col-xs-2 col-md-2 col-lg-1">
           <div className="input-group">
-            <span className="input-group-addon fa fa-paint-brush"></span>
-            <input type="color" className="form-control"/>
-          </div>
-          <div className="input-group">
-            <span className="input-group-addon fa  fa-adn"></span>
-            <input type="color" className="form-control" defaultValue="#ffffff"/>
+            <span className="input-group-addon fa  fa-paint-brush"></span>
+            <input
+              type="color"
+              className="form-control"
+              defaultValue="#ffffff"
+              onChange={(e) => props.onItemClick("backColor", {
+              type: "setting",
+              color: e.target.value
+            })}/>
           </div>
         </div>
         <div className="btn-group" role="group" aria-label="...">
           <button
             type="button"
             className="btn btn-default fa fa-text-width"
-            onClick={() => props.onItemClick("text")}></button>
+            onClick={() => props.onItemClick("text", {type: "insert"})}></button>
           <button
             type="button"
             className="btn btn-default fa fa-circle-o"
-            onClick={() => props.onItemClick("circle")}></button>
+            onClick={() => props.onItemClick("circle", {type: "insert"})}></button>
           <button
             type="button"
             className="btn btn-default fa fa-square-o"
-            onClick={() => props.onItemClick("rectangle")}></button>
+            onClick={() => props.onItemClick("rect", {type: "insert"})}></button>
           <button
             type="button"
-            className="btn btn-default fa fa-caret-up"
-            onClick={() => props.onItemClick("triangle")}></button>
+            className="btn btn-default fa  fa-caret-up"
+            onClick={() => props.onItemClick("triangle", {type: "insert"})}></button>
           <button
             type="button"
             className="btn btn-default fa fa-pencil"
-            onClick={() => props.onItemClick("draw")}></button>
-          <div className="ImageLoad">
+            onClick={() => props.onItemClick("draw", {type: "mode"})}></button>
+          <button
+            type="button"
+            className="btn btn-default fa fa-hand-paper-o"
+            onClick={() => props.onItemClick("select", {type: "mode"})}></button>
+          <button
+            type="button"
+            className="btn btn-default fa fa-trash"
+            onClick={() => props.onItemClick("delete", {type: "delete"})}></button>
+            <button
+            type="button"
+            className="btn btn-default fa fa-level-down"
+            onClick={() => props.onItemClick("moveBack", {type: "update"})}></button>
+          
+          {/*<button
+            type="button"
+            className="btn btn-default fa fa-arrows-alt"
+            onClick={() => props.onItemClick("dock", {type: "update"})}></button>*/}
+
+          <div className="ImageLoad" style={{
+            display: "inline"
+          }}>
             <input
               type="file"
               id="imageImportFileUpload"
@@ -172,11 +197,8 @@ const Menu = function (props) {
               onClick={() => $("#imageImportFileUpload").click()}></button>
           </div>
         </div>
-
       </div>
-
     </div>
-
   </div>;
 
 }
