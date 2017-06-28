@@ -112,6 +112,13 @@ const Menu = function (props) {
           Click={() => {
           props.SendPlaylistToServer()
         }}/>
+
+
+                <MenuItem
+          text="ذخیره لیست نمایش"
+          icon="fa-save"
+          Click={() => props.SavePlayList()}/>
+
       </div>
       <div role="tabpanel" className="tab-pane row" id="profile">
         <MenuItem text="PlayList" icon="fa-book"/>

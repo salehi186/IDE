@@ -106,23 +106,27 @@ const ManipulateCanvas = (obJectType, params) => {
             deleteObjects(f);
             break;
         case "update":
-            
+
             switch (obJectType) {
                 case "dock":
 
                     //activeObject.setWidth(f.height); activeObject.setHeight(f.width);
-                    f.getActiveObject().set({
-                        top: 0,
-                        left: 0,
-                        width: 150,
-                        height: 150,
-                        scaleX: 150 / activeObject.getWidth(),
-                        scaleY: 150 / activeObject.getHeight()
-                    });
-                    
+                    f
+                        .getActiveObject()
+                        .set({
+                            top: 0,
+                            left: 0,
+                            width: 150,
+                            height: 150,
+                            scaleX: 150 / activeObject.getWidth(),
+                            scaleY: 150 / activeObject.getHeight()
+                        });
+
                     break;
                 case "moveBack":
-                     f.getActiveObject().sendBackwards();
+                    f
+                        .getActiveObject()
+                        .sendBackwards();
 
                     break;
             }
@@ -171,7 +175,37 @@ const mapDispatchToProps = (dispatch) => {
             }
             fetch(window.baseURL + "/VMss/ShowPlayListinVMS?VMSID=" + pl.VMSID + "&PlayListid=" + pl.Id).then(res => res.json(), err => alert(err)).then(json => alert(json));
 
+        },
+        SavePlayList: () => {
+            let pl = window
+                .store
+                .getState()
+                .CurrentVMS
+                .Playlist;
+            if (!pl || !pl.Id || !pl.VMSID) {
+                alert("NO ACTIVE VMS FOUND");
+                return;
+            }
+
+let pls={PlayListTemplateID:pl.Id
+    //,Items:pl.Items.map(p=>{return {ImageID:p.ImageID,
+     //ImageContent:  JSON.stringify(document.getElementById( p.ImageID).fabric.toJSON()).toString(),  
+     //PlayOrder:p.order,Delay:p.delay}}) 
+    };
+
+let data = new FormData();
+data.append( "data", JSON.stringify(   JSON.stringify(pls)   ));
+            fetch(window.baseURL + "/VMss/SavePlayList", {
+                method: "POST",
+                header: {
+        'Accept' : 'application/json',
+        'Content-type' : 'application/json'
+    },
+                body:data
+            }).then(res => res.json(), err => alert(err)).then(json => alert(json));
+
         }
+
     };
 }
 
