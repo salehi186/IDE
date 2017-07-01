@@ -188,13 +188,15 @@ const mapDispatchToProps = (dispatch) => {
             }
 
 let pls={PlayListTemplateID:pl.Id
-    //,Items:pl.Items.map(p=>{return {ImageID:p.ImageID,
-     //ImageContent:  JSON.stringify(document.getElementById( p.ImageID).fabric.toJSON()).toString(),  
-     //PlayOrder:p.order,Delay:p.delay}}) 
+    ,Items:pl.Items.map(p=>{return {
+        PlayListTemplateItemID:p.PlayListTemplateItemID,
+        ImageID:p.ImageID,
+     ImageContent:  JSON.stringify(document.getElementById( p.ImageID).fabric.toJSON()).toString(),  
+     PlayOrder:p.order,Delay:p.delay}}) 
     };
 
 let data = new FormData();
-data.append( "data", JSON.stringify(   JSON.stringify(pls)   ));
+data.append( "data",   JSON.stringify(pls)   );
             fetch(window.baseURL + "/VMss/SavePlayList", {
                 method: "POST",
                 header: {
