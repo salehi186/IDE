@@ -2,25 +2,12 @@ import {connect} from 'react-redux';
 import Menu from '../components/Menu';
 import * as actions from '../actions';
 import {fabric} from 'fabric/dist/fabric';
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
+import  Utils from '../api/fabricUtils';
 
-function deleteObjects(canvas) {
-    let activeObject = canvas.getActiveObject(),
-        activeGroup = canvas.getActiveGroup();
-    if (activeObject) {
-        if (confirm('Are you sure?')) {
-            canvas.remove(activeObject);
-        }
-    } else if (activeGroup) {
-        if (confirm('Are you sure?')) {
-            var objectsInGroup = activeGroup.getObjects();
-            canvas.discardActiveGroup();
-            objectsInGroup.forEach(function (object) {
-                canvas.remove(object);
-            });
-        }
-    }
-}
+
+
+
 
 const ManipulateCanvas = (obJectType, params) => {
     let state = window
@@ -35,7 +22,9 @@ const ManipulateCanvas = (obJectType, params) => {
         .getElementById(state)
         .fabric;
     f.fillStyle = 'red';
-
+    
+    let UtilsModule = new Utils(f);
+    //UtilsModule.setCanvas(f);
     switch (params.type) {
 
         case "insert":
@@ -103,30 +92,31 @@ const ManipulateCanvas = (obJectType, params) => {
             }
             break;
         case "delete":
-            deleteObjects(f);
+           UtilsModule.deleteSelected();
+            //deleteObjects(f);
             break;
         case "update":
 
             switch (obJectType) {
                 case "dock":
-
-                    //activeObject.setWidth(f.height); activeObject.setHeight(f.width);
-                    f
-                        .getActiveObject()
-                        .set({
-                            top: 0,
-                            left: 0,
-                            width: 150,
-                            height: 150,
-                            scaleX: 150 / activeObject.getWidth(),
-                            scaleY: 150 / activeObject.getHeight()
-                        });
+                    
+                    UtilsModule.getImageBounds(true);
+                    
+                    // //activeObject.setWidth(f.height); activeObject.setHeight(f.width);
+                    // f
+                    //     .getActiveObject()
+                    //     .set({
+                    //         top: 0,
+                    //         left: 0,
+                    //         width: 150,
+                    //         height: 150,
+                    //         scaleX: 150 / activeObject.getWidth(),
+                    //         scaleY: 150 / activeObject.getHeight()
+                    //     });
 
                     break;
                 case "moveBack":
-                    f
-                        .getActiveObject()
-                        .sendBackwards();
+                    UtilsModule.sendToBack();
 
                     break;
             }

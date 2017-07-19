@@ -25,9 +25,6 @@ class App extends Component {
       <Provider store={store}>
 
         <div className="App">
-
-
-         
           <MenuContainer/>
           <div className="ContentHolder">
             <div className="MainContainer">

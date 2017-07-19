@@ -9,7 +9,14 @@
   display: block;
   list-style-type: none;
   text-align: left;
-  direction: rtl;
+  direction: ltr;
+  text-align: right;
   padding: 4px;
   cursor: pointer;
   border: solid; }
+
+.DeviceManager ul li span {
+  padding: 5px; }
+
+.DeviceManager ul li.vmsgroup {
+  background-color: linen; }

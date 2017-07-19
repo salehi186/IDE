@@ -4,7 +4,7 @@ import $ from 'jquery';
 const MenuItem = (props) => {
   return <div
     className="col-xs-3 col-md-2 col-lg-1 btn btn-default"
-    onClick={props.Click}>
+    onClick={props.Click} style={{whiteSpace:"nowrap"}}>
     <span className={"fa " + props.icon} style={{
       fontSize: "x-large"
     }}></span>
@@ -174,10 +174,10 @@ const Menu = function (props) {
             className="btn btn-default fa fa-level-down"
             onClick={() => props.onItemClick("moveBack", {type: "update"})}></button>
           
-          {/*<button
+          <button
             type="button"
             className="btn btn-default fa fa-arrows-alt"
-            onClick={() => props.onItemClick("dock", {type: "update"})}></button>*/}
+            onClick={() => props.onItemClick("dock", {type: "update"})}></button>
 
           <div className="ImageLoad" style={{
             display: "inline"

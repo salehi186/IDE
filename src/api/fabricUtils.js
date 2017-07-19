@@ -1,4 +1,4 @@
-"use strict";
+import {fabric} from 'fabric';
 
 /* -----------------
 Good references:
@@ -580,15 +580,17 @@ function centerContent() {
 
 /* ----- exports ----- */
 
-function UtilsModule() {
-  if (!(this instanceof UtilsModule)) return new UtilsModule();
+function UtilsModule(c) {
+  if(this instanceof UtilsModule && c) 
+    canvas=c;
+  if (!(this instanceof UtilsModule)) return new UtilsModule(c);
   // constructor
 }
 
 UtilsModule.prototype.selectAll = selectAll;
 UtilsModule.prototype.sendGroupBackward = sendGroupBackward;
 UtilsModule.prototype.sendGroupForward = sendGroupForward;
-UtilsModule.prototype.exportFile = exportFile;
+//UtilsModule.prototype.exportFile = exportFile;
 UtilsModule.prototype.getImageBounds = getImageBounds;
 UtilsModule.prototype.deleteSelected = deleteSelected;
 UtilsModule.prototype.insertSvg = insertSvg;
