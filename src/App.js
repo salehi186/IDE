@@ -16,7 +16,7 @@ import PlayList from './containers/PlayList'
 import MenuContainer from './containers/MenuContainer';
 
 
-window.baseURL="http://192.168.70.141:45455/"
+window.baseURL="http://192.168.70.145:45455/"
 
 
 class App extends Component {

@@ -52,7 +52,7 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
                     .Items
                     .find(p => p.id === action.TargetId)
                     .order;
-                if(currentOrder==nextOrder)
+                if(currentOrder===nextOrder)
                     ++currentOrder;
                 
                 Object.assign(newState, {

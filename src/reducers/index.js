@@ -134,15 +134,13 @@ const defaultState = {
 
 };
 
-function RootReducer(state=defaultState, action) {
-    return {
-        ActiveVMS:-1,
-        ActivePlayList:-1,
-        IsFetching:state.IsFetching,
-        DeviceList:DeviceReducer(state,action),
-        Playlists:Object.assign({},state.Playlists,{[state.ActivePlayList]:PlayListReducer(state.Playlist[state.ActiveVMS],action)})
-    };
-    
-}
-
+// function RootReducer(state=defaultState, action) {
+//     return {
+//         ActiveVMS:-1,
+//         ActivePlayList:-1,
+//         IsFetching:state.IsFetching,
+//         DeviceList:DeviceReducer(state,action),
+//         Playlists:Object.assign({},state.Playlists,{[state.ActivePlayList]:PlayListReducer(state.Playlist[state.ActiveVMS],action)})
+//     };
+// }
 //export default RootReducer;

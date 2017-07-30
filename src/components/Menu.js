@@ -190,7 +190,7 @@ const Menu = function (props) {
               var reader = new FileReader();
               reader.onload = function (f) {
                 var data = f.target.result;
-                props.onItemClick("image", {data: data});
+                props.onItemClick("image", {data: data ,type:"insert"});
               };
               reader.readAsDataURL(file);
             }}
@@ -203,6 +203,15 @@ const Menu = function (props) {
               className="btn btn-default fa fa-image"
               onClick={() => $("#imageImportFileUpload").click()}></button>
           </div>
+           <div class="symbols">
+            {
+              ["ssss.svg","ssss.svg","sss.svg"].map(p=> {
+                return <img src="{p}"  alt="sdfs"/>;
+            })
+            
+            }
+            </div>
+
         </div>
       </div>
     </div>

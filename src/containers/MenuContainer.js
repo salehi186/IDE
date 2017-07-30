@@ -3,11 +3,7 @@ import Menu from '../components/Menu';
 import * as actions from '../actions';
 import {fabric} from 'fabric/dist/fabric';
 import fetch from 'isomorphic-fetch';
-import  Utils from '../api/fabricUtils';
-
-
-
-
+import Utils from '../api/fabricUtils';
 
 const ManipulateCanvas = (obJectType, params) => {
     let state = window
@@ -22,7 +18,7 @@ const ManipulateCanvas = (obJectType, params) => {
         .getElementById(state)
         .fabric;
     f.fillStyle = 'red';
-    
+
     let UtilsModule = new Utils(f);
     //UtilsModule.setCanvas(f);
     switch (params.type) {
@@ -89,36 +85,33 @@ const ManipulateCanvas = (obJectType, params) => {
                 case "borderColor":
                     activeObject.set({borderColor: params.color});
                     break;
+                default:
+
             }
             break;
         case "delete":
-           UtilsModule.deleteSelected();
+            UtilsModule.deleteSelected();
             //deleteObjects(f);
             break;
         case "update":
 
             switch (obJectType) {
                 case "dock":
-                    
+
                     UtilsModule.getImageBounds(true);
-                    
-                    // //activeObject.setWidth(f.height); activeObject.setHeight(f.width);
-                    // f
-                    //     .getActiveObject()
-                    //     .set({
-                    //         top: 0,
-                    //         left: 0,
-                    //         width: 150,
-                    //         height: 150,
-                    //         scaleX: 150 / activeObject.getWidth(),
-                    //         scaleY: 150 / activeObject.getHeight()
-                    //     });
+
+                    // //activeObject.setWidth(f.height); activeObject.setHeight(f.width); f
+                    // .getActiveObject()     .set({         top: 0,         left: 0,         width:
+                    // 150,         height: 150,         scaleX: 150 / activeObject.getWidth(),
+                    //    scaleY: 150 / activeObject.getHeight()     });
 
                     break;
                 case "moveBack":
                     UtilsModule.sendToBack();
 
                     break;
+                default:
+
             }
 
             break;
@@ -130,6 +123,7 @@ const ManipulateCanvas = (obJectType, params) => {
                 case "select":
                     f.isDrawingMode = false;
                     break
+                default:
             }
 
             break;
@@ -177,23 +171,32 @@ const mapDispatchToProps = (dispatch) => {
                 return;
             }
 
-let pls={PlayListTemplateID:pl.Id
-    ,Items:pl.Items.map(p=>{return {
-        PlayListTemplateItemID:p.PlayListTemplateItemID,
-        ImageID:p.ImageID,
-     ImageContent:  JSON.stringify(document.getElementById( p.ImageID).fabric.toJSON()).toString(),  
-     PlayOrder:p.order,Delay:p.delay}}) 
-    };
+            let pls = {
+                PlayListTemplateID: pl.Id,
+                Items: pl
+                    .Items
+                    .map(p => {
+                        return {
+                            PlayListTemplateItemID: p.PlayListTemplateItemID,
+                            ImageID: p.ImageID,
+                            ImageContent: JSON
+                                .stringify(document.getElementById(p.ImageID).fabric.toJSON())
+                                .toString(),
+                            PlayOrder: p.order,
+                            Delay: p.delay
+                        }
+                    })
+            };
 
-let data = new FormData();
-data.append( "data",   JSON.stringify(pls)   );
+            let data = new FormData();
+            data.append("data", JSON.stringify(pls));
             fetch(window.baseURL + "/VMss/SavePlayList", {
                 method: "POST",
                 header: {
-        'Accept' : 'application/json',
-        'Content-type' : 'application/json'
-    },
-                body:data
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                },
+                body: data
             }).then(res => res.json(), err => alert(err)).then(json => alert(json));
 
         }
