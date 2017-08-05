@@ -166,14 +166,10 @@ export class PlayListItem extends Component {
                             .SwapItems(curId, nextId, curImage, nextImage);
                     }}
                         className={"btn btn-default fa col-xs-2 fa-arrow-up"}></a>
-
                     <a onClick={() => {
                         window.showDialog("Images/Index","انتخاب عکس از‌ آلبوم")
                         }} className={"btn btn-default fa col-xs-1 fa-folder-open"}></a>
-
-                    
                     <div className="input-group col-xs-3">
-
                         <input type="number" className="form-control" defaultValue={p.delay}/>
                         <span className="btn input-group-addon fa fa-clock-o"></span>
                     </div>

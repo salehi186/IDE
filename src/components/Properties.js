@@ -4,8 +4,7 @@ export default class Properties extends Component {
 
     render() {
         return <div className="properties">
-            <span>Properties
-            </span>
+            
             <ul>
                 {Object
                     .keys(this.props.propsList)

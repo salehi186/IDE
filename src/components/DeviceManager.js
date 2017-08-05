@@ -40,12 +40,12 @@ export default class DeviceManager extends Component {
 
             </div>
 
-            <ul>
+            <ul className="list-group">
                 {this
                     .props
                     .VMSList
                     .map((cat, i) => {
-                        return <li key={"cat" + i}>
+                        return <li key={"cat" + i} className="list-group-item vmsgroup">
                             {cat.Name}
                             <ul>
                                 {cat
@@ -72,7 +72,7 @@ export default class DeviceManager extends Component {
 }
 
 const Device = (props) => {
-    return <li data-id={props.id} onClick={() => props.onDeviceSelect(props.id)}>
+    return <li data-id={props.id} className="list-group-item" onClick={() => props.onDeviceSelect(props.id)}>
         <span className="title">{props.name}</span>
         <span className={"icon fa " + (props.icon || " fa-television")}></span>
 

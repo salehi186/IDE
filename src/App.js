@@ -16,7 +16,7 @@ import PlayList from './containers/PlayList'
 import MenuContainer from './containers/MenuContainer';
 
 
-window.baseURL="http://192.168.70.141:45455/"
+window.baseURL="http://192.168.56.101:45456/"
 
 
 class App extends Component {
@@ -25,9 +25,6 @@ class App extends Component {
       <Provider store={store}>
 
         <div className="App">
-
-
-         
           <MenuContainer/>
           <div className="ContentHolder">
             <div className="MainContainer">
