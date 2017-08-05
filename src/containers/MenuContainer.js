@@ -85,6 +85,8 @@ const ManipulateCanvas = (obJectType, params) => {
                 case "borderColor":
                     activeObject.set({borderColor: params.color});
                     break;
+                default:
+
             }
             break;
         case "delete":
@@ -108,6 +110,8 @@ const ManipulateCanvas = (obJectType, params) => {
                     UtilsModule.sendToBack();
 
                     break;
+                default:
+
             }
 
             break;
@@ -119,6 +123,7 @@ const ManipulateCanvas = (obJectType, params) => {
                 case "select":
                     f.isDrawingMode = false;
                     break
+                default:
             }
 
             break;
