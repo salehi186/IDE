@@ -46,10 +46,10 @@ export default class DeviceManager extends Component {
                     .VMSList
                     .map((cat, i) => {
                         return <li key={"cat" + i} className="list-group-item vmsgroup">
-                            {cat.Name}
+                           <a> {cat.VMSGroupName}</a>
                             <ul>
-                                {cat
-                                    .VMSList
+                                { (cat
+                                    .VMSList ||[])
                                     .map((vms, idx) => {
                                         if (!this.props.FilterText || vms.Name.indexOf(this.props.FilterText, 0) !== -1) 
                                             return <Device

@@ -1,6 +1,6 @@
 ///Device Manager
 import fetch from 'isomorphic-fetch'
-const DeviceUrl= "VMss/VMs_List_Group";
+const DeviceUrl= "VMss/VMs_List";
 const DeviceDetailsURL="VMss/VMs_Details?Id=";
 
 
