@@ -206,7 +206,11 @@ const Menu = function (props) {
            <div class="symbols">
             {
               ["ssss.svg","ssss.svg","sss.svg"].map(p=> {
+<<<<<<< HEAD
+                return <img src="{p}" />;
+=======
                 return <img src="{p}"  alt="sdfs"/>;
+>>>>>>> a5c0f6a360c55f640445330258aafd6a4da03faa
             })
             
             }
