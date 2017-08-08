@@ -23,7 +23,7 @@ const ManipulateCanvas = (obJectType, params) => {
     //UtilsModule.setCanvas(f);
     switch (params.type) {
 
-        case "insert":
+        case "insert": 
             let shape;
 
             switch (obJectType) {

@@ -203,14 +203,10 @@ const Menu = function (props) {
               className="btn btn-default fa fa-image"
               onClick={() => $("#imageImportFileUpload").click()}></button>
           </div>
-           <div class="symbols">
+           <div className="symbols">
             {
-              ["ssss.svg","ssss.svg","sss.svg"].map(p=> {
-<<<<<<< HEAD
-                return <img src="{p}" />;
-=======
-                return <img src="{p}"  alt="sdfs"/>;
->>>>>>> a5c0f6a360c55f640445330258aafd6a4da03faa
+              ["ssss.svg","ss2ss.svg","sss.svg"].map(p=> {
+                return <img src="{p}"  alt="sdfs" key={p} />;
             })
             
             }

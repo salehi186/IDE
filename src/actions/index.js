@@ -1,25 +1,22 @@
 import * as _deviceManager from '../actions/DeviceManager';
 
-export const DeviceManager=_deviceManager;
+export const DeviceManager = _deviceManager;
 
-export const RootActions={
-    LOAD_DATA_FROM_SERVER:"LOAD_DATA_FROM_SERVER",
-    LOAD_DATA_STARTED:"LOAD_DATA_STARTED",
-    LOAD_DATA_SUCCESS:"LOAD_DATA_SUCCESS",
-    LOAD_DATA_FAILED:"LOAD_DATA_FAILED"
+export const RootActions = {
+    LOAD_DATA_FROM_SERVER: "LOAD_DATA_FROM_SERVER",
+    LOAD_DATA_STARTED: "LOAD_DATA_STARTED",
+    LOAD_DATA_SUCCESS: "LOAD_DATA_SUCCESS",
+    LOAD_DATA_FAILED: "LOAD_DATA_FAILED"
 }
 
-export const LoadFromServer=( )=>{
-    return (dispatch)=>{
-        fetch("",{})
-        .then(
-            res=>res.json(),
-            err=>{alert(err); dispatch({type:RootActions.LOAD_DATA_FAILED,err});}
-        )
-        .then(json=> dispatch({type:RootActions.LOAD_DATA_SUCCESS,data:json}))
+export const LoadFromServer = () => {
+    return (dispatch) => {
+        fetch("", {}).then(res => res.json(), err => {
+            alert(err);
+            dispatch({type: RootActions.LOAD_DATA_FAILED, err});
+        }).then(json => dispatch({type: RootActions.LOAD_DATA_SUCCESS, data: json}))
     }
 }
-
 
 ///Properties Component
 export const PropertiesActions = {
@@ -39,68 +36,75 @@ export const ReloadProps = () => {
     return {type: PropertiesActions.RELOAD_PROPS}
 }
 
-
-
 export const PlayListActions = {
-    INSERT_OBJECT:"INSERT_OBJECT",
-    ADD_IMAGE: "ADD_IMAGE",
-    IMPORT_IMAGE: "IMPORT_IMAGE",
-    DELETE_IMAGE: "DELETE_IMAGE",
-    SAVE_IMAGE: "SAVE_IMAGE",
+    ///افزودن یا تغییر در عکس جاری
+    INSERT_OBJECT: "INSERT_OBJECT",
+    /// افزودن یک آیتم جدید
+    ADD_PLAYLIST_ITEM: "ADD_PLAYLIST_ITEM",
+    ///تغییر یک لیست آیتم
+    IMPORT_PLAYLIST_ITEM: "IMPORT_PLAYLIST_ITEM",
+    ///حذف یک آیتم
+    DELETE_PLAYLIST_ITEM: "DELETE_PLAYLIST_ITEM",
+    ///ذخیره اطلاعات پلی لیست در سرور
     SAVE_PLAYLIST: "SAVE_PLAYLIST",
-    CHANGE_ACTIVE_ITEM:"CHANGE_ACTIVE_ITEM",
-    SWAP_IMAGE:"SWAP_IMAGE",
-    CHANGE_ITEM_DELAY:"CHANGE_ITEM_DELAY",
-    PLAYLIST_CHANGE:"PLAYLIST_CHANGE"
+    ///انتخاب یک آیتم جهت ویرایش
+    CHANGE_ACTIVE_ITEM: "CHANGE_ACTIVE_ITEM",
+    ///جابه جا کردن یک عکس با عکس بالایی یا پایینی
+    SWAP_IMAGE: "SWAP_IMAGE",
+    ///تغییر زمان نمایش یک آیتم
+    CHANGE_ITEM_DELAY: "CHANGE_ITEM_DELAY",
+    ///زمانی که یک دستگاه جدید انتخاب میشه یا پلی لیست جدیدی انتخاب میشود
+    PLAYLIST_CHANGE: "PLAYLIST_CHANGE"
 
 }
 
 ///Message Window
 
-export const SwapItems=(id,TargetId,currentImage,nextImage)=>{
+export const SwapItems = (id, TargetId, currentImage, nextImage) => {
+    return {type: PlayListActions.SWAP_IMAGE, id, TargetId, currentImage, nextImage}
+
+}
+var newImageId = -10;
+export const AddPlayListItem = () => {
     return {
-        type:PlayListActions.SWAP_IMAGE,
-        id,TargetId,currentImage,nextImage
+        type: PlayListActions.ADD_PLAYLIST_ITEM,
+        data: {
+            PlayListTemplateItemID: --newImageId,
+            ImageContent: "",
+            Delay: 20,
+            ImageID:-1,
+
+            // width: p.Width, height: p.Height,
+            ImageName: "NoTitle",
+            isChanged: false,
+            order: newImageId
+        }
+
     }
-
-}
-var newImageId = -1;
-export const AddImage = () => {
-    return {
-        type: PlayListActions.AddImage,
-        id: (--newImageId)
-    }
 }
 
-export const ImportImage = (id, image) => {
-    return {type: PlayListActions.IMPORT_IMAGE, id, image, delay: 20}
+export const ImportPlayListItem = (id, image) => {
+    return {type: PlayListActions.IMPORT_PLAYLIST_ITEM, id, image, delay: 20}
 }
 
-export const DeleteImage = (id) => {
-    return {type: PlayListActions.DELETE_IMAGE, id}
+export const DeletePlayListItem = (id) => {
+    return {type: PlayListActions.DELETE_PLAYLIST_ITEM, id}
 }
-export const SaveImage = (id) => {
-    return {type: PlayListActions.SAVE_IMAGE, id}
-}
+
 export const SavePlayList = (id) => {
     return {type: PlayListActions.SAVE_PLAYLIST, id}
 
 }
-export const ChangeActiveItem=(id,canvas)=>{
-    return {type:PlayListActions.CHANGE_ACTIVE_ITEM,Id:id,Canvas: canvas};
+export const ChangeActiveItem = (id, canvas) => {
+    return {type: PlayListActions.CHANGE_ACTIVE_ITEM, Id: id, Canvas: canvas};
 }
 
-export const InsertObject=(ObjectType,defaultProps)=>{
-        return{
-            type:PlayListActions.INSERT_OBJECT,
-            shape:ObjectType,
-            defaults:defaultProps
-        }
+export const InsertObject = (ObjectType, defaultProps) => {
+    return {type: PlayListActions.INSERT_OBJECT, shape: ObjectType, defaults: defaultProps}
 }
-
 
 export const CanvasActions = {
-    ChangeCurrentCanvas:"ChangeCurrentCanvas",
+    ChangeCurrentCanvas: "ChangeCurrentCanvas",
     ADD_IMAGE: "INSERTIMAGE",
     ADD_TEXT: "ADD_TEXT",
     ADD_CIRCLE: "ADD_CIRCLE",

@@ -108,10 +108,10 @@ function sendGroupBackward(group, bottom) {
   var sorted = group.objects.slice();
 
   // Sort the array
-  var objects = canvas.getObjects();
+//  var objects = canvas.getObjects();
   sorted.sort(function(a, b){
-    var z1 = objects.indexOf(a);
-    var z2 = objects.indexOf(b);
+//    var z1 = objects.indexOf(a);
+//    var z2 = objects.indexOf(b);
     return a-b;
   });
 
@@ -136,10 +136,10 @@ function sendGroupForward(group, top) {
   var sorted = group.objects.slice();
 
   // Sort the array
-  var objects = canvas.getObjects();
+  //var objects = canvas.getObjects();
   sorted.sort(function(a, b){
-    var z1 = objects.indexOf(a);
-    var z2 = objects.indexOf(b);
+  //  var z1 = objects.indexOf(a);
+  //  var z2 = objects.indexOf(b);
     return a-b;
   });
 
@@ -525,7 +525,7 @@ function getShadowBlur(object) {
     return null;
   }
 
-  return parseInt(shadow.blur);
+  return parseInt(shadow.blur,10);
 }
 
 function getShadowColor(object) {
@@ -545,8 +545,8 @@ function getShadowOffset(object) {
     return null;
   }
 
-  var x = parseInt(shadow.offsetX);
-  var y = parseInt(shadow.offsetY);
+  var x = parseInt(shadow.offsetX,10);
+  var y = parseInt(shadow.offsetY,10);
   return {"x": x, "y": y};
 }
 

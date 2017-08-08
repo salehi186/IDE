@@ -14,10 +14,10 @@ export default class MessageWindow extends Component {
                 {this.props.playList.name}
             </div>
             <div className="playlist">
-                {this
+                {(this
                     .props
                     .playList
-                    .Items
+                    .Items||[])
                     .sort((a, b) => a.order - b.order)
                     .map((p, idx) => <PlayListItem
                         key={"ttt" + idx}
@@ -30,7 +30,9 @@ export default class MessageWindow extends Component {
                         className="fa  fa-plus-circle"
                         style={{
                         fontSize: "2em"
-                    }}/>
+                    }}
+                    onClick={()=>{ this.props.AddItem()}}
+                    />
                 </div>
 
             </div>
@@ -60,8 +62,8 @@ export class PlayListItem extends Component {
 
     }
     componentWillReceiveProps(nextProps) {
-        if (this.props.editMode === nextProps.editMode && this.props.item.id === nextProps.item.id) 
-            return;
+        // if (this.props.editMode === nextProps.editMode && this.props.item.id === nextProps.item.id) 
+        //     return;
         if (this.props.item.id !== nextProps.item.id) {
             this
                 .refs
@@ -129,7 +131,9 @@ export class PlayListItem extends Component {
                         : "fa-edit")}></a>
                     <a
                         href={"#DeleteImage?" + p.id}
-                        className={"btn btn-default fa col-xs-2 fa-trash"}></a>
+                        className={"btn btn-default fa col-xs-2 fa-trash"}
+                        onClick={()=>this.props.DeleteItem(p.id)}
+                        ></a>
                     <a
                         onClick={() => {
                         let curId = p.id;
