@@ -62,8 +62,8 @@ export class PlayListItem extends Component {
 
     }
     componentWillReceiveProps(nextProps) {
-        // if (this.props.editMode === nextProps.editMode && this.props.item.id === nextProps.item.id) 
-        //     return;
+        if (this.props.editMode === nextProps.editMode && this.props.item.id === nextProps.item.id) 
+            return;
         if (this.props.item.id !== nextProps.item.id) {
             this
                 .refs

@@ -70,7 +70,7 @@ export const AddPlayListItem = () => {
         type: PlayListActions.ADD_PLAYLIST_ITEM,
         data: {
             PlayListTemplateItemID: --newImageId,
-            ImageContent: "",
+            ImageContent: '{"objects":[],"background":"rgba(0, 0, 0, 0)"}',
             Delay: 20,
             ImageID:-1,
 
