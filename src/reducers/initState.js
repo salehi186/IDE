@@ -67,7 +67,7 @@ const stateTree = {
                 height: 500,
                 name: "firstImage",
                 isChanged: false,
-                order:2
+                order:5
             }
         ]
 

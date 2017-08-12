@@ -62,9 +62,9 @@ export class PlayListItem extends Component {
 
     }
     componentWillReceiveProps(nextProps) {
-        if (this.props.editMode === nextProps.editMode && this.props.item.id === nextProps.item.id) 
-            return;
-        if (this.props.item.id !== nextProps.item.id) {
+        // if (this.props.editMode === nextProps.editMode && this.props.item.id === nextProps.item.id) 
+        //     return;
+        if (this.props.item.id !== nextProps.item.id || this.props.item.img!==nextProps.item.img) {
             this
                 .refs
                 .canvas
@@ -171,6 +171,9 @@ export class PlayListItem extends Component {
                     }}
                         className={"btn btn-default fa col-xs-2 fa-arrow-up"}></a>
                     <a onClick={() => {
+                        this
+                            .props
+                            .Edit(p.id, this.refs.canvas.fabric);
                         window.showDialog("Images/Index","انتخاب عکس از‌ آلبوم")
                         }} className={"btn btn-default fa col-xs-1 fa-folder-open"}></a>
                     <div className="input-group col-xs-3">

@@ -83,8 +83,19 @@ export const AddPlayListItem = () => {
     }
 }
 
-export const ImportPlayListItem = (id, image) => {
-    return {type: PlayListActions.IMPORT_PLAYLIST_ITEM, id, image, delay: 20}
+export const ImportPlayListItem = (data) => {
+    return {type: PlayListActions.IMPORT_PLAYLIST_ITEM,  data:{
+            PlayListTemplateItemID: --newImageId,
+            ImageContent: data.ImageContent,
+            Delay: 20,
+            ImageID:data.ImageID,
+
+            // width: p.Width, height: p.Height,
+            ImageName: data.ImageName,
+            isChanged: false,
+            order: newImageId
+        }
+    }
 }
 
 export const DeletePlayListItem = (id) => {

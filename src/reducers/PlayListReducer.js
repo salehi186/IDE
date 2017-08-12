@@ -1,6 +1,18 @@
 import * as ACTIONS from '../actions';
 import stateTree from './initState';
 
+function assignPlayListItem(p) {
+    return {
+        id: p.PlayListTemplateItemID,
+        img: p.ImageContent || "",
+        delay: p.Delay,
+        // width: p.Width, height: p.Height,
+        name: p.ImageName,
+        isChanged: false,
+        order: p.PlayOrder
+    };
+}
+
 export function PlayListReducer(state = stateTree.PlayList, action) {
     let newState = Object.assign({}, state);
     switch (action.type) {
@@ -9,16 +21,8 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
             let p = action.data;
             return Object.assign(newState, {
                 Items: [
-                    ...state.Items, {
-                        id: p.PlayListTemplateItemID,
-                        img: p.ImageContent || "",
-                        delay: p.Delay,
-
-                        // width: p.Width, height: p.Height,
-                        name: p.ImageName,
-                        isChanged: false,
-                        order: p.PlayOrder
-                    }
+                    ...state.Items,
+                    assignPlayListItem(p)
                 ]
             });
         case ACTIONS.PlayListActions.DELETE_PLAYLIST_ITEM:
@@ -31,7 +35,18 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
         case ACTIONS.PlayListActions.SAVE_PLAYLIST:
             break;
         case ACTIONS.PlayListActions.IMPORT_PLAYLIST_ITEM:
-            break;
+            return Object.assign(state, {
+                Items: state
+                    .Items
+                    .map((p, id) => {
+                        if (p.id === state.ActiveItem){ 
+                         debugger;
+                            return Object.assign(p,{ img:action.data.ImageContent});
+                        
+                        }
+                        return p;
+                    })
+            });
 
         case ACTIONS.PlayListActions.PLAYLIST_CHANGE:
             return Object.assign(action.data, {
@@ -40,16 +55,7 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
                     .data
                     .Items
                     .map((p, id) => {
-                        return Object.assign(p, {
-                            id: p.PlayListTemplateItemID,
-                            img: p.ImageContent || "",
-                            delay: p.Delay,
-
-                            // width: p.Width, height: p.Height,
-                            name: p.ImageName,
-                            isChanged: false,
-                            order: p.PlayOrder
-                        })
+                        return Object.assign(p, assignPlayListItem(p))
                     })
             });
         case ACTIONS.PlayListActions.SWAP_IMAGE:
