@@ -15,7 +15,7 @@ import PropertyList from './containers/PropertyList'
 import PlayList from './containers/PlayList'
 import MenuContainer from './containers/MenuContainer';
 
-window.baseURL="http://192.168.56.101:45455/"
+window.baseURL="http://192.168.70.67:45455/"
 
 
 

@@ -1,11 +1,14 @@
 import * as ACTIONS from '../actions';
 import stateTree from './initState';
 
+
+
 function assignPlayListItem(p) {
     return {
         id: p.PlayListTemplateItemID,
         img: p.ImageContent || "",
         delay: p.Delay,
+        //ImageID:p.ImageId,
         // width: p.Width, height: p.Height,
         name: p.ImageName,
         isChanged: false,
@@ -35,14 +38,12 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
         case ACTIONS.PlayListActions.SAVE_PLAYLIST:
             break;
         case ACTIONS.PlayListActions.IMPORT_PLAYLIST_ITEM:
-            return Object.assign(state, {
+            return Object.assign(newState, {
                 Items: state
                     .Items
                     .map((p, id) => {
                         if (p.id === state.ActiveItem){ 
-                         debugger;
-                            return Object.assign(p,{ img:action.data.ImageContent});
-                        
+                            return Object.assign({},p,{ img:action.data.ImageContent});
                         }
                         return p;
                     })

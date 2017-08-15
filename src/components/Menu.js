@@ -95,7 +95,7 @@ const Menu = function (props) {
         <MenuItem
           text="مدیریت لیست نمایش"
           icon="fa-tags"
-          Click={() => showDialog("PlayListTemplates/Index", "مدیریت تابلوها")}/>
+          Click={() => showDialog("PlayListTemplates/Index?vms="+window.store.getState().VMSGroups.ActiveVMS,"مدیریت لیست نمایش")}/>
 
         <MenuItem
           text="به روز رسانی مجدد"

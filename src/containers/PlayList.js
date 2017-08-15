@@ -4,7 +4,7 @@ import * as actions from '../actions'
 
 // Listen to message from child window
 window.addEventListener("message", function (e) {
-    console.log('parent received message!:  ', e.data);
+    //console.log('parent received message!:  ', e.data);
     switch (e.data.type) {
         case "Image":
             global.jQuery(".modal").modal('hide')

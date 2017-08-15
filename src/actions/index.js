@@ -59,11 +59,10 @@ export const PlayListActions = {
 }
 
 ///Message Window
-
 export const SwapItems = (id, TargetId, currentImage, nextImage) => {
     return {type: PlayListActions.SWAP_IMAGE, id, TargetId, currentImage, nextImage}
-
 }
+
 var newImageId = -10;
 export const AddPlayListItem = () => {
     return {
@@ -72,7 +71,7 @@ export const AddPlayListItem = () => {
             PlayListTemplateItemID: --newImageId,
             ImageContent: '{"objects":[],"background":"rgba(0, 0, 0, 0)"}',
             Delay: 20,
-            ImageID:-1,
+            ImageID: -1,
 
             // width: p.Width, height: p.Height,
             ImageName: "NoTitle",
@@ -84,18 +83,20 @@ export const AddPlayListItem = () => {
 }
 
 export const ImportPlayListItem = (data) => {
-    return {type: PlayListActions.IMPORT_PLAYLIST_ITEM,  data:{
-            PlayListTemplateItemID: --newImageId,
-            ImageContent: data.ImageContent,
-            Delay: 20,
-            ImageID:data.ImageID,
+       return{
+            type: PlayListActions.IMPORT_PLAYLIST_ITEM,
+            data: {
+                PlayListTemplateItemID: --newImageId,
+                ImageContent: data.ImageContent,
+                Delay: 20,
+                ImageID: data.ImageID,
 
-            // width: p.Width, height: p.Height,
-            ImageName: data.ImageName,
-            isChanged: false,
-            order: newImageId
-        }
-    }
+                // width: p.Width, height: p.Height,
+                ImageName: data.ImageName,
+                isChanged: false,
+                order: newImageId
+            }
+        };
 }
 
 export const DeletePlayListItem = (id) => {
