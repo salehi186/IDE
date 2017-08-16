@@ -1,7 +1,11 @@
-import {connect} from 'react-redux';
+import {
+    connect
+} from 'react-redux';
 import Menu from '../components/Menu';
 import * as actions from '../actions';
-import {fabric} from 'fabric/dist/fabric';
+import {
+    fabric
+} from 'fabric/dist/fabric';
 import fetch from 'isomorphic-fetch';
 import Utils from '../api/fabricUtils';
 
@@ -12,7 +16,7 @@ const ManipulateCanvas = (obJectType, params) => {
         .CurrentVMS
         .Playlist
         .ActiveItem
-    if (!state || !document.getElementById(state)) 
+    if (!state || !document.getElementById(state))
         return;
     let f = document
         .getElementById(state)
@@ -23,16 +27,25 @@ const ManipulateCanvas = (obJectType, params) => {
     //UtilsModule.setCanvas(f);
     switch (params.type) {
 
-        case "insert": 
+        case "insert":
             let shape;
 
             switch (obJectType) {
                 case "circle":
-                    shape = new fabric.Circle({radius: 20, left: 100, top: 100});
+                    shape = new fabric.Circle({
+                        radius: 20,
+                        left: 100,
+                        top: 100
+                    });
 
                     break;
                 case "triangle":
-                    shape = new fabric.Triangle({width: 20, height: 30, left: 50, top: 50});
+                    shape = new fabric.Triangle({
+                        width: 20,
+                        height: 30,
+                        left: 50,
+                        top: 50
+                    });
 
                     break;
                 case "text":
@@ -42,7 +55,12 @@ const ManipulateCanvas = (obJectType, params) => {
                     });
                     break;
                 case "rect":
-                    shape = new fabric.Rect({left: 100, top: 100, width: 20, height: 20});
+                    shape = new fabric.Rect({
+                        left: 100,
+                        top: 100,
+                        width: 20,
+                        height: 20
+                    });
 
                     break;
                 case "image":
@@ -83,7 +101,9 @@ const ManipulateCanvas = (obJectType, params) => {
                     activeObject.setColor(params.color);
                     break;
                 case "borderColor":
-                    activeObject.set({borderColor: params.color});
+                    activeObject.set({
+                        borderColor: params.color
+                    });
                     break;
                 default:
 
@@ -178,9 +198,9 @@ const mapDispatchToProps = (dispatch) => {
                     .map(p => {
                         return {
                             PlayListTemplateItemID: p.PlayListTemplateItemID,
-                            ImageID: p.ImageID,
+                            ImageID: p.ImageID || -1,
                             ImageContent: JSON
-                                .stringify(document.getElementById(p.ImageID).fabric.toJSON())
+                                .stringify(document.getElementById(p.id).fabric.toJSON())
                                 .toString(),
                             PlayOrder: p.order,
                             Delay: p.delay
@@ -191,13 +211,23 @@ const mapDispatchToProps = (dispatch) => {
             let data = new FormData();
             data.append("data", JSON.stringify(pls));
             fetch(window.baseURL + "/VMss/SavePlayList", {
+                'mode': 'no-cors',
                 method: "POST",
                 header: {
                     'Accept': 'application/json',
                     'Content-type': 'application/json'
                 },
                 body: data
-            }).then(res => res.json(), err => alert(err)).then(json => alert(json));
+            }).then(res => {
+                debugger;
+                res.json(), err => {
+                    debugger;
+                    alert(err)
+                }
+            }).then(json => {
+                debugger;
+                alert(json)
+            });
 
         }
 
