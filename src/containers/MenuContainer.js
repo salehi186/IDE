@@ -6,37 +6,39 @@ import fetch from 'isomorphic-fetch';
 import Utils from '../api/fabricUtils';
 
 //alert(11);
+function loadSymbols() {
+    fetch(window.baseURL + "/VMss/Symbols", {
+        'mode': 'no-cors',
+        method: "GET",
+        header: {
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
+        }
+    }).then(res => {
+        debugger;
+        return res.json()
 
-fetch(window.baseURL + "/VMss/Symbols", {
-    'mode': 'no-cors',
-    method: "GET",
-    header: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json'
-    }
-}).then(res => {
-    debugger;
-    return res.json()
+    }, err => alert(err)).then(res => {
+        alert(res);
+        document
+            .getElementById("MaskSymbols")
+            .innerHTML = res.map((x) => "<img class='MaskSymbols' src='" + window.baseURL + "/Symbols/" + x + "' alt='" + x + "' />").join(' ');
 
-}, err => alert(err)).then(res => {
-    alert(res);
-    document
-        .getElementById("MaskSymbols")
-        .innerHTML = res.map((x) => "<img class='MaskSymbols' src='" + window.baseURL + "/Symbols/" + x + "' alt='" + x + "' />").join(' ');
+        var symbolClickHandler = function () {
 
-    var symbolClickHandler = function () {
+            ManipulateCanvas("InsertSVG", {
+                type: "InsertSVG",
+                url: this.src
+            });
+        }
+        document
+            .getElementsByClassName("MaskSymbols")
+            .each(x => {
+                x.addEventListener("click", symbolClickHandler.bind(x))
+            })
+    })
+}
 
-        ManipulateCanvas("InsertSVG", {
-            type: "InsertSVG",
-            url: this.src
-        });
-    }
-    document
-        .getElementsByClassName("MaskSymbols")
-        .each(x => {
-            x.addEventListener("click", symbolClickHandler.bind(x))
-        })
-})
 
 const ManipulateCanvas = (obJectType, params) => {
     let state = window
