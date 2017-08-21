@@ -1,13 +1,42 @@
-import {
-    connect
-} from 'react-redux';
+import {connect} from 'react-redux';
 import Menu from '../components/Menu';
 import * as actions from '../actions';
-import {
-    fabric
-} from 'fabric/dist/fabric';
+import {fabric} from 'fabric/dist/fabric';
 import fetch from 'isomorphic-fetch';
 import Utils from '../api/fabricUtils';
+
+//alert(11);
+
+fetch(window.baseURL + "/VMss/Symbols", {
+    'mode': 'no-cors',
+    method: "GET",
+    header: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+    }
+}).then(res => {
+    debugger;
+    return res.json()
+
+}, err => alert(err)).then(res => {
+    alert(res);
+    document
+        .getElementById("MaskSymbols")
+        .innerHTML = res.map((x) => "<img class='MaskSymbols' src='" + window.baseURL + "/Symbols/" + x + "' alt='" + x + "' />").join(' ');
+
+    var symbolClickHandler = function () {
+
+        ManipulateCanvas("InsertSVG", {
+            type: "InsertSVG",
+            url: this.src
+        });
+    }
+    document
+        .getElementsByClassName("MaskSymbols")
+        .each(x => {
+            x.addEventListener("click", symbolClickHandler.bind(x))
+        })
+})
 
 const ManipulateCanvas = (obJectType, params) => {
     let state = window
@@ -16,7 +45,7 @@ const ManipulateCanvas = (obJectType, params) => {
         .CurrentVMS
         .Playlist
         .ActiveItem
-    if (!state || !document.getElementById(state))
+    if (!state || !document.getElementById(state)) 
         return;
     let f = document
         .getElementById(state)
@@ -24,6 +53,7 @@ const ManipulateCanvas = (obJectType, params) => {
     f.fillStyle = 'red';
 
     let UtilsModule = new Utils(f);
+
     //UtilsModule.setCanvas(f);
     switch (params.type) {
 
@@ -32,20 +62,11 @@ const ManipulateCanvas = (obJectType, params) => {
 
             switch (obJectType) {
                 case "circle":
-                    shape = new fabric.Circle({
-                        radius: 20,
-                        left: 100,
-                        top: 100
-                    });
+                    shape = new fabric.Circle({radius: 20, left: 100, top: 100});
 
                     break;
                 case "triangle":
-                    shape = new fabric.Triangle({
-                        width: 20,
-                        height: 30,
-                        left: 50,
-                        top: 50
-                    });
+                    shape = new fabric.Triangle({width: 20, height: 30, left: 50, top: 50});
 
                     break;
                 case "text":
@@ -55,14 +76,10 @@ const ManipulateCanvas = (obJectType, params) => {
                     });
                     break;
                 case "rect":
-                    shape = new fabric.Rect({
-                        left: 100,
-                        top: 100,
-                        width: 20,
-                        height: 20
-                    });
+                    shape = new fabric.Rect({left: 100, top: 100, width: 20, height: 20});
 
                     break;
+
                 case "image":
                     var img = new Image();
                     shape = new fabric.Image(img, {
@@ -93,6 +110,7 @@ const ManipulateCanvas = (obJectType, params) => {
             }
             f.add(shape);
             break;
+
         case "setting":
             let activeObject = f.getActiveObject();
 
@@ -101,14 +119,15 @@ const ManipulateCanvas = (obJectType, params) => {
                     activeObject.setColor(params.color);
                     break;
                 case "borderColor":
-                    activeObject.set({
-                        borderColor: params.color
-                    });
+                    activeObject.set({borderColor: params.color});
                     break;
                 default:
 
             }
             break;
+        case "InsertSVG":
+
+            UtilsModule.insertSvg(params.url, document)break;
         case "delete":
             UtilsModule.deleteSelected();
             //deleteObjects(f);
@@ -123,7 +142,7 @@ const ManipulateCanvas = (obJectType, params) => {
                     // //activeObject.setWidth(f.height); activeObject.setHeight(f.width); f
                     // .getActiveObject()     .set({         top: 0,         left: 0,         width:
                     // 150,         height: 150,         scaleX: 150 / activeObject.getWidth(),
-                    //    scaleY: 150 / activeObject.getHeight()     });
+                    // scaleY: 150 / activeObject.getHeight()     });
 
                     break;
                 case "moveBack":
@@ -220,7 +239,8 @@ const mapDispatchToProps = (dispatch) => {
                 body: data
             }).then(res => {
                 debugger;
-                res.json(), err => {
+                res.json(),
+                err => {
                     debugger;
                     alert(err)
                 }

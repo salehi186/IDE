@@ -7,10 +7,21 @@ window.addEventListener("message", function (e) {
     //console.log('parent received message!:  ', e.data);
     switch (e.data.type) {
         case "Image":
-            global.jQuery(".modal").modal('hide')
-             window
+            global
+                .jQuery(".modal")
+                .modal('hide');
+
+                window
                 .store
                 .dispatch(actions.ImportPlayListItem(e.data.data));
+
+            break;
+        case "PlayList":
+            global
+                .jQuery(".modal")
+                .modal('hide');
+                window
+                 .store.dispatch(actions.DeviceManager.SelectVMS(e.data.data.VMSRef));
             break;
 
         default:

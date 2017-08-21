@@ -1,3 +1,7 @@
+.MessageWindow {
+  overflow-y: auto;
+  height: 500px; }
+
 .MessageWindow .playlist {
   text-align: center; }
 

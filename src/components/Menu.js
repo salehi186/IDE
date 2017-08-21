@@ -68,7 +68,7 @@ const showDialog = window.showDialog = (url, title, params) => {
 }
 
 const Menu = function (props) {
-  return <div>
+  return <div >
     <Dialog/>
     <ul className="nav nav-tabs" role="tablist">
       <li role="presentation" className="active">
@@ -77,9 +77,7 @@ const Menu = function (props) {
       <li role="presentation">
         <a href="#imageEdit" aria-controls="imageEdit" role="tab" data-toggle="tab">ویرایش عکس</a>
       </li>
-      <li role="presentation">
-        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">مدیریت اطلاعات پایه</a>
-      </li>
+      
 
     </ul>
     <div className="tab-content">
@@ -120,11 +118,7 @@ const Menu = function (props) {
           Click={() => props.SavePlayList()}/>
 
       </div>
-      <div role="tabpanel" className="tab-pane row" id="profile">
-        <MenuItem text="PlayList" icon="fa-book"/>
-        <MenuItem text="Devices" icon="fa-book"/>
-        <MenuItem text="Rules" icon="fa-book"/>
-      </div>
+
       <div role="tabpanel" className="tab-pane row" id="imageEdit">
 
         <div className=" col-xs-2 col-md-2 col-lg-1">
@@ -212,6 +206,9 @@ const Menu = function (props) {
             }
             </div>
 
+        </div>
+        <div id="MaskSymbols">
+        
         </div>
       </div>
     </div>
