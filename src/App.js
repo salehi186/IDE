@@ -15,7 +15,7 @@ import PropertyList from './containers/PropertyList'
 import PlayList from './containers/PlayList'
 import MenuContainer from './containers/MenuContainer';
 
-global.baseURL= window.baseURL="http://192.168.70.67:45455/"
+global.baseURL= window.baseURL="http://192.168.56.101:45455/"
 
 
 
@@ -39,7 +39,11 @@ class App extends Component {
             </div>
 
           </div>
-          <div className="StatusBar">status</div>
+          <div className="StatusBar" >status
+
+            <div className="loader">loading</div>
+
+          </div>
 
         </div>
 

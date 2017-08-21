@@ -197,19 +197,13 @@ const Menu = function (props) {
               className="btn btn-default fa fa-image"
               onClick={() => $("#imageImportFileUpload").click()}></button>
           </div>
-           <div className="symbols">
-            {
-              ["ssss.svg","ss2ss.svg","sss.svg"].map(p=> {
-                return <img src="{p}"  alt="sdfs" key={p} />;
-            })
-            
-            }
-            </div>
+          
 
         </div>
-        <div id="MaskSymbols">
+        <div id="MaskSymbols" style={{width:"98%",overflowX:"auto",whiteSpace:"nowrap",padding:"5px" }} >
         
         </div>
+        
       </div>
     </div>
   </div>;

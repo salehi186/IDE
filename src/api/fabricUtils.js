@@ -328,7 +328,7 @@ function deleteSelected() {
 }
 
 function insertSvg(url, loader) {
-  loader.removeClass("noshow");
+  //loader.removeClass("noshow");
   fabric.loadSVGFromURL(url, function(objects, options) {
     var obj = fabric.util.groupSVGElements(objects, options);
 
@@ -356,7 +356,7 @@ function insertSvg(url, loader) {
     // Push the canvas state to history
     canvas.trigger("object:statechange");
 
-    loader.addClass("noshow");
+    //loader.addClass("noshow");
   });
 }
 

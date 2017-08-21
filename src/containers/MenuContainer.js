@@ -6,34 +6,27 @@ import fetch from 'isomorphic-fetch';
 import Utils from '../api/fabricUtils';
 
 //alert(11);
-function loadSymbols() {
-    fetch(window.baseURL + "/VMss/Symbols", {
-        'mode': 'no-cors',
-        method: "GET",
-        header: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json'
-        }
-    }).then(res => {
-        debugger;
-        return res.json()
+window.document.addEventListener("DOMContentLoaded",(event)=>{
+    loadSymbols();
 
-    }, err => alert(err)).then(res => {
-        alert(res);
+});
+
+function loadSymbols() {
+    fetch(window.baseURL + "VMss/Symbols").then(res => {return res.json()}, err => alert(err))
+    .then(res => {
         document
             .getElementById("MaskSymbols")
-            .innerHTML = res.map((x) => "<img class='MaskSymbols' src='" + window.baseURL + "/Symbols/" + x + "' alt='" + x + "' />").join(' ');
-
+            .innerHTML = res.map((x) => "<img class='MaskSymbols' style='width:50px;height:50px;' src='" + window.baseURL + "/Symbols/" + x + "' alt='" + x + "' />").join(' ');
         var symbolClickHandler = function () {
-
             ManipulateCanvas("InsertSVG", {
                 type: "InsertSVG",
                 url: this.src
             });
         }
+        Array.prototype.forEach.call(
         document
             .getElementsByClassName("MaskSymbols")
-            .each(x => {
+            ,x => {
                 x.addEventListener("click", symbolClickHandler.bind(x))
             })
     })
@@ -129,7 +122,8 @@ const ManipulateCanvas = (obJectType, params) => {
             break;
         case "InsertSVG":
 
-            UtilsModule.insertSvg(params.url, document)break;
+            UtilsModule.insertSvg(params.url, document.querySelector(".loader"));
+            break;
         case "delete":
             UtilsModule.deleteSelected();
             //deleteObjects(f);
