@@ -57,21 +57,21 @@ const ManipulateCanvas = (obJectType, params) => {
 
             switch (obJectType) {
                 case "circle":
-                    shape = new fabric.Circle({radius: 20, left: 100, top: 100});
+                    shape = new fabric.Circle({radius: 20, left: 20, top: 20});
 
                     break;
                 case "triangle":
-                    shape = new fabric.Triangle({width: 20, height: 30, left: 50, top: 50});
+                    shape = new fabric.Triangle({width: 20, height: 30, left: 20, top: 20});
 
                     break;
                 case "text":
                     shape = new fabric.IText('Add Some Text', {
-                        left: 100,
-                        top: 100
+                        left: 20,
+                        top: 20
                     });
                     break;
                 case "rect":
-                    shape = new fabric.Rect({left: 100, top: 100, width: 20, height: 20});
+                    shape = new fabric.Rect({left: 20, top: 20, width: 20, height: 20});
 
                     break;
 
@@ -202,7 +202,7 @@ const mapDispatchToProps = (dispatch) => {
                 .CurrentVMS
                 .Playlist;
             if (!pl || !pl.Id || !pl.VMSID) {
-                alert("NO ACTIVE VMS FOUND");
+                alert("هنوز هیچ دستگاهی انتخاب نشده است");
                 return;
             }
 
@@ -225,24 +225,25 @@ const mapDispatchToProps = (dispatch) => {
 
             let data = new FormData();
             data.append("data", JSON.stringify(pls));
+            
             fetch(window.baseURL + "/VMss/SavePlayList", {
-                'mode': 'no-cors',
+               // 'mode': 'no-cors',
                 method: "POST",
                 header: {
                     'Accept': 'application/json',
                     'Content-type': 'application/json'
                 },
                 body: data
-            }).then(res => {
-                debugger;
-                res.json(),
-                err => {
-                    debugger;
-                    alert(err)
-                }
-            }).then(json => {
-                debugger;
-                alert(json)
+            }).then(res =>{
+               return res.json()
+            },
+                err =>  alert(err)
+                
+            ).then(json => {
+
+                if(json*1 > 0)
+                    dispatch(actions.DeviceManager.SelectVMS(window.store.getState().VMSGroups.ActiveVMS))
+               // alert(json)
             });
 
         }

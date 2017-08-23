@@ -65,3 +65,19 @@
 
 .right {
   right: 0px; }
+
+@keyframes colorAnimation {
+  0% {
+    background-color: whitesmoke;
+    opacity: 0.7; }
+  50% {
+    background-color: #7C5151;
+    opacity: 0.2; }
+  100% {
+    background-color: whitesmoke;
+    opacity: 0.7; } }
+
+.loadingAnimation {
+  animation-name: colorAnimation;
+  animation-duration: 4s;
+  animation-iteration-count: infinite; }

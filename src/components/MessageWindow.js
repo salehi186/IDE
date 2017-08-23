@@ -9,9 +9,13 @@ export default class MessageWindow extends Component {
     }
 
     render() {
+
+
+        let width=this.props.playList.Width, height=this.props.playList.Height;
         const retValue = <div className="MessageWindow">
             <div className="deviceInformation">
-                {this.props.playList.name}
+                {this.props.playList.Name}
+                
             </div>
             <div className="playlist">
                 {(this
@@ -24,6 +28,8 @@ export default class MessageWindow extends Component {
                         item={p}
                         index={idx}
                         editMode={p.id === this.props.currentConvas}
+                        width={width}
+                        height={height}
                         {...this.props}/>)}
                 <div className="itemContainer">
                     <span
@@ -62,6 +68,13 @@ export class PlayListItem extends Component {
 
     }
     componentWillReceiveProps(nextProps) {
+
+        if(this.props.width !=nextProps.width)
+            this.refs.canvas.fabric.setWidth(nextProps.width);
+        if(this.props.height !=nextProps.height)
+            this.refs.canvas.fabric.setHeight(nextProps.height);
+      
+
         if (this.props.editMode === nextProps.editMode && this.props.item.id === nextProps.item.id &&
             this.props.item.img===nextProps.item.img ) 
              return;
@@ -78,6 +91,8 @@ export class PlayListItem extends Component {
                 .renderAll();
 
         }
+
+       
 
         // let c = this.refs.canvas; //
         // document.getElementById(nextProps.currentConvas); c.fabric.selection =
@@ -99,9 +114,17 @@ export class PlayListItem extends Component {
 
     }
 
+    componentWillUnmount(){
+        this
+        .refs
+        .canvas
+        .fabric.dispose();
+    }
     render() {
         let p = this.props.item;
         let idx = this.props.index;
+        let width=this.props.width || 400;
+        let height=this.props.height || 200;
         return <div
             ref="ListItem"
             data-id={p.id}
@@ -113,12 +136,12 @@ export class PlayListItem extends Component {
             <div
                 className="imageItem"
                 style={{
-                width: 400,
-                height: 200
+                width: width,
+                height: height
             }}>
 
-                <canvas id={p.id} width="400" height="200" ref="canvas"></canvas>
-                <div className="row">
+                <canvas id={p.id} width={width} height={height} ref="canvas"></canvas>
+                <div >
                     <a
                         onClick={this.props.editMode
                         ? () => this
@@ -127,12 +150,12 @@ export class PlayListItem extends Component {
                         : () => this
                             .props
                             .Edit(p.id, this.refs.canvas.fabric)}
-                        className={"btn btn-default fa col-xs-2 " + (this.props.editMode
+                        className={"btn btn-default fa  " + (this.props.editMode
                         ? "fa-save"
                         : "fa-edit")}></a>
                     <a
                         href={"#DeleteImage?" + p.id}
-                        className={"btn btn-default fa col-xs-2 fa-trash"}
+                        className={"btn btn-default fa fa-trash"}
                         onClick={()=>this.props.DeleteItem(p.id)}
                         ></a>
                     <a
@@ -152,7 +175,7 @@ export class PlayListItem extends Component {
                             .props
                             .SwapItems(curId, nextId, curImage, nextImage);
                     }}
-                        className={"btn btn-default fa col-xs-2 fa-arrow-down"}></a>
+                        className={"btn btn-default fa fa-arrow-down"}></a>
                     <a
                         onClick={() => {
                         let curId = p.id;
@@ -170,17 +193,17 @@ export class PlayListItem extends Component {
                             .props
                             .SwapItems(curId, nextId, curImage, nextImage);
                     }}
-                        className={"btn btn-default fa col-xs-2 fa-arrow-up"}></a>
+                        className={"btn btn-default fa  fa-arrow-up"}></a>
                     <a onClick={() => {
                         this
                             .props
                             .Edit(p.id, this.refs.canvas.fabric);
                         window.showDialog("Images/Index","انتخاب عکس از‌ آلبوم")
-                        }} className={"btn btn-default fa col-xs-1 fa-folder-open"}></a>
-                    <div className="input-group col-xs-3">
-                        <input type="number" className="form-control" defaultValue={p.delay}/>
-                        <span className="btn input-group-addon fa fa-clock-o"></span>
-                    </div>
+                        }} className={"btn btn-default fa  fa-folder-open"}></a>
+                    
+                        <input type="number" className="form-control col-x-3" style={{width:"45px", display:"inline" , padding:3 }} defaultValue={p.delay}/>
+                        
+                    
 
                 </div>
             </div>
