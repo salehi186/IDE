@@ -12,7 +12,7 @@ window.document.addEventListener("DOMContentLoaded",(event)=>{
 });
 
 function loadSymbols() {
-    fetch(window.baseURL + "VMss/Symbols").then(res => {return res.json()}, err => alert(err))
+    fetch(window.baseURL + "VMss/Symbols",{credentials: 'include'}).then(res => {return res.json()}, err => alert(err))
     .then(res => {
         document
             .getElementById("MaskSymbols")
@@ -192,7 +192,7 @@ const mapDispatchToProps = (dispatch) => {
                 alert("NO ACTIVE VMS FOUND");
                 return;
             }
-            fetch(window.baseURL + "/VMss/ShowPlayListinVMS?VMSID=" + pl.VMSID + "&PlayListid=" + pl.Id).then(res => res.json(), err => alert(err)).then(json => alert(json));
+            fetch(window.baseURL + "/VMss/ShowPlayListinVMS?VMSID=" + pl.VMSID + "&PlayListid=" + pl.Id,{credentials: 'include'}).then(res => res.json(), err => alert(err)).then(json => alert(json));
 
         },
         SavePlayList: () => {
@@ -229,6 +229,7 @@ const mapDispatchToProps = (dispatch) => {
             fetch(window.baseURL + "/VMss/SavePlayList", {
                // 'mode': 'no-cors',
                 method: "POST",
+                credentials: 'include',
                 header: {
                     'Accept': 'application/json',
                     'Content-type': 'application/json'
@@ -240,6 +241,7 @@ const mapDispatchToProps = (dispatch) => {
                 err =>  alert(err)
                 
             ).then(json => {
+                alert("تغییرات با موفقیت ذخیره گردید.");
 
                 if(json*1 > 0)
                     dispatch(actions.DeviceManager.SelectVMS(window.store.getState().VMSGroups.ActiveVMS))

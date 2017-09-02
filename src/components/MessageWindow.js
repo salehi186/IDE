@@ -120,6 +120,14 @@ export class PlayListItem extends Component {
         .canvas
         .fabric.dispose();
     }
+
+    updateItem(){
+        this.props.Save(
+            Object.assign({},this.props.item,
+            {delay:(this.refs.delay.value * 1) || 10,image:this.refs.canvas.fabric.toJSON()}
+        ));
+    }
+
     render() {
         let p = this.props.item;
         let idx = this.props.index;
@@ -144,9 +152,7 @@ export class PlayListItem extends Component {
                 <div >
                     <a
                         onClick={this.props.editMode
-                        ? () => this
-                            .props
-                            .Save(p.id, this.refs.canvas.fabric)
+                        ? () => this.updateItem()
                         : () => this
                             .props
                             .Edit(p.id, this.refs.canvas.fabric)}
@@ -201,7 +207,9 @@ export class PlayListItem extends Component {
                         window.showDialog("Images/Index","انتخاب عکس از‌ آلبوم")
                         }} className={"btn btn-default fa  fa-folder-open"}></a>
                     
-                        <input type="number" className="form-control col-x-3" style={{width:"45px", display:"inline" , padding:3 }} defaultValue={p.delay}/>
+                        <input type="number" className="form-control col-x-3" style={{width:"45px", display:"inline" , padding:3 }}
+                        ref="delay" onChange={()=>this.updateItem()}
+                         defaultValue={p.Delay}/>
                         
                     
 

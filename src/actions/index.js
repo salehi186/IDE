@@ -11,7 +11,7 @@ export const RootActions = {
 
 export const LoadFromServer = () => {
     return (dispatch) => {
-        fetch("", {}).then(res => res.json(), err => {
+        fetch("", {credentials: 'include'}).then(res => res.json(), err => {
             alert(err);
             dispatch({type: RootActions.LOAD_DATA_FAILED, err});
         }).then(json => dispatch({type: RootActions.LOAD_DATA_SUCCESS, data: json}))
@@ -51,11 +51,15 @@ export const PlayListActions = {
     CHANGE_ACTIVE_ITEM: "CHANGE_ACTIVE_ITEM",
     ///جابه جا کردن یک عکس با عکس بالایی یا پایینی
     SWAP_IMAGE: "SWAP_IMAGE",
-    ///تغییر زمان نمایش یک آیتم
-    CHANGE_ITEM_DELAY: "CHANGE_ITEM_DELAY",
+    ///به روز رسانی تغییرات یک آیتم
+    UPDATE_PLAYLIST_ITEM: "UPDATE_PLAYLIST_ITEM",
     ///زمانی که یک دستگاه جدید انتخاب میشه یا پلی لیست جدیدی انتخاب میشود
     PLAYLIST_CHANGE: "PLAYLIST_CHANGE"
 
+}
+
+export const UpdatePlayListItem=(itm)=>{
+    return {type:PlayListActions.UPDATE_PLAYLIST_ITEM, Item:itm}
 }
 
 ///Message Window

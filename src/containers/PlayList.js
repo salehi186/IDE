@@ -40,7 +40,9 @@ const mapDispatchToProps = (dispatch) => {
         Edit: (id, fbc) => {
             dispatch(actions.ChangeActiveItem(id, fbc));
         },
-        Save: (id, fbc) => {},
+        Save: (itm) => {
+            dispatch(actions.UpdatePlayListItem(itm));
+              },
         SwapItems: (id, TargetId, currentImage, nextImage) => {
             dispatch(actions.SwapItems(id, TargetId, currentImage, nextImage));
         },

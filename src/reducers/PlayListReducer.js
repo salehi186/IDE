@@ -35,8 +35,19 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
                     .filter(p => p.id !== action.id)
             });
 
-        case ACTIONS.PlayListActions.SAVE_PLAYLIST:
-            break;
+        case ACTIONS.PlayListActions.UPDATE_PLAYLIST_ITEM:
+        return Object.assign(newState, {
+            Items: state
+                .Items
+                .map((p, id) => {
+                    if (p.id === action.Item.id){ 
+                        return Object.assign({},p,action.Item);
+                    }
+                    return p;
+                })
+        });
+
+
         case ACTIONS.PlayListActions.IMPORT_PLAYLIST_ITEM:
             return Object.assign(newState, {
                 Items: state
