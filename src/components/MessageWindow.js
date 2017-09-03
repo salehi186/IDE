@@ -124,7 +124,9 @@ export class PlayListItem extends Component {
     updateItem(){
         this.props.Save(
             Object.assign({},this.props.item,
-            {delay:(this.refs.delay.value * 1) || 10,image:this.refs.canvas.fabric.toJSON()}
+            {delay:(this.refs.delay.value * 1) || 10,
+                Delay:(this.refs.delay.value * 1) || 10,
+                image:this.refs.canvas.fabric.toJSON()}
         ));
     }
 
@@ -209,7 +211,7 @@ export class PlayListItem extends Component {
                     
                         <input type="number" className="form-control col-x-3" style={{width:"45px", display:"inline" , padding:3 }}
                         ref="delay" onChange={()=>this.updateItem()}
-                         defaultValue={p.Delay}/>
+                         value={p.Delay} title={p.Delay}  />
                         
                     
 

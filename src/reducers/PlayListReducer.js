@@ -7,7 +7,8 @@ function assignPlayListItem(p) {
     return {
         id: p.PlayListTemplateItemID,
         img: p.ImageContent || "",
-        delay: p.Delay,
+        delay: p.Delay || 10,
+        Delay: p.Delay || 10,
         //ImageID:p.ImageId,
         // width: p.Width, height: p.Height,
         name: p.ImageName,
@@ -25,7 +26,10 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
             return Object.assign(newState, {
                 Items: [
                     ...state.Items,
-                    assignPlayListItem(p)
+                   Object.assign( assignPlayListItem(p) ,{
+                        order: Math.max(...state.Items.map(x=>x.order))+1
+
+                   })
                 ]
             });
         case ACTIONS.PlayListActions.DELETE_PLAYLIST_ITEM:
