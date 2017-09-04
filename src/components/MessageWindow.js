@@ -31,7 +31,7 @@ export default class MessageWindow extends Component {
                         width={width}
                         height={height}
                         {...this.props}/>)}
-                <div className="itemContainer">
+                <div className="itemContainer" style={{display: this.props.playList.Items?"":"none" }}>
                     <span
                         className="fa  fa-plus-circle"
                         style={{
@@ -69,9 +69,9 @@ export class PlayListItem extends Component {
     }
     componentWillReceiveProps(nextProps) {
 
-        if(this.props.width !=nextProps.width)
+        if(this.props.width !==nextProps.width)
             this.refs.canvas.fabric.setWidth(nextProps.width);
-        if(this.props.height !=nextProps.height)
+        if(this.props.height !==nextProps.height)
             this.refs.canvas.fabric.setHeight(nextProps.height);
       
 

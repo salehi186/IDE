@@ -4,7 +4,10 @@ import $ from 'jquery';
 const MenuItem = (props) => {
   return <div
     className="col-xs-3 col-md-2 col-lg-1 btn btn-default"
-    onClick={props.Click} style={{whiteSpace:"nowrap"}}>
+    onClick={props.Click}
+    style={{
+    whiteSpace: "nowrap"
+  }}>
     <span className={"fa " + props.icon} style={{
       fontSize: "x-large"
     }}></span>
@@ -77,7 +80,6 @@ const Menu = function (props) {
       <li role="presentation">
         <a href="#imageEdit" aria-controls="imageEdit" role="tab" data-toggle="tab">ویرایش عکس</a>
       </li>
-      
 
     </ul>
     <div className="tab-content">
@@ -93,7 +95,7 @@ const Menu = function (props) {
         <MenuItem
           text="مدیریت لیست نمایش"
           icon="fa-tags"
-          Click={() => showDialog("PlayListTemplates/Index?vms="+window.store.getState().VMSGroups.ActiveVMS,"مدیریت لیست نمایش")}/>
+          Click={() => showDialog("PlayListTemplates/Index?vms=" + window.store.getState().VMSGroups.ActiveVMS, "مدیریت لیست نمایش")}/>
 
         <MenuItem
           text="به روز رسانی مجدد"
@@ -104,18 +106,21 @@ const Menu = function (props) {
         <MenuItem text="Delete" icon=" fa-trash"/>
         <MenuItem text="Move Left" icon=" fa-mail-reply"/>
         <MenuItem text="Move Right" icon="fa-mail-forward"/>*/}
+
         <MenuItem
-          text="Send Picture"
+          text="ذخیره لیست نمایش"
+          icon="fa-save"
+          Click={() => props.SavePlayList()}/>
+        <MenuItem
+          text="ارسال لیست نمایش "
           icon="fa-send"
           Click={() => {
           props.SendPlaylistToServer()
         }}/>
-
-
-                <MenuItem
-          text="ذخیره لیست نمایش"
-          icon="fa-save"
-          Click={() => props.SavePlayList()}/>
+        <MenuItem
+          text="ارسال تنظیمات"
+          icon="fa-rocket"
+          Click={() => props.SaveProperties()}/>
 
       </div>
 
@@ -163,11 +168,11 @@ const Menu = function (props) {
             type="button"
             className="btn btn-default fa fa-trash"
             onClick={() => props.onItemClick("delete", {type: "delete"})}></button>
-            <button
+          <button
             type="button"
             className="btn btn-default fa fa-level-down"
             onClick={() => props.onItemClick("moveBack", {type: "update"})}></button>
-          
+
           <button
             type="button"
             className="btn btn-default fa fa-arrows-alt"
@@ -184,7 +189,10 @@ const Menu = function (props) {
               var reader = new FileReader();
               reader.onload = function (f) {
                 var data = f.target.result;
-                props.onItemClick("image", {data: data ,type:"insert"});
+                props.onItemClick("image", {
+                  data: data,
+                  type: "insert"
+                });
               };
               reader.readAsDataURL(file);
             }}
@@ -197,13 +205,17 @@ const Menu = function (props) {
               className="btn btn-default fa fa-image"
               onClick={() => $("#imageImportFileUpload").click()}></button>
           </div>
-          
 
         </div>
-        <div id="MaskSymbols" style={{width:"98%",overflowX:"auto",whiteSpace:"nowrap",padding:"5px" }} >
-        
-        </div>
-        
+        <div
+          id="MaskSymbols"
+          style={{
+          width: "98%",
+          overflowX: "auto",
+          whiteSpace: "nowrap",
+          padding: "5px"
+        }}></div>
+
       </div>
     </div>
   </div>;

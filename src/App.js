@@ -15,7 +15,7 @@ import PropertyList from './containers/PropertyList'
 import PlayList from './containers/PlayList'
 import MenuContainer from './containers/MenuContainer';
 
-global.baseURL= window.baseURL=window.location.host.indexOf("local")>-1? "http://192.168.70.67:45455/":"";
+global.baseURL= window.baseURL=window.location.host.indexOf("local")>-1? "http://127.0.0.1:45455/":"";
 
 
 

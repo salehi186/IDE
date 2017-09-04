@@ -22,15 +22,17 @@ export const LoadFromServer = () => {
 export const PropertiesActions = {
     SET_PROPS: "SET_PROPS",
     SET_All: "SET_All",
-    RELOAD_PROPS: "RELOAD_PROPS"
+    RELOAD_PROPS: "RELOAD_PROPS",
+    PROPS_SAVED:"PROPS_SAVED"
 }
 export const SetPropValue = (id, value) => {
-    return {type: PropertiesActions.SET_PROPS, id: id, value}
+    return {type: PropertiesActions.SET_PROPS, id: id, value:value}
 }
 
 export const SetAllProps = (propList) => {
     return {type: PropertiesActions.SET_All, props: propList}
 }
+export const PropsSaved =()=>{ return {type:PropertiesActions.PROPS_SAVED}}
 
 export const ReloadProps = () => {
     return {type: PropertiesActions.RELOAD_PROPS}

@@ -65,6 +65,7 @@
     width: 200px;
     border: solid 1px red;
     height: 100%;
+     overflow-y:auto; 
 }
 .left{
 left: 0px;
@@ -72,6 +73,8 @@ left: 0px;
 .right{
 right: 0px;
 }
+
+
 
 
 @keyframes colorAnimation {

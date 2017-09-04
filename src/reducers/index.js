@@ -37,11 +37,19 @@ function DeviceReducer(state = stateTree.VMSGroups, action) {
 function PropertiesReducer(state = stateTree.CurrentVMS.Props, action) {
     switch (action.type) {
         case ACTIONS.PropertiesActions.RELOAD_PROPS:
+            return action.data;
+
             return state;
         case ACTIONS.PropertiesActions.SET_All:
             return state;
         case ACTIONS.PropertiesActions.SET_PROPS:
-            return state;
+        return  state.map(x=> 
+                 ( x.FucnctionName+x.InputVariableName ===action.id)
+                 ?Object.assign({},x,{value:action.value, Ischanged:true})
+                 :x 
+        );
+        case ACTIONS.PropertiesActions.PROPS_SAVED:
+                return state.map(x=>Object.assign({},x,{Ischanged:false}));
         default:
             return state;
     }
