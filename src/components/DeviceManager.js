@@ -46,20 +46,20 @@ export default class DeviceManager extends Component {
                     .VMSList
                     .map((cat, i) => {
                         return <li key={"cat" + i} className="list-group-item vmsgroup">
-                           <a> {cat.VMSGroupName}</a>
+                            <a>
+                                {cat.Name}</a>
                             <ul>
-                                { (cat
-                                    .VMSList ||[])
-                                    .map((vms, idx) => {
-                                        if (!this.props.FilterText || vms.Name.indexOf(this.props.FilterText, 0) !== -1) 
-                                            return <Device
-                                                key={"vmss_" + idx}
-                                                id={vms.Id}
-                                                onDeviceSelect={this.props.onDeviceSelect}
-                                                icon={this.props.icon}
-                                                name={vms.Name}/>
-                                        return ""
-                                    })}
+                                {(cat.VMSList || []).map((vms, idx) => {
+                                    if (!this.props.FilterText || vms.Name.indexOf(this.props.FilterText, 0) !== -1) 
+                                        return <Device
+                                            Selected={this.props.SelectedVMS === vms.Id}
+                                            key={"vmss_" + idx}
+                                            id={vms.Id}
+                                            onDeviceSelect={this.props.onDeviceSelect}
+                                            icon={this.props.icon}
+                                            name={vms.Name}/>
+                                    return ""
+                                })}
                             </ul>
                         </li>
 
@@ -72,9 +72,19 @@ export default class DeviceManager extends Component {
 }
 
 const Device = (props) => {
-    return <li data-id={props.id} className="list-group-item" onClick={() => props.onDeviceSelect(props.id)}>
+    return <li
+        data-id={props.id}
+        className={"list-group-item" + (props.Selected
+        ? " Selected"
+        : "")}
+        onClick={() => props.onDeviceSelect(props.id)}>
         <span className="title">{props.name}</span>
         <span className={"icon fa " + (props.icon || " fa-television")}></span>
+        <span
+            className={"icon fa fa-plug"}
+            style={{
+            color: "green"
+        }}></span>
 
     </li>
 }

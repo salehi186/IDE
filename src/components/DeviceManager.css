@@ -18,5 +18,8 @@
 .DeviceManager ul li span {
   padding: 5px; }
 
+.DeviceManager .Selected {
+  background-color: #C7FF0C; }
+
 .DeviceManager ul li.vmsgroup {
   background-color: linen; }

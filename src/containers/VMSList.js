@@ -5,6 +5,7 @@ import * as actions from '../actions'
 
 const mapStateToProps = (state) => {
   return {
+    SelectedVMS:state.VMSGroups.ActiveVMS,
     FilterText:state.VMSGroups.filterExpr,
     VMSList:  state.VMSGroups.List //FilterVMSList(state.VMSGroups.List, state.VMSGroups.filterExpr)
   }
