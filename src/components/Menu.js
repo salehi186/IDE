@@ -70,8 +70,10 @@ const showDialog = window.showDialog = (url, title, params) => {
     .attr("src", window.baseURL + url)
 }
 
+const fontNames='BBadr,BBaran,BBardiya,BCompset,BDavat,BElham,BEsfehanBold,BFantezy,BFarnaz,BFerdosi,BHamid,BHelal,BHoma,BJadidBold,BJalal,BKoodakBold,BKourosh,BLotus,BMahsa,BMehrBold,BMitra,BMorvarid,BNarm,BNasimBold,BNazanin,BRoya,BSetarehBold,BShiraz,BSinaBold,BTabassom,BTehran,BTitrBold,BTitrTGEBold,BTraffic,BVahidBold,BYagut,BYas,BYekan,BZar,BZiba';
 const Menu = function (props) {
   return <div >
+    {fontNames.split(',').map(x=><span key={x} style={{fontFamily:x}}></span>)}
     <Dialog/>
     <ul className="nav nav-tabs" role="tablist">
       <li role="presentation" className="active">
@@ -140,6 +142,22 @@ const Menu = function (props) {
           </div>
         </div>
         <div className="btn-group" role="group" aria-label="...">
+          <select 
+            className="fontChanger btn btn-default"
+            onChange={(e) => props.onItemClick("font", {
+            type: "setting",
+            font: e.target.value
+          })}>
+          
+          {
+            fontNames
+            .split(',')
+            .map(x=><option key={x} style={{ fontFamily: x}} value={x}> فونت{x} </option>)
+          }
+          </select>
+
+          
+
           <button
             type="button"
             className="btn btn-default fa fa-text-width"

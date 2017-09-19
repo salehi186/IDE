@@ -116,6 +116,12 @@ const ManipulateCanvas = (obJectType, params) => {
                 case "borderColor":
                     activeObject.set({borderColor: params.color});
                     break;
+                case "font":
+                activeObject.set({
+                    fontFamily: params.font});
+                    setTimeout(function() {
+                        f.renderAll();
+                    }, 1000);
                 default:
 
             }
@@ -217,6 +223,7 @@ const mapDispatchToProps = (dispatch) => {
                             ImageContent: JSON
                                 .stringify(document.getElementById(p.id).fabric.toJSON())
                                 .toString(),
+                            ImageBase64:document.getElementById(p.id).fabric.toDataURL(),
                             PlayOrder: p.order,
                             Delay: p.delay
                         }
