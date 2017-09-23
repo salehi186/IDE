@@ -45,7 +45,7 @@ const ManipulateCanvas = (obJectType, params) => {
     let f = document
         .getElementById(state)
         .fabric;
-    f.fillStyle = 'red';
+    f.fillStyle = document.querySelector("[type=color]").value;
 
     let UtilsModule = new Utils(f);
 
@@ -57,21 +57,21 @@ const ManipulateCanvas = (obJectType, params) => {
 
             switch (obJectType) {
                 case "circle":
-                    shape = new fabric.Circle({radius: 20, left: 20, top: 20});
+                    shape = new fabric.Circle({radius: 20, left: 20, top: 20,fill:f.fillStyle});
 
                     break;
                 case "triangle":
-                    shape = new fabric.Triangle({width: 20, height: 30, left: 20, top: 20});
+                    shape = new fabric.Triangle({width: 20, height: 30, left: 20, top: 20,fill:f.fillStyle});
 
                     break;
                 case "text":
                     shape = new fabric.IText('Add Some Text', {
                         left: 20,
-                        top: 20
+                        top: 20,fill:f.fillStyle
                     });
                     break;
                 case "rect":
-                    shape = new fabric.Rect({left: 20, top: 20, width: 20, height: 20});
+                    shape = new fabric.Rect({left: 20, top: 20, width: 20, height: 20,fill:f.fillStyle});
 
                     break;
 
@@ -160,6 +160,7 @@ const ManipulateCanvas = (obJectType, params) => {
             switch (obJectType) {
                 case "draw":
                     f.isDrawingMode = true;
+                    f.freeDrawingBrush.color=f.fillStyle;
                     break;
                 case "select":
                     f.isDrawingMode = false;

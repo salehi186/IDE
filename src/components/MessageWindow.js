@@ -56,7 +56,12 @@ export class PlayListItem extends Component {
     }
 
     componentDidMount() {
-        let c = this.refs.canvas.fabric = new fabric.Canvas(this.refs.canvas);
+        let c = this.refs.canvas.fabric = new fabric.Canvas(this.refs.canvas,{
+           // backgroundColor: 'black',
+            selectionColor: 'red',
+            selectionLineWidth: 2
+            // ...
+          });
         c.loadFromJSON(this.props.item.img);
         c.selection = false;
         if (!this.props.editMode) 
@@ -64,6 +69,7 @@ export class PlayListItem extends Component {
                 o.selectable = false;
                 o.editable = false;
             });
+        c.backgroundColor="black";
         c.renderAll();
 
     }
