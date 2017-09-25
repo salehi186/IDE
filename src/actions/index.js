@@ -76,7 +76,7 @@ export const AddPlayListItem = () => {
         data: {
             PlayListTemplateItemID: --newImageId,
             ImageContent: '{"objects":[],"background":"rgba(0, 0, 0, 0)"}',
-            Delay: 20,
+            Delay: 5,
             ImageID: -1,
 
             // width: p.Width, height: p.Height,
@@ -94,7 +94,7 @@ export const ImportPlayListItem = (data) => {
             data: {
                 PlayListTemplateItemID: --newImageId,
                 ImageContent: data.ImageContent,
-                Delay: 20,
+                Delay: 5,
                 ImageID: data.ImageID,
 
                 // width: p.Width, height: p.Height,

@@ -6,14 +6,17 @@ import fetch from 'isomorphic-fetch';
 import Utils from '../api/fabricUtils';
 
 //alert(11);
-window.document.addEventListener("DOMContentLoaded",(event)=>{
-    loadSymbols();
+window
+    .document
+    .addEventListener("DOMContentLoaded", (event) => {
+        loadSymbols();
 
-});
+    });
 
 function loadSymbols() {
-    fetch(window.baseURL + "VMss/Symbols",{credentials: 'include'}).then(res => {return res.json()}, err => alert(err))
-    .then(res => {
+    fetch(window.baseURL + "VMss/Symbols", {credentials: 'include'}).then(res => {
+        return res.json()
+    }, err => alert(err)).then(res => {
         document
             .getElementById("MaskSymbols")
             .innerHTML = res.map((x) => "<img class='MaskSymbols' style='width:50px;height:50px;' src='" + window.baseURL + "/Symbols/" + x + "' alt='" + x + "' />").join(' ');
@@ -23,15 +26,14 @@ function loadSymbols() {
                 url: this.src
             });
         }
-        Array.prototype.forEach.call(
-        document
-            .getElementsByClassName("MaskSymbols")
-            ,x => {
+        Array
+            .prototype
+            .forEach
+            .call(document.getElementsByClassName("MaskSymbols"), x => {
                 x.addEventListener("click", symbolClickHandler.bind(x))
             })
     })
 }
-
 
 const ManipulateCanvas = (obJectType, params) => {
     let state = window
@@ -45,7 +47,9 @@ const ManipulateCanvas = (obJectType, params) => {
     let f = document
         .getElementById(state)
         .fabric;
-    f.fillStyle = document.querySelector("[type=color]").value;
+    f.fillStyle = document
+        .querySelector("[type=color]")
+        .value;
 
     let UtilsModule = new Utils(f);
 
@@ -57,21 +61,22 @@ const ManipulateCanvas = (obJectType, params) => {
 
             switch (obJectType) {
                 case "circle":
-                    shape = new fabric.Circle({radius: 20, left: 20, top: 20,fill:f.fillStyle});
+                    shape = new fabric.Circle({radius: 20, left: 20, top: 20, fill: f.fillStyle});
 
                     break;
                 case "triangle":
-                    shape = new fabric.Triangle({width: 20, height: 30, left: 20, top: 20,fill:f.fillStyle});
+                    shape = new fabric.Triangle({width: 20, height: 30, left: 20, top: 20, fill: f.fillStyle});
 
                     break;
                 case "text":
                     shape = new fabric.IText('Add Some Text', {
                         left: 20,
-                        top: 20,fill:f.fillStyle
+                        top: 20,
+                        fill: f.fillStyle
                     });
                     break;
                 case "rect":
-                    shape = new fabric.Rect({left: 20, top: 20, width: 20, height: 20,fill:f.fillStyle});
+                    shape = new fabric.Rect({left: 20, top: 20, width: 20, height: 20, fill: f.fillStyle});
 
                     break;
 
@@ -117,9 +122,8 @@ const ManipulateCanvas = (obJectType, params) => {
                     activeObject.set({borderColor: params.color});
                     break;
                 case "font":
-                activeObject.set({
-                    fontFamily: params.font});
-                    setTimeout(function() {
+                    activeObject.set({fontFamily: params.font});
+                    setTimeout(function () {
                         f.renderAll();
                     }, 1000);
                 default:
@@ -160,7 +164,7 @@ const ManipulateCanvas = (obJectType, params) => {
             switch (obJectType) {
                 case "draw":
                     f.isDrawingMode = true;
-                    f.freeDrawingBrush.color=f.fillStyle;
+                    f.freeDrawingBrush.color = f.fillStyle;
                     break;
                 case "select":
                     f.isDrawingMode = false;
@@ -181,6 +185,41 @@ const mapStateToProps = (state) => {
     return {}
 }
 
+const getPlayListFromCanvas = () => {
+    let pl = window
+        .store
+        .getState()
+        .CurrentVMS
+        .Playlist;
+    if (!pl || !pl.Id || !pl.VMSID) {
+        alert("هنوز هیچ دستگاهی انتخاب نشده است");
+        return;
+    }
+
+    let pls = {
+        PlayListTemplateID: pl.Id,
+        Items: pl
+            .Items
+            .map(p => {
+                return {
+                    PlayListTemplateItemID: p.PlayListTemplateItemID,
+                    ImageID: p.ImageID || -1,
+                    ImageContent: JSON
+                        .stringify(document.getElementById(p.id).fabric.toJSON())
+                        .toString(),
+                    ImageBase64: document
+                        .getElementById(p.id)
+                        .fabric
+                        .toDataURL(),
+                    PlayOrder: p.order,
+                    Delay: p.delay
+                }
+            })
+    };
+    return pls;
+
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         onItemClick: ManipulateCanvas,
@@ -188,54 +227,33 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actions.DeviceManager.FetchList());
         },
         SendPlaylistToServer: () => {
-            let pl = window
-                .store
-                .getState()
-                .CurrentVMS
-                .Playlist;
-            //                 public ActionResult ShowPlayListinVMS(int? VMSID, int
-            // PlayListid)
-            if (!pl || !pl.Id || !pl.VMSID) {
-                alert("NO ACTIVE VMS FOUND");
-                return;
-            }
-            fetch(window.baseURL + "/VMss/ShowPlayListinVMS?VMSID=" + pl.VMSID + "&PlayListid=" + pl.Id,{credentials: 'include'}).then(res => res.json(), err => alert(err)).then(json => alert(json));
-
-        },
-        SavePlayList: () => {
-            let pl = window
-                .store
-                .getState()
-                .CurrentVMS
-                .Playlist;
-            if (!pl || !pl.Id || !pl.VMSID) {
-                alert("هنوز هیچ دستگاهی انتخاب نشده است");
-                return;
-            }
-
-            let pls = {
-                PlayListTemplateID: pl.Id,
-                Items: pl
-                    .Items
-                    .map(p => {
-                        return {
-                            PlayListTemplateItemID: p.PlayListTemplateItemID,
-                            ImageID: p.ImageID || -1,
-                            ImageContent: JSON
-                                .stringify(document.getElementById(p.id).fabric.toJSON())
-                                .toString(),
-                            ImageBase64:document.getElementById(p.id).fabric.toDataURL(),
-                            PlayOrder: p.order,
-                            Delay: p.delay
-                        }
-                    })
-            };
-
+            let pls=getPlayListFromCanvas();
             let data = new FormData();
             data.append("data", JSON.stringify(pls));
+            data.append("VMSID",window.store.getState().VMSGroups.ActiveVMS);
+            fetch(window.baseURL + "/VMss/ShowPlayListinVMS", {
+             // 'mode': 'no-cors',
+             method: "POST",
+             credentials: 'include',
+             header: {
+                 'Accept': 'application/json',
+                 'Content-type': 'application/json'
+             },
+             body: data
+         }).then(res => {
+             return res.json()
+         }, err => alert(err)).then(json => {
+             alert(json);
+             });
             
+        },
+        SavePlayList: () => {
+            let pls=getPlayListFromCanvas();
+            let data = new FormData();
+            data.append("data", JSON.stringify(pls));
+
             fetch(window.baseURL + "/VMss/SavePlayList", {
-               // 'mode': 'no-cors',
+                // 'mode': 'no-cors',
                 method: "POST",
                 credentials: 'include',
                 header: {
@@ -243,24 +261,29 @@ const mapDispatchToProps = (dispatch) => {
                     'Content-type': 'application/json'
                 },
                 body: data
-            }).then(res =>{
-               return res.json()
-            },
-                err =>  alert(err)
-                
-            ).then(json => {
+            }).then(res => {
+                return res.json()
+            }, err => alert(err)).then(json => {
                 alert("تغییرات با موفقیت ذخیره گردید.");
 
-                if(json*1 > 0)
+                if (json * 1 > 0) 
                     dispatch(actions.DeviceManager.SelectVMS(window.store.getState().VMSGroups.ActiveVMS))
-               // alert(json)
-            });
+                    // alert(json)
+                });
 
         },
-        SaveProperties:()=>{
-            let props= window.store.getState().CurrentVMS.VMSProps;
-            let VMSID=window.store.getState().VMSGroups.ActiveVMS;
-            if (!props ) {
+        SaveProperties: () => {
+            let props = window
+                .store
+                .getState()
+                .CurrentVMS
+                .VMSProps;
+            let VMSID = window
+                .store
+                .getState()
+                .VMSGroups
+                .ActiveVMS;
+            if (!props) {
                 alert("هنوز هیچ دستگاهی انتخاب نشده است");
                 return;
             }
@@ -268,30 +291,25 @@ const mapDispatchToProps = (dispatch) => {
             let data = new FormData();
             data.append("props", JSON.stringify(props));
             data.append("vmsid", VMSID);
-            
+
             fetch(window.baseURL + "/VMss/Vms_SetProperties", {
                 // 'mode': 'no-cors',
-                 method: "POST",
-                 credentials: 'include',
-                 header: {
-                     'Accept': 'application/json',
-                     'Content-type': 'application/json'
-                 },
-                 body: data
-             }).then(res =>{
+                method: "POST",
+                credentials: 'include',
+                header: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                },
+                body: data
+            }).then(res => {
                 return res.json()
-             },
-                 err =>  alert(err)
-                 
-             ).then(json => {
-                 alert("تنظیمات با موفقیت به دستگاه ارسال گردید.");
-                 dispatch(actions.PropsSaved());
-             });
+            }, err => alert(err)).then(json => {
+                alert("تنظیمات با موفقیت به دستگاه ارسال گردید.");
+                dispatch(actions.PropsSaved());
+            });
         }
     };
 }
-
-
 
 const MenuContainer = connect(mapStateToProps, mapDispatchToProps)(Menu)
 

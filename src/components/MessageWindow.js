@@ -24,7 +24,7 @@ export default class MessageWindow extends Component {
                     .Items||[])
                     .sort((a, b) => a.order - b.order)
                     .map((p, idx) => <PlayListItem
-                        key={"ttt" + idx}
+                        key={"ttt" + p.id}
                         item={p}
                         index={idx}
                         editMode={p.id === this.props.currentConvas}
@@ -147,7 +147,7 @@ export class PlayListItem extends Component {
             className={"itemContainer " + (p.isChanged
             ? "editMode"
             : "")}
-            key={"convas_id" + idx}>
+            key={"convas_id" + p.id}>
             <div></div>
             <div
                 className="imageItem"
