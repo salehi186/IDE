@@ -156,12 +156,40 @@ const Menu = function (props) {
           }
           </select>
 
-          
+          <select className="fontWeight btn btn-default" onChange={(e) => props.onItemClick("fontWeight", {
+            type: "setting",
+            fontWeight: e.target.value
+          })}> 
+              <option value="normal">Normal </option>
+              <option value="bold">Bold </option>
+          </select>
 
           <button
+          type="button"
+          className="btn btn-default fa fa-text-width"
+          onClick={() => props.onItemClick("text", {type: "insert"})}></button>
+
+
+            <button
             type="button"
-            className="btn btn-default fa fa-text-width"
-            onClick={() => props.onItemClick("text", {type: "insert"})}></button>
+            className="btn btn-default fa fa-align-center"
+            onClick={() => props.onItemClick("align", { type: "setting", mode: "center"})}></button>
+        
+            <button
+            type="button"
+            className="btn btn-default fa fa-align-left"
+            onClick={() => props.onItemClick("align", { type: "setting", mode: "left"})}></button>
+           <button
+            type="button"
+            className="btn btn-default fa fa-align-right"
+            onClick={() => props.onItemClick("align", { type: "setting", mode: "right"})}></button>
+
+            <button
+            type="button"
+            className="btn btn-default fa fa-eraser"
+            onClick={() => props.onItemClick("clear", { type: "setting"})}></button>
+            
+
           <button
             type="button"
             className="btn btn-default fa fa-circle-o"

@@ -17,6 +17,11 @@
   top: auto;
   left: auto; }
 
+.canvas-container {
+  background-color: #464444;
+  background-image: linear-gradient(0deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%, transparent);
+  background-size: 15px 15px; }
+
 .MessageWindow .itemContainer {
   padding: 10px 0 30px;
   width: 98%;

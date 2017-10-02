@@ -69,7 +69,7 @@ export class PlayListItem extends Component {
                 o.selectable = false;
                 o.editable = false;
             });
-        c.backgroundColor="black";
+        c.backgroundColor="";
         c.renderAll();
 
     }

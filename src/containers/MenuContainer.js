@@ -126,6 +126,17 @@ const ManipulateCanvas = (obJectType, params) => {
                     setTimeout(function () {
                         f.renderAll();
                     }, 1000);
+                    break;
+                case "align":
+                   activeObject.set({textAlign:  params.mode});
+                   break;
+                case "clear":
+                    f.clear();
+                    break;
+                case "fontWeight":
+                    activeObject.set({fontWeight: params.fontWeight});
+                    break;
+               
                 default:
 
             }
@@ -201,16 +212,15 @@ const getPlayListFromCanvas = () => {
         Items: pl
             .Items
             .map(p => {
+                let ff=document.getElementById(p.id).fabric;
+                ff.backgroundColor="black";
                 return {
                     PlayListTemplateItemID: p.PlayListTemplateItemID,
                     ImageID: p.ImageID || -1,
                     ImageContent: JSON
-                        .stringify(document.getElementById(p.id).fabric.toJSON())
+                        .stringify(ff.toJSON())
                         .toString(),
-                    ImageBase64: document
-                        .getElementById(p.id)
-                        .fabric
-                        .toDataURL(),
+                    ImageBase64: ff.toDataURL(),
                     PlayOrder: p.order,
                     Delay: p.delay
                 }
