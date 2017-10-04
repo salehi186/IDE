@@ -124,6 +124,10 @@ const Menu = function (props) {
           icon="fa-rocket"
           Click={() => props.SaveProperties()}/>
 
+          <MenuItem
+          text="ریست دستگاه"
+          icon="fa-rocket"
+          Click={() => props.ResetDevice()}/>
       </div>
 
       <div role="tabpanel" className="tab-pane row" id="imageEdit">

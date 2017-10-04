@@ -236,6 +236,12 @@ const mapDispatchToProps = (dispatch) => {
         refresh: () => {
             dispatch(actions.DeviceManager.FetchList());
         },
+        ResetDevice:()=>{
+            //let vms=window.store.getState().VMSGroups.ActiveVMS;
+            fetch(window.baseURL+"/VMss/VMS_Reset?vmsid="+window.store.getState().VMSGroups.ActiveVMS)
+            .then((r)=>r.text()).then(r=> alert(r)).catch(err=>alert(err));
+
+        },
         SendPlaylistToServer: () => {
             let pls=getPlayListFromCanvas();
             let data = new FormData();
