@@ -617,4 +617,4 @@ UtilsModule.prototype.changeShadowColor = changeShadowColor;
 UtilsModule.prototype.getShadowColor = getShadowColor;
 UtilsModule.prototype.centerContent = centerContent;
 
-module.exports = UtilsModule;
+export default UtilsModule;

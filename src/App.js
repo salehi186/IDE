@@ -1,21 +1,23 @@
-import React, {Component} from 'react';
-import {Provider} from 'react-redux'
-import store from './store';
 import 'animate.css';
 import 'font-awesome/css/font-awesome.css'
 import "bootstrap/dist/css/bootstrap.css";
-global.jQuery = require('jquery');
-require("bootstrap/dist/js/bootstrap");
+import './App.css';
 import "react-bootstrap-ribbon/dist/react-bootstrap-ribbon.css";
 import "bootstrap-rtl/dist/css/bootstrap-rtl.css"
-import './App.css';
-//import DeviceManager from './components/DeviceManager';
-import VisibleVMSList from './containers/VMSList'
+
+import MenuContainer from './containers/MenuContainer';
 import PropertyList from './containers/PropertyList'
 import PlayList from './containers/PlayList'
-import MenuContainer from './containers/MenuContainer';
+import {Provider} from 'react-redux'
+import React, {Component} from 'react';
+import store from './store';
+import VisibleVMSList from './containers/VMSList'
+//import DeviceManager from './components/DeviceManager';
 
+global.jQuery = require('jquery');
 global.baseURL= window.baseURL=window.location.host.indexOf("local")>-1? "http://127.0.0.1:45455/":"";
+require("bootstrap/dist/js/bootstrap");
+
 
 
 

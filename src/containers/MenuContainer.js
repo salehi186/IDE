@@ -1,9 +1,9 @@
 import {connect} from 'react-redux';
-import Menu from '../components/Menu';
-import * as actions from '../actions';
 import {fabric} from 'fabric/dist/fabric';
+import * as actions from '../actions';
 import fetch from 'isomorphic-fetch';
-import Utils from '../api/fabricUtils';
+import Menu from '../components/Menu';
+import * as Utils from '../api/fabricUtils';
 
 //alert(11);
 window
@@ -17,14 +17,16 @@ function loadSymbols() {
     fetch(window.baseURL + "VMss/Symbols", {credentials: 'include'}).then(res => {
         return res.json()
     }, err => alert(err)).then(res => {
-        document
-            .getElementById("MaskSymbols")
-            .innerHTML = res.map((x) => "<img class='MaskSymbols' style='width:50px;height:50px;' src='" + window.baseURL + "/Symbols/" + x + "' alt='" + x + "' />").join(' ');
-        var symbolClickHandler = function () {
-            ManipulateCanvas("InsertSVG", {
-                type: "InsertSVG",
-                url: this.src
-            });
+        if (Array.isArray(res)) {
+            document
+                .getElementById("MaskSymbols")
+                .innerHTML = res.map((x) => "<img class='MaskSymbols' style='width:50px;height:50px;' src='" + window.baseURL + "/Symbols/" + x + "' alt='" + x + "' />").join(' ');
+            var symbolClickHandler = function () {
+                ManipulateCanvas("InsertSVG", {
+                    type: "InsertSVG",
+                    url: this.src
+                });
+            }
         }
         Array
             .prototype
@@ -128,15 +130,15 @@ const ManipulateCanvas = (obJectType, params) => {
                     }, 1000);
                     break;
                 case "align":
-                   activeObject.set({textAlign:  params.mode});
-                   break;
+                    activeObject.set({textAlign: params.mode});
+                    break;
                 case "clear":
                     f.clear();
                     break;
                 case "fontWeight":
                     activeObject.set({fontWeight: params.fontWeight});
                     break;
-               
+
                 default:
 
             }
@@ -212,8 +214,10 @@ const getPlayListFromCanvas = () => {
         Items: pl
             .Items
             .map(p => {
-                let ff=document.getElementById(p.id).fabric;
-                ff.backgroundColor="black";
+                let ff = document
+                    .getElementById(p.id)
+                    .fabric;
+                ff.backgroundColor = "black";
                 return {
                     PlayListTemplateItemID: p.PlayListTemplateItemID,
                     ImageID: p.ImageID || -1,
@@ -236,35 +240,36 @@ const mapDispatchToProps = (dispatch) => {
         refresh: () => {
             dispatch(actions.DeviceManager.FetchList());
         },
-        ResetDevice:()=>{
+        ResetDevice: () => {
             //let vms=window.store.getState().VMSGroups.ActiveVMS;
-            fetch(window.baseURL+"/VMss/VMS_Reset?vmsid="+window.store.getState().VMSGroups.ActiveVMS)
-            .then((r)=>r.text()).then(r=> alert(r)).catch(err=>alert(err));
+            fetch(window.baseURL + "/VMss/VMS_Reset?vmsid=" + window.store.getState().VMSGroups.ActiveVMS).then((r) => r.text())
+                .then(r => alert(r))
+                .catch(err => alert(err));
 
         },
         SendPlaylistToServer: () => {
-            let pls=getPlayListFromCanvas();
+            let pls = getPlayListFromCanvas();
             let data = new FormData();
             data.append("data", JSON.stringify(pls));
-            data.append("VMSID",window.store.getState().VMSGroups.ActiveVMS);
+            data.append("VMSID", window.store.getState().VMSGroups.ActiveVMS);
             fetch(window.baseURL + "/VMss/ShowPlayListinVMS", {
-             // 'mode': 'no-cors',
-             method: "POST",
-             credentials: 'include',
-             header: {
-                 'Accept': 'application/json',
-                 'Content-type': 'application/json'
-             },
-             body: data
-         }).then(res => {
-             return res.json()
-         }, err => alert(err)).then(json => {
-             alert(json);
-             });
-            
+                // 'mode': 'no-cors',
+                method: "POST",
+                credentials: 'include',
+                header: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                },
+                body: data
+            }).then(res => {
+                return res.json()
+            }, err => alert(err)).then(json => {
+                alert(json);
+            });
+
         },
         SavePlayList: () => {
-            let pls=getPlayListFromCanvas();
+            let pls = getPlayListFromCanvas();
             let data = new FormData();
             data.append("data", JSON.stringify(pls));
 

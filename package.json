@@ -1,5 +1,5 @@
 {
-  "name": "vms_manager",
+  "name": "ide",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,30 +11,27 @@
     "font-awesome": "^4.7.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.2.1",
-    "react": "^15.5.4",
+    "react": "^16.0.0",
     "react-bootstrap-ribbon": "^1.0.4",
-    "react-dom": "^15.5.4",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "react-scripts": "1.0.14",
     "canvas": "^1.6.5",
     "jsdom": "3.x.x",
-    "node-sass": "^4.5.2",
-    "npm-run-all": "^4.0.2",
-    "react-scripts": "0.9.5",
     "redux-devtools": "^3.4.0"
   },
   "scripts": {
-    "build-css": "node-sass src/ -o src/",
-    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
+
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "debug": "node --debug-brk=5858 ./node_modules/.bin/npm-run-all -p watch-css start-js",
-    "debug-test": "node --debug-brk=5858 --nolazy ./node_modules/.bin/react-scripts test --env=jsdom"
+    "eject": "react-scripts eject"
   }
+  
 }

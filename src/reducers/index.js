@@ -39,7 +39,6 @@ function PropertiesReducer(state = stateTree.CurrentVMS.Props, action) {
         case ACTIONS.PropertiesActions.RELOAD_PROPS:
             return action.data;
 
-            return state;
         case ACTIONS.PropertiesActions.SET_All:
             return state;
         case ACTIONS.PropertiesActions.SET_PROPS:

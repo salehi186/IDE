@@ -138,7 +138,7 @@ export class PlayListItem extends Component {
 
     render() {
         let p = this.props.item;
-        let idx = this.props.index;
+        //let idx = this.props.index;
         let width=this.props.width || 400;
         let height=this.props.height || 200;
         return <div
@@ -166,12 +166,12 @@ export class PlayListItem extends Component {
                             .Edit(p.id, this.refs.canvas.fabric)}
                         className={"btn btn-default fa  " + (this.props.editMode
                         ? "fa-save"
-                        : "fa-edit")}></a>
+                        : "fa-edit")}>&nbsp;</a>
                     <a
                         href={"#DeleteImage?" + p.id}
                         className={"btn btn-default fa fa-trash"}
                         onClick={()=>this.props.DeleteItem(p.id)}
-                        ></a>
+                        >&nbsp;</a>
                     <a
                         onClick={() => {
                         let curId = p.id;
@@ -189,7 +189,7 @@ export class PlayListItem extends Component {
                             .props
                             .SwapItems(curId, nextId, curImage, nextImage);
                     }}
-                        className={"btn btn-default fa fa-arrow-down"}></a>
+                        className={"btn btn-default fa fa-arrow-down"}>&nbsp;</a>
                     <a
                         onClick={() => {
                         let curId = p.id;
@@ -207,13 +207,13 @@ export class PlayListItem extends Component {
                             .props
                             .SwapItems(curId, nextId, curImage, nextImage);
                     }}
-                        className={"btn btn-default fa  fa-arrow-up"}></a>
+                        className={"btn btn-default fa  fa-arrow-up"}>&nbsp;</a>
                     <a onClick={() => {
                         this
                             .props
                             .Edit(p.id, this.refs.canvas.fabric);
                         window.showDialog("Images/Index","انتخاب عکس از‌ آلبوم")
-                        }} className={"btn btn-default fa  fa-folder-open"}></a>
+                        }} className={"btn btn-default fa  fa-folder-open"}>&nbsp;</a>
                     
                         <input type="number" className="form-control col-x-3" style={{width:"45px", display:"inline" , padding:3 }}
                         ref="delay" onChange={()=>this.updateItem()}

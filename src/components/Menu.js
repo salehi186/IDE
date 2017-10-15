@@ -38,7 +38,7 @@ const Dialog = (props) => {
           padding: 0
         }}>
           <img id="modalLoading" alt="loading" src="/loading.gif"/>
-          <iframe
+          <iframe title="modal dialog"
             name="modalDialog"
             id="modalDialog"
             width="700px"
