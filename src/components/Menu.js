@@ -2,7 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 
 const MenuItem = (props) => {
-  return <div
+  return <div id={props.ID}
     className="col-xs-3 col-md-2 col-lg-1 btn btn-default"
     onClick={props.Click}
     style={{
@@ -80,57 +80,62 @@ const Menu = function (props) {
         <a href="#home" aria-controls="home" role="tab" data-toggle="tab">مدیریت VMS</a>
       </li>
       <li role="presentation">
-        <a href="#imageEdit" aria-controls="imageEdit" role="tab" data-toggle="tab">ویرایش عکس</a>
+        <a href="#MNU_TAB_IMAGE_EDIT" aria-controls="MNU_TAB_IMAGE_EDIT" role="tab" data-toggle="tab">ویرایش عکس</a>
       </li>
 
     </ul>
     <div className="tab-content">
       <div role="tabpanel" className="tab-pane active row" id="home">
-        <MenuItem
+        <MenuItem ID="MNU_VMS_MANAGEMENT"
           text="ویراشVMS"
           icon="fa-desktop"
           Click={() => showDialog("VMSs", "مدیریت تابلوها")}/>
-        <MenuItem
+        <MenuItem ID="MNU_GROUP_MANAGEMENT"
           text="ویراش گروه ها"
           icon="fa-tags"
           Click={() => showDialog("VMSGroups", "مدیریت تابلوها")}/>
-        <MenuItem
+        <MenuItem ID="MNU_PLAYLIST_MANAGEMENT"
           text="مدیریت لیست نمایش"
           icon="fa-tags"
           Click={() => showDialog("PlayListTemplates/Index?vms=" + (window.store.getState().VMSGroups.ActiveVMS||'0'), "مدیریت لیست نمایش")}/>
 
-        <MenuItem
+        <MenuItem ID="MNU_UPDATE_VMS_LIST"
           text="به روز رسانی مجدد"
           icon="fa-refresh"
-          Click={() => props.refresh()}/> {/*<MenuItem text="check" icon="fa-plug"/>
+          Click={() => props.refresh()}/>
+          <MenuItem ID="MNU_IMPORT_IMAGES"
+          text="Import" icon="fa-cloud-download"
+          Click={()=>window.showDialog("Images/Index","انتخاب عکس از‌ آلبوم")}
+          />
+           {/*<MenuItem text="check" icon="fa-plug"/>
         <MenuItem text="Import" icon="fa-cloud-download"/>
         <MenuItem text="Add" icon="fa-image"/>
         <MenuItem text="Delete" icon=" fa-trash"/>
         <MenuItem text="Move Left" icon=" fa-mail-reply"/>
         <MenuItem text="Move Right" icon="fa-mail-forward"/>*/}
 
-        <MenuItem
+        <MenuItem ID="MNU_SAVE_PLAYLIST"
           text="ذخیره لیست نمایش"
           icon="fa-save"
           Click={() => props.SavePlayList()}/>
-        <MenuItem
+        <MenuItem ID="MNU_SEND_PLAYLIST"
           text="ارسال لیست نمایش "
           icon="fa-send"
           Click={() => {
           props.SendPlaylistToServer()
         }}/>
-        <MenuItem
+        <MenuItem ID="MNU_SEND_PROPS"
           text="ارسال تنظیمات"
           icon="fa-rocket"
           Click={() => props.SaveProperties()}/>
 
-          <MenuItem
+          <MenuItem ID="MNU_RESET_VMS"
           text="ریست دستگاه"
           icon="fa-rocket"
           Click={() => props.ResetDevice()}/>
       </div>
 
-      <div role="tabpanel" className="tab-pane row" id="imageEdit">
+      <div role="tabpanel" className="tab-pane row" id="MNU_TAB_IMAGE_EDIT">
 
         <div className=" col-xs-2 col-md-2 col-lg-1">
           <div className="input-group">

@@ -31,8 +31,14 @@ export const SelectVMS = (id) => {
             dispatch({type: DeviceActions.FETCH_FAILED, err})
         }).then(data => {
             dispatch({type: DeviceActions.FETCH_VMS_DETAILS_SUCCESS, data: data.VMS});
-            if (data.PlayList) 
-                dispatch({type: "PLAYLIST_CHANGE", data: data.PlayList, id});
+            //if (data.PlayList)
+            dispatch({
+                type: "PLAYLIST_CHANGE",
+                data: data.PlayList || {
+                    Items: []
+                },
+                id
+            });
             dispatch({
                 type: "RELOAD_PROPS",
                 data: JSON.parse(data.Properties || "[]")

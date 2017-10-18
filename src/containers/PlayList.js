@@ -5,23 +5,30 @@ import * as actions from '../actions'
 // Listen to message from child window
 window.addEventListener("message", function (e) {
     //console.log('parent received message!:  ', e.data);
+   
     switch (e.data.type) {
         case "Image":
-            global
-                .jQuery(".modal")
-                .modal('hide');
-
-                window
-                .store
-                .dispatch(actions.ImportPlayListItem(e.data.data));
-
+            let dispatch = window.store.dispatch;
+            if (window.store.getState().CurrentVMS.Playlist.ActiveItem === -1) {
+                let act = actions.AddPlayListItem();
+                act.data.ImageContent=e.data.data.ImageContent;
+                act.data.ImageID=e.data.data.ImageID;
+                act.data.ImageName=e.data.data.ImageName;
+                dispatch(act);
+            } else {
+                global
+                    .jQuery(".modal")
+                    .modal('hide');
+                dispatch(actions.ImportPlayListItem(e.data.data));
+            }
             break;
         case "PlayList":
             global
                 .jQuery(".modal")
                 .modal('hide');
-                window
-                 .store.dispatch(actions.DeviceManager.SelectVMS(e.data.data.VMSRef));
+            window
+                .store
+                .dispatch(actions.DeviceManager.SelectVMS(e.data.data.VMSRef));
             break;
 
         default:
@@ -42,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         Save: (itm) => {
             dispatch(actions.UpdatePlayListItem(itm));
-              },
+        },
         SwapItems: (id, TargetId, currentImage, nextImage) => {
             dispatch(actions.SwapItems(id, TargetId, currentImage, nextImage));
         },
