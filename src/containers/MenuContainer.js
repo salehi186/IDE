@@ -3,7 +3,7 @@ import {fabric} from 'fabric/dist/fabric';
 import * as actions from '../actions';
 import fetch from 'isomorphic-fetch';
 import Menu from '../components/Menu';
-import * as Utils from '../api/fabricUtils';
+import UtilsModule  from '../api/fabricUtils';
 
 //alert(11);
 window
@@ -17,7 +17,7 @@ function loadSymbols() {
     fetch(window.baseURL + "VMss/Symbols", {credentials: 'include'}).then(res => {
         return res.json()
     }, err => alert(err)).then(res => {
-        if (Array.isArray(res)) {
+        if (Array.isArray(res) && document.getElementById("MaskSymbols")) {
             document
                 .getElementById("MaskSymbols")
                 .innerHTML = res.map((x) => "<img class='MaskSymbols' style='width:50px;height:50px;' src='" + window.baseURL + "/Symbols/" + x + "' alt='" + x + "' />").join(' ');
@@ -53,7 +53,7 @@ const ManipulateCanvas = (obJectType, params) => {
         .querySelector("[type=color]")
         .value;
 
-    let UtilsModule = new Utils(f);
+    let Utils = new UtilsModule(f);
 
     //UtilsModule.setCanvas(f);
     switch (params.type) {
@@ -145,10 +145,10 @@ const ManipulateCanvas = (obJectType, params) => {
             break;
         case "InsertSVG":
 
-            UtilsModule.insertSvg(params.url, document.querySelector(".loader"));
+            Utils.insertSvg(params.url, document.querySelector(".loader"));
             break;
         case "delete":
-            UtilsModule.deleteSelected();
+            Utils.deleteSelected();
             //deleteObjects(f);
             break;
         case "update":
@@ -156,7 +156,7 @@ const ManipulateCanvas = (obJectType, params) => {
             switch (obJectType) {
                 case "dock":
 
-                    UtilsModule.getImageBounds(true);
+                    Utils.getImageBounds(true);
 
                     // //activeObject.setWidth(f.height); activeObject.setHeight(f.width); f
                     // .getActiveObject()     .set({         top: 0,         left: 0,         width:
@@ -165,7 +165,7 @@ const ManipulateCanvas = (obJectType, params) => {
 
                     break;
                 case "moveBack":
-                    UtilsModule.sendToBack();
+                    Utils.sendToBack();
 
                     break;
                 default:
@@ -236,10 +236,9 @@ const getPlayListFromCanvas = () => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        changeActivePlayListItem:(id)=>dispatch(actions.ChangeActiveItem(id) ),
         onItemClick: ManipulateCanvas,
-        refresh: () => {
-            dispatch(actions.DeviceManager.FetchList());
-        },
+        refresh: () => dispatch(actions.DeviceManager.FetchList()),
         ResetDevice: () => {
             //let vms=window.store.getState().VMSGroups.ActiveVMS;
             fetch(window.baseURL + "/VMss/VMS_Reset?vmsid=" + window.store.getState().VMSGroups.ActiveVMS).then((r) => r.text())
@@ -268,11 +267,11 @@ const mapDispatchToProps = (dispatch) => {
             });
 
         },
-        SavePlayList: () => {
+        SavePlayList: (name) => {
             let pls = getPlayListFromCanvas();
             let data = new FormData();
             data.append("data", JSON.stringify(pls));
-
+            if(name) data.append("saveAs",name)
             fetch(window.baseURL + "/VMss/SavePlayList", {
                 // 'mode': 'no-cors',
                 method: "POST",

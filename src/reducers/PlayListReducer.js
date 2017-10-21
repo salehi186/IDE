@@ -61,17 +61,18 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
             });
 
         case ACTIONS.PlayListActions.PLAYLIST_CHANGE:
-
-            return Object.assign(action.data, {
-                ActiveItem: -1,
-                Items: action
-                    .data
-                    .Items
-                    .map((p, id) => {
-                        return Object.assign(p, assignPlayListItem(p))
-                    })
-            });
-
+            if (action.data) 
+                return Object.assign(action.data, {
+                    ActiveItem: -1,
+                    Items: action
+                        .data
+                        .Items
+                        .map((p, id) => {
+                            return Object.assign(p, assignPlayListItem(p))
+                        })
+                });
+            return null;
+            
         case ACTIONS.PlayListActions.SWAP_IMAGE:
             if (action.TargetId) {
                 let currentOrder = newState

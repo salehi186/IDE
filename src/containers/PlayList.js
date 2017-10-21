@@ -39,7 +39,7 @@ window.addEventListener("message", function (e) {
 
 const mapStateToProps = (state) => {
 
-    return {playList: state.CurrentVMS.Playlist, currentConvas: state.CurrentVMS.Playlist.ActiveItem}
+    return {playList: state.CurrentVMS.Playlist, currentConvas: state.CurrentVMS.Playlist?state.CurrentVMS.Playlist.ActiveItem:-1}
 }
 
 const mapDispatchToProps = (dispatch) => {

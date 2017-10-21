@@ -31,18 +31,18 @@ export const SelectVMS = (id) => {
             dispatch({type: DeviceActions.FETCH_FAILED, err})
         }).then(data => {
             dispatch({type: DeviceActions.FETCH_VMS_DETAILS_SUCCESS, data: data.VMS});
-            //if (data.PlayList)
-            dispatch({
-                type: "PLAYLIST_CHANGE",
-                data: data.PlayList || {
-                    Items: []
-                },
-                id
-            });
-            dispatch({
-                type: "RELOAD_PROPS",
-                data: JSON.parse(data.Properties || "[]")
-            })
+            if (!data.PlayList) 
+                alert("برای دستگاه جاری هیچ لیست نمایشی انتخاب نشده است");
+            
+            dispatch({type: "PLAYLIST_CHANGE", data: data.PlayList, id});
+
+            if (data.Properties) 
+                dispatch({
+                    type: "RELOAD_PROPS",
+                    data: JSON.parse(data.Properties || "[]")
+                });
+            else 
+                alert("ارتباط با دستگاه برقرار نشد.  مشخصات دستگاه بارگزاری نشد.");
             setTimeout(function () {
                 for (let p of document.getElementsByTagName("canvas")) 
                     if (p.fabric) 
