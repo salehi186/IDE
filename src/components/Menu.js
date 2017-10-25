@@ -330,10 +330,8 @@ const Menu = function (props) {
             <div
               id="MaskSymbols"
               style={{
-              width: "98%",
-              overflowX: "auto",
-              whiteSpace: "nowrap",
-              padding: "5px"
+              width: "100%",
+              
             }}></div>
 
           </div>

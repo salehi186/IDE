@@ -1,7 +1,17 @@
 * {
   box-sizing: border-box;
   direction: rtl; }
-
+  #MaskSymbols li{display: inline-block; }
+  #MaskSymbols ul{
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 5px;
+    display: none;
+    }
+    #MaskSymbols ul:first-of-type{
+      display: block;
+    }
 .App .tab-pane {
   padding: 3px;
   background-color: white; }

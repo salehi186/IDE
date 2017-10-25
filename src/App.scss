@@ -2,6 +2,12 @@
     box-sizing: border-box ;
     direction: rtl;
 }
+
+
+#MaskSymbols *{display: inline-block; }
+#MaskSymbols signTabHead{transform:rotate(-90deg) ;font-size: 95%; height: 50px; height: 50px;}
+#MaskSymbols ul{display: none;}
+
 .App .tab-pane{
     padding: 3px;
     background-color: white;

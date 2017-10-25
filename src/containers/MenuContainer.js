@@ -20,8 +20,18 @@ function loadSymbols() {
         if (Array.isArray(res) && document.getElementById("MaskSymbols")) {
             document
                 .getElementById("MaskSymbols")
-                .innerHTML = res.map((x) => "<img class='MaskSymbols' style='width:50px;height:50px;' src='" + window.baseURL + "/Symbols/" + x + "' alt='" + x + "' />").join(' ');
-            var symbolClickHandler = function () {
+                .innerHTML =`<select style="padding-right:40px;" class='btn btn-default' onchange='window.jQuery("#MaskSymbols ul").hide().filter(this.value).show();' >`+ res.reduce((pv,cv,ci,arr)=> 
+              `<option value=".${cv.category}" selected>${cv.category}</option>`+pv+ 
+               `<ul class="${cv.category}">${
+                    cv.images.map(x=>`<li>
+                    <img class='MaskSymbols' style='width:50px;height:50px;' src='${window.baseURL}/Symbols/${cv.category+'/'+x}' alt='${x}' />
+                    </li>` ).join('')
+                }</ul>`
+                ,"</select>")
+                    // (y) =>'<div class="signTabHead" onclick="window.jQuery(this).parent().find(\'ul\').hide();window.jQuery(this).next().fadeIn(300) ">' 
+                    // + y.category+'</div><ul><li>'+ y.images.map(x=> "<img class='MaskSymbols' style='width:50px;height:50px;' src='" 
+                    // + window.baseURL + "/Symbols/"+y.category+'/' + x + "' alt='" + x + "' />").join('</li><li>')+'</li></ul>').join( '');
+                var symbolClickHandler = function () {
                 ManipulateCanvas("InsertSVG", {
                     type: "InsertSVG",
                     url: this.src
