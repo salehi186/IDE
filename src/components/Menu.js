@@ -81,7 +81,7 @@ const showDialog = window.showDialog = (url, title, params) => {
     .find("iframe")
     .attr("src", src)
 }
-
+const changeZoom=(e)=>{ window.zoom=e.target.value*1;  Array.prototype.forEach.call(document.querySelectorAll("canvas[id]"),p=> {   let f=p.fabric;let val=e.target.value* (1/f.getZoom());    f.setWidth(f.getWidth()*val); f.setHeight(f.getHeight()*val); f.setZoom(f.getZoom()*val)  })}
 const fontNames = 'BBadr,BBaran,BBardiya,BCompset,BDavat,BElham,BEsfehanBold,BFantezy,BFarnaz,BFerd' +
     'osi,BHamid,BHelal,BHoma,BJadidBold,BJalal,BKoodakBold,BKourosh,BLotus,BMahsa,BMe' +
     'hrBold,BMitra,BMorvarid,BNarm,BNasimBold,BNazanin,BRoya,BSetarehBold,BShiraz,BSi' +
@@ -153,10 +153,10 @@ const Menu = function (props) {
           text="ذخیره مجدد لیست نمایش"
           icon="fa-copy"
           Click={() => {
-              let name=window.prompt("لیست جاری با چه نامی ذخیره مجدد گردد؟","lstNew"+ Math.floor(Math.random()*1000)  );
-             if(name) props.SavePlayList(name);
-          }
-          }/>
+          let name = window.prompt("لیست جاری با چه نامی ذخیره مجدد گردد؟", "lstNew" + Math.floor(Math.random() * 1000));
+          if (name) 
+            props.SavePlayList(name);
+          }}/>
         <MenuItem
           ID="MNU_SAVE_PLAYLIST"
           text="ذخیره لیست نمایش"
@@ -295,7 +295,7 @@ const Menu = function (props) {
                 type="button"
                 className="btn btn-default fa fa-arrows-alt"
                 onClick={() => props.onItemClick("dock", {type: "update"})}></button>
-
+             
               <div
                 className="ImageLoad"
                 style={{
@@ -325,13 +325,14 @@ const Menu = function (props) {
                   className="btn btn-default fa fa-image"
                   onClick={() => $("#imageImportFileUpload").click()}></button>
               </div>
-
-            </div>
-            <div
-              id="MaskSymbols"
-              style={{
-              width: "100%",
               
+            </div><select className="btn btn-default" onChange={changeZoom}>
+                <option value="1">1x</option>
+                <option value="2">2x</option>
+                <option value="3">3x</option>
+            </select>
+            <div id="MaskSymbols" style={{
+              width: "100%"
             }}></div>
 
           </div>

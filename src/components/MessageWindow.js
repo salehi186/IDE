@@ -81,29 +81,30 @@ export class PlayListItem extends Component {
                 o.editable = false;
             });
         c.backgroundColor = "";
+       if(window.zoom){
+            c.setWidth(this.props.width*(window.zoom||1));
+            c.setHeight(this.props.height*(window.zoom||1));
+            c.setZoom(window.zoom||1);
+        }
         c.renderAll();
+        
 
     }
     componentWillReceiveProps(nextProps) {
 
         if (this.props.width !== nextProps.width) 
-            this.refs.canvas.fabric.setWidth(nextProps.width);
+            this.refs.canvas.fabric.setWidth(nextProps.width*(window.zoom||1));
         if (this.props.height !== nextProps.height) 
-            this.refs.canvas.fabric.setHeight(nextProps.height);
+            this.refs.canvas.fabric.setHeight(nextProps.height*(window.zoom||1));
         
         if (this.props.editMode === nextProps.editMode && this.props.item.id === nextProps.item.id && this.props.item.img === nextProps.item.img) 
             return;
         if (this.props.item.id !== nextProps.item.id || this.props.item.img !== nextProps.item.img) {
-            this
-                .refs
-                .canvas
-                .fabric
-                .loadFromJSON(nextProps.item.img);
-            this
-                .refs
-                .canvas
-                .fabric
-                .renderAll();
+           
+           let f= this.refs.canvas.fabric;
+                f.loadFromJSON(nextProps.item.img);
+                f.setZoom(window.zoom||1);
+                f.renderAll();
 
         }
 
