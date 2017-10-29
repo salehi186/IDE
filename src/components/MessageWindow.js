@@ -37,11 +37,12 @@ export default class MessageWindow extends Component {
                         : <div
                             className="itemContainer"
                             style={{
+                                textAlign:"center",
                             display: this.props.playList.Items
                                 ? ""
                                 : "none"
                         }}>
-                            <span
+                            <span data-shortkey="a" title="Alt+A"
                                 className="fa  fa-plus-circle"
                                 style={{
                                 fontSize: "2em"

@@ -13,6 +13,48 @@ window
 
     });
 
+    window.document.addEventListener("keydown", function(e){
+        let c= document.getElementById( window.store.getState().CurrentVMS.Playlist.ActiveItem);
+        if(c && c.fabric &&c.fabric.getActiveObject()){
+            let activeObject= c.fabric.getActiveObject();
+            switch(e.keyCode)
+            {
+                //left
+                case 37:
+                activeObject.set('left',activeObject.get('left')-10);
+                break;
+                    
+                //up
+                case 38:
+                activeObject.set('top',activeObject.get('top')-10);
+                break;
+                    
+                //right
+                case 39:
+                    activeObject.set('left',activeObject.get('left')+10);
+                break;
+                
+                //down
+                case 40:
+                activeObject.set('top',activeObject.get('top')+10);
+                break;
+                default:
+                break;
+
+            }
+            c.fabric.renderAll();
+        }
+        if(e.altKey){
+            let btn=document.querySelector(`[data-shortKey$=${e.key.toLowerCase()}]`);
+            if(btn) {
+                btn.click();
+            }
+        }
+
+    } );   
+
+
+
 function loadSymbols() {
     fetch(window.baseURL + "VMss/Symbols", {credentials: 'include'}).then(res => {
         return res.json()

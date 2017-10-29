@@ -4,7 +4,7 @@ import {permissions} from '../api/Base'
 
 const MenuItem = (props) => {
   if (permissions(props.ID)) 
-    return <div
+    return <div data-shortkey={props.shortKey ||""} title={props.title||""}
       id={props.ID}
       className="col-xs-3 col-md-2 col-lg-1 btn btn-default"
       onClick={props.Click}
@@ -107,7 +107,7 @@ const Menu = function (props) {
               href="#MNU_TAB_IMAGE_EDIT"
               aria-controls="MNU_TAB_IMAGE_EDIT"
               role="tab"
-              data-toggle="tab">ویرایش عکس</a>
+              data-toggle="tab" >ویرایش عکس</a>
           </li>
         : ""
 }
@@ -127,18 +127,18 @@ const Menu = function (props) {
         <MenuItem
           ID="MNU_PLAYLIST_MANAGEMENT"
           text="مدیریت لیست نمایش"
-          icon="fa-tags"
+          icon="fa-tags" shortKey="l" title="Alt+I"
           Click={() => showDialog("PlayListTemplates/Index", "مدیریت لیست نمایش")}/>
 
         <MenuItem
           ID="MNU_UPDATE_VMS_LIST"
           text="به روز رسانی مجدد"
-          icon="fa-refresh"
+          icon="fa-refresh" shortKey="r" title="Alt+R"
           Click={() => props.refresh()}/>
         <MenuItem
           ID="MNU_IMPORT_IMAGES"
           text="انتخاب تصویر از سرور"
-          icon="fa-cloud-download"
+          icon="fa-cloud-download" shortKey="p" title="Alt+P"
           Click={() => {
           props.changeActivePlayListItem(-1);
           window.showDialog("Images/Index", "انتخاب تصویر از‌ آلبوم")
@@ -151,7 +151,7 @@ const Menu = function (props) {
         <MenuItem
           ID="MNU_SAVE_PLAYLIST_AS"
           text="ذخیره مجدد لیست نمایش"
-          icon="fa-copy"
+          icon="fa-copy" shortKey="x" title="Alt+X"
           Click={() => {
           let name = window.prompt("لیست جاری با چه نامی ذخیره مجدد گردد؟", "lstNew" + Math.floor(Math.random() * 1000));
           if (name) 
@@ -160,25 +160,25 @@ const Menu = function (props) {
         <MenuItem
           ID="MNU_SAVE_PLAYLIST"
           text="ذخیره لیست نمایش"
-          icon="fa-save"
+          icon="fa-save" shortKey="s" title="Alt+S"
           Click={() => props.SavePlayList()}/>
         <MenuItem
           ID="MNU_SEND_PLAYLIST"
           text="ارسال لیست نمایش "
-          icon="fa-send"
+          icon="fa-send" shortKey="z" title="Alt+Z"
           Click={() => {
           props.SendPlaylistToServer()
         }}/>
         <MenuItem
           ID="MNU_SEND_PROPS"
           text="ارسال تنظیمات"
-          icon="fa-rocket"
+          icon="fa-rocket" shortKey="t" title="Alt+T"
           Click={() => props.SaveProperties()}/>
 
         <MenuItem
           ID="MNU_RESET_VMS"
           text="ریست دستگاه"
-          icon="fa-rocket"
+          icon="fa-rocket" 
           Click={() => props.ResetDevice()}/>
       </div>
       {permissions("MNU_TAB_IMAGE_EDIT")
@@ -187,7 +187,7 @@ const Menu = function (props) {
             <div className=" col-xs-2 col-md-2 col-lg-1">
               <div className="input-group">
                 <span className="input-group-addon fa  fa-paint-brush"></span>
-                <input
+                <input title="انتخاب رنگ"
                   type="color"
                   className="form-control"
                   defaultValue="#ffffff"
@@ -198,7 +198,7 @@ const Menu = function (props) {
               </div>
             </div>
             <div className="btn-group" role="group" aria-label="...">
-              <select
+              <select title="فونت"
                 className="fontChanger btn btn-default"
                 onChange={(e) => props.onItemClick("font", {
                 type: "setting",
@@ -217,7 +217,7 @@ const Menu = function (props) {
                   </option>)}
               </select>
 
-              <select
+              <select title="ضخامت فونت"
                 className="fontWeight btn btn-default"
                 onChange={(e) => props.onItemClick("fontWeight", {
                 type: "setting",
@@ -230,12 +230,12 @@ const Menu = function (props) {
               </select>
 
               <button
-                type="button"
+                type="button" title="درج نوشته"
                 className="btn btn-default fa fa-text-width"
                 onClick={() => props.onItemClick("text", {type: "insert"})}></button>
 
               <button
-                type="button"
+                type="button" title="وسط چین"
                 className="btn btn-default fa fa-align-center"
                 onClick={() => props.onItemClick("align", {
                 type: "setting",
@@ -243,14 +243,14 @@ const Menu = function (props) {
               })}></button>
 
               <button
-                type="button"
+                type="button" title="چپ چین"
                 className="btn btn-default fa fa-align-left"
                 onClick={() => props.onItemClick("align", {
                 type: "setting",
                 mode: "left"
               })}></button>
               <button
-                type="button"
+                type="button" title="راست چین"
                 className="btn btn-default fa fa-align-right"
                 onClick={() => props.onItemClick("align", {
                 type: "setting",
@@ -258,45 +258,45 @@ const Menu = function (props) {
               })}></button>
 
               <button
-                type="button"
+                type="button" title="پاک کردن محتوای فریم ALT+C" data-shortkey="c"
                 className="btn btn-default fa fa-eraser"
                 onClick={() => props.onItemClick("clear", {type: "setting"})}></button>
 
               <button
-                type="button"
+                type="button" title="درج دایره"
                 className="btn btn-default fa fa-circle-o"
                 onClick={() => props.onItemClick("circle", {type: "insert"})}></button>
               <button
-                type="button"
+                type="button" title="درج مستطیل"
                 className="btn btn-default fa fa-square-o"
                 onClick={() => props.onItemClick("rect", {type: "insert"})}></button>
               <button
-                type="button"
+                type="button" title="درج مثلت"
                 className="btn btn-default fa  fa-caret-up"
                 onClick={() => props.onItemClick("triangle", {type: "insert"})}></button>
               <button
-                type="button"
+                type="button" title="تغییر نشانگر به حالت قلم"
                 className="btn btn-default fa fa-pencil"
                 onClick={() => props.onItemClick("draw", {type: "mode"})}></button>
               <button
-                type="button"
+                type="button" title="تغییر نشانگر به حالت انتخاب"
                 className="btn btn-default fa fa-hand-paper-o"
                 onClick={() => props.onItemClick("select", {type: "mode"})}></button>
               <button
-                type="button"
+                type="button" title="حذف آیتم انتخاب شده در نقاشی Alt+D" data-shortkey="d"
                 className="btn btn-default fa fa-trash"
                 onClick={() => props.onItemClick("delete", {type: "delete"})}></button>
               <button
-                type="button"
+                type="button" title="انتقال به عقب"
                 className="btn btn-default fa fa-level-down"
                 onClick={() => props.onItemClick("moveBack", {type: "update"})}></button>
 
               <button
-                type="button"
+                type="button" title="بزرگ کردن تا پوشش کل عکس"
                 className="btn btn-default fa fa-arrows-alt"
                 onClick={() => props.onItemClick("dock", {type: "update"})}></button>
              
-              <div
+              <div title="انتخاب تصویر از کلاینت"
                 className="ImageLoad"
                 style={{
                 display: "inline"
@@ -326,7 +326,7 @@ const Menu = function (props) {
                   onClick={() => $("#imageImportFileUpload").click()}></button>
               </div>
               
-            </div><select className="btn btn-default" onChange={changeZoom}>
+            </div><select className="btn btn-default" onChange={changeZoom}  title="بزرگنمایی">
                 <option value="1">1x</option>
                 <option value="2">2x</option>
                 <option value="3">3x</option>
