@@ -163,6 +163,7 @@ export class PlayListItem extends Component {
             ? "editMode"
             : "")}
             key={"convas_id" + p.id}
+            title={p.order +"__" +p.id}
             style={{
             borderColor: this.props.editMode
                 ? "green"
