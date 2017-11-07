@@ -260,6 +260,8 @@ const getPlayListFromCanvas = () => {
         alert("هنوز هیچ دستگاهی انتخاب نشده است");
         return;
     }
+   
+    let o=0;
 
     let pls = {
         PlayListTemplateID: pl.Id,
@@ -277,7 +279,7 @@ const getPlayListFromCanvas = () => {
                         .stringify(ff.toJSON())
                         .toString(),
                     ImageBase64: ff.toDataURL(),
-                    PlayOrder: p.order,
+                    PlayOrder:++o,
                     Delay: p.delay
                 }
             })
