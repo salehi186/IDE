@@ -1,9 +1,9 @@
 import {connect} from 'react-redux';
 import {fabric} from 'fabric/dist/fabric';
 import * as actions from '../actions';
-import fetch from 'isomorphic-fetch';
 import Menu from '../components/Menu';
 import UtilsModule  from '../api/fabricUtils';
+import {ServerCall} from '../api/Base';
 
 //alert(11);
 window
@@ -56,9 +56,12 @@ window
 
 
 function loadSymbols() {
-    fetch(window.baseURL + "VMss/Symbols", {credentials: 'include'}).then(res => {
-        return res.json()
-    }, err => alert(err)).then(res => {
+    ServerCall(window.baseURL + "VMss/Symbols", {credentials: 'include'})
+    // .then(res => {
+    //     return res.json()
+    // }, err => alert(err))
+    
+    .then(res => {
         if (Array.isArray(res) && document.getElementById("MaskSymbols")) {
             document
                 .getElementById("MaskSymbols")
@@ -295,7 +298,8 @@ const mapDispatchToProps = (dispatch) => {
         refresh: () => dispatch(actions.DeviceManager.FetchList()),
         ResetDevice: () => {
             //let vms=window.store.getState().VMSGroups.ActiveVMS;
-            fetch(window.baseURL + "/VMss/VMS_Reset?vmsid=" + window.store.getState().VMSGroups.ActiveVMS).then((r) => r.text())
+            ServerCall(window.baseURL + "/VMss/VMS_Reset?vmsid=" + window.store.getState().VMSGroups.ActiveVMS)
+            .then((r) => r.text())
                 .then(r => alert(r))
                 .catch(err => alert(err));
 
@@ -305,7 +309,7 @@ const mapDispatchToProps = (dispatch) => {
             let data = new FormData();
             data.append("data", JSON.stringify(pls));
             data.append("VMSID", window.store.getState().VMSGroups.ActiveVMS);
-            fetch(window.baseURL + "/VMss/ShowPlayListinVMS", {
+            ServerCall(window.baseURL + "/VMss/ShowPlayListinVMS", {
                 // 'mode': 'no-cors',
                 method: "POST",
                 credentials: 'include',
@@ -314,9 +318,11 @@ const mapDispatchToProps = (dispatch) => {
                     'Content-type': 'application/json'
                 },
                 body: data
-            }).then(res => {
-                return res.json()
-            }, err => alert(err)).then(json => {
+            })
+            // .then(res => {
+            //     return res.json()
+            // }, err => alert(err))
+            .then(json => {
                 alert(json);
             });
 
@@ -326,7 +332,7 @@ const mapDispatchToProps = (dispatch) => {
             let data = new FormData();
             data.append("data", JSON.stringify(pls));
             if(name) data.append("saveAs",name)
-            fetch(window.baseURL + "/VMss/SavePlayList", {
+            ServerCall(window.baseURL + "/VMss/SavePlayList", {
                 // 'mode': 'no-cors',
                 method: "POST",
                 credentials: 'include',
@@ -335,9 +341,12 @@ const mapDispatchToProps = (dispatch) => {
                     'Content-type': 'application/json'
                 },
                 body: data
-            }).then(res => {
-                return res.json()
-            }, err => alert(err)).then(json => {
+            })
+            // .then(res => {
+            //     return res.json()
+            // }, err => alert(err))
+            
+            .then(json => {
                 alert("تغییرات با موفقیت ذخیره گردید.");
 
                 if (json * 1 > 0) 
@@ -366,7 +375,7 @@ const mapDispatchToProps = (dispatch) => {
             data.append("props", JSON.stringify(props));
             data.append("vmsid", VMSID);
 
-            fetch(window.baseURL + "/VMss/Vms_SetProperties", {
+            ServerCall(window.baseURL + "/VMss/Vms_SetProperties", {
                 // 'mode': 'no-cors',
                 method: "POST",
                 credentials: 'include',
@@ -375,9 +384,12 @@ const mapDispatchToProps = (dispatch) => {
                     'Content-type': 'application/json'
                 },
                 body: data
-            }).then(res => {
-                return res.json()
-            }, err => alert(err)).then(json => {
+            })
+            // .then(res => {
+            //     return res.json()
+            // }, err => alert(err))
+            
+            .then(json => {
                 alert("تنظیمات با موفقیت به دستگاه ارسال گردید.");
                 dispatch(actions.PropsSaved());
             });

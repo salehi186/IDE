@@ -1,5 +1,5 @@
 ///Device Manager
-import fetch from 'isomorphic-fetch'
+import {ServerCall} from '../api/Base';
 const DeviceUrl = "VMss/VMs_List";
 const DeviceDetailsURL = "VMss/VMs_Details?Id=";
 
@@ -25,11 +25,8 @@ export const FilterVMS = (filterText) => {
 
 export const SelectVMS = (id) => {
     return (dispatch) => {
-        dispatch({type: DeviceActions.FETCH_VMS_DETAILS_STARTED, id});
-        fetch(window.baseURL + DeviceDetailsURL + id, {credentials: 'include'}).then(res => res.json(), err => {
-            alert(err);
-            dispatch({type: DeviceActions.FETCH_FAILED, err})
-        }).then(data => {
+        ServerCall(window.baseURL + DeviceDetailsURL + id, {credentials: 'include'})
+          .then( data => {
             dispatch({type: DeviceActions.FETCH_VMS_DETAILS_SUCCESS, data: data.VMS});
             if (!data.PlayList) 
                 alert("برای دستگاه جاری هیچ لیست نمایشی انتخاب نشده است");
@@ -57,11 +54,8 @@ export const SelectVMS = (id) => {
 
 export const FetchList = () => {
     return (dispatch) => {
-        dispatch({type: DeviceActions.FETCH_STARTED});
-        fetch(window.baseURL + DeviceUrl, {credentials: 'include'}).then(res => res.json(), err => {
-            alert("failed");
-            dispatch({type: DeviceActions.FETCH_FAILED})
-        }).then(json => dispatch({type: DeviceActions.FETCH_SUCCESS, data: json}));
+        ServerCall(window.baseURL + DeviceUrl, {credentials: 'include'})
+          .then(json => dispatch({type: DeviceActions.FETCH_SUCCESS, data: json}));
 
     }
 }

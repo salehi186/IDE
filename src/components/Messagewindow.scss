@@ -10,10 +10,14 @@ text-align: center;
 }
 
 .MessageWindow .imageItem{
-     position: relative;
-    display: inline-block;
-    text-align: center;
+    
+    
 }
+
+.MessageWindow .imageItem .canvas-container{
+    margin: 0 auto;
+}
+
 .MessageWindow .imageItem canvas{
     display: inline-block;
     border: 1px solid blue;

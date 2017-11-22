@@ -20,7 +20,9 @@ export default class MessageWindow extends Component {
 
             retValue = <div className="MessageWindow">
                 <div className="deviceInformation">
-                    {this.props.playList.Name}
+                    {
+                        //this.props.playList.Name
+                    }
 
                 </div>
                 <div className="playlist">
@@ -170,12 +172,7 @@ export class PlayListItem extends Component {
                 : ""
         }}>
             <div></div>
-            <div
-                className="imageItem"
-                style={{
-                width: width,
-                height: height
-            }}>
+            <div className="imageItem">
 
                 <canvas id={p.id} width={width} height={height} ref="canvas"></canvas>
                 <div >

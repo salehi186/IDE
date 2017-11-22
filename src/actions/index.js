@@ -1,5 +1,4 @@
 import * as _deviceManager from '../actions/DeviceManager';
-
 export const DeviceManager = _deviceManager;
 
 export const RootActions = {
@@ -9,14 +8,6 @@ export const RootActions = {
     LOAD_DATA_FAILED: "LOAD_DATA_FAILED"
 }
 
-export const LoadFromServer = () => {
-    return (dispatch) => {
-        fetch("", {credentials: 'include'}).then(res => res.json(), err => {
-            alert(err);
-            dispatch({type: RootActions.LOAD_DATA_FAILED, err});
-        }).then(json => dispatch({type: RootActions.LOAD_DATA_SUCCESS, data: json}))
-    }
-}
 
 ///Properties Component
 export const PropertiesActions = {

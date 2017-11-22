@@ -10,7 +10,7 @@ function assignPlayListItem(p) {
         //ImageID:p.ImageId, width: p.Width, height: p.Height,
         name: p.ImageName,
         isChanged: false,
-        order: p.PlayOrder
+        order: p.PlayOrder 
     };
 }
 
@@ -24,7 +24,7 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
                 Items: [
                     ...state.Items,
                     Object.assign(assignPlayListItem(p), {
-                        order: Math.max(...state.Items.map(x => x.order)) + 1
+                        order: Math.max(...state.Items.map(x => x.order),1) + 1
 
                     })
                 ]

@@ -15,12 +15,13 @@ import VisibleVMSList from './containers/VMSList'
 //import DeviceManager from './components/DeviceManager';
 
 global.jQuery = require('jquery');
-global.baseURL= window.baseURL=window.location.host.indexOf("local")>-1? "http://127.0.0.1:45455/":"";
+global.baseURL = window.baseURL = window
+  .location
+  .host
+  .indexOf("local") > -1
+  ? "http://127.0.0.1:45455/"
+  : "";
 require("bootstrap/dist/js/bootstrap");
-
-
-
-
 
 class App extends Component {
   render() {
@@ -41,10 +42,15 @@ class App extends Component {
             </div>
 
           </div>
-          <div className="StatusBar" >status
+          <div className="StatusBar">
 
-            <div className="loader">loading</div>
+            <div className="loader"></div>
 
+          </div>
+          <div
+            id="modalLoading"
+            class="progress-bar progress-bar-striped active">
+            <span>در حال ارتباط با سرور ...</span>
           </div>
 
         </div>

@@ -1,38 +1,60 @@
 * {
-    box-sizing: border-box ;
+    box-sizing: border-box;
     direction: rtl;
 }
 
+#modalLoading {
+    display: none;
+    z-index: 999999;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    vertical-align: center;
+    opacity: 0.5
+}
 
-#MaskSymbols *{display: inline-block; }
-#MaskSymbols signTabHead{transform:rotate(-90deg) ;font-size: 95%; height: 50px; height: 50px;}
-#MaskSymbols ul{display: none;}
+#MaskSymbols * {
+    display: inline-block;
+}
 
-.App .tab-pane{
+#MaskSymbols signTabHead {
+    transform: rotate(-90deg);
+    font-size: 95%;
+    height: 50px;
+    height: 50px;
+}
+
+#MaskSymbols ul {
+    display: none;
+}
+
+.App .tab-pane {
     padding: 3px;
     background-color: white;
 }
+
 .App {
     background-color: whitesmoke;
     width: 100%;
-    height: 100%;
-     //position: fixed;
+    height: 100%; //position: fixed;
     overflow: auto;
     top: 0px;
     left: 0px;
-    padding:0px 0;
+    padding: 0px 0;
     box-sizing: border-box;
     overflow: hidden;
     min-width: 800px;
 }
 
-.tab-content div{
+.tab-content div {
     white-space: normal;
 }
 
-
 .App .StatusBar {
-     position: relative;
+    position: relative;
     display: block;
     width: 100%;
     height: 25px;
@@ -40,22 +62,24 @@
     left: 0px;
     border: solid 1px gray;
 }
-.App .ContentHolder{
-     position: relative;
+
+.App .ContentHolder {
+    position: relative;
 }
 
 .App .MainContainer {
-     position: relative;
+    position: relative;
     vertical-align: top;
     display: inline-block;
-    width: 100% ;
+    width: 100%;
     border: solid 1px blue;
     height: 100%;
-    padding:0  200px;
+    padding: 0 200px;
 }
+
 .App .SideBar {
-     position: absolute;
-    top:0px;
+    position: absolute;
+    top: 0px;
     vertical-align: top;
     display: inline-block;
     width: 200px;
@@ -64,38 +88,45 @@
 }
 
 .App .SideBar {
-     position: absolute;
-    top:0px;
+    position: absolute;
+    top: 0px;
     vertical-align: top;
     display: inline-block;
     width: 200px;
     border: solid 1px red;
     height: 100%;
-     overflow-y:auto; 
-}
-.left{
-left: 0px;
-}
-.right{
-right: 0px;
+    overflow-y: auto;
 }
 
+.left {
+    left: 0px;
+}
 
-
+.right {
+    right: 0px;
+}
 
 @keyframes colorAnimation {
-    0%   {background-color:whitesmoke; opacity: 0.7}
-   
-    50% {background-color:#7C5151;opacity:  0.2; }
-
-    100%  {background-color:whitesmoke; opacity: 0.7}
+    0% {
+        background-color: whitesmoke;
+        opacity: 0.7
+    }
+    50% {
+        background-color: #7C5151;
+        opacity: 0.2;
+    }
+    100% {
+        background-color: whitesmoke;
+        opacity: 0.7
+    }
 }
 
-.loadingAnimation{
+.loadingAnimation {
     animation-name: colorAnimation;
     animation-duration: 4s;
     animation-iteration-count: infinite;
 }
-.mreeeee{
+
+.mreeeee {
     background: gray;
 }

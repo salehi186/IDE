@@ -161,7 +161,10 @@ const Menu = function (props) {
           ID="MNU_SAVE_PLAYLIST"
           text="ذخیره لیست نمایش"
           icon="fa-save" shortKey="s" title="Alt+S"
-          Click={() => props.SavePlayList()}/>
+          Click={() => {
+            if(window.confirm('آیا مایل به ذخیره تغییرات در لیست جاری هستید؟')) props.SavePlayList();
+          }
+        }/>
         <MenuItem
           ID="MNU_SEND_PLAYLIST"
           text="ارسال لیست نمایش "
@@ -327,9 +330,11 @@ const Menu = function (props) {
               </div>
               
             </div><select className="btn btn-default" onChange={changeZoom}  title="بزرگنمایی">
+                
                 <option value="1">1x</option>
                 <option value="2">2x</option>
                 <option value="3">3x</option>
+                <option value="0.5">0.5X</option>
             </select>
             <div id="MaskSymbols" style={{
               width: "100%"
