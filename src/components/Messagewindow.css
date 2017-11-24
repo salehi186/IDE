@@ -1,19 +1,8 @@
 .MessageWindow {
-  overflow-y: auto;
-  height: 500px; 
-  text-align: center;
-}
-
-.MessageWindow .playlist {
  }
 
-.MessageWindow .imageItem {
-  }
-
-  .MessageWindow .imageItem .canvas-container{
-    margin: 0 auto;
-}
- 
+.MessageWindow .imageItem .canvas-container {
+  margin: 0 auto; }
 
 .MessageWindow .imageItem canvas {
   display: inline-block;

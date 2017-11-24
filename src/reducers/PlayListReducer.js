@@ -54,7 +54,8 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
                     .Items
                     .map((p, id) => {
                         if (p.id === state.ActiveItem) {
-                            return Object.assign({}, p, {img: action.data.ImageContent});
+                            return Object.assign({}, p, 
+                            {img: action.data.ImageContent,ImageID:action.data.ImageID,ImageName:action.data.ImageName});
                         }
                         return p;
                     })

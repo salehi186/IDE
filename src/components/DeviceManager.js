@@ -57,7 +57,9 @@ export default class DeviceManager extends Component {
                                             id={vms.Id}
                                             onDeviceSelect={this.props.onDeviceSelect}
                                             icon={this.props.icon}
-                                            name={vms.Name}/>
+                                            name={vms.Name}
+                                            Online={vms.Online}
+                                            />
                                     return ""
                                 })}
                             </ul>
@@ -83,7 +85,7 @@ const Device = (props) => {
         <span
             className={"icon fa fa-plug"}
             style={{
-            color: "green"
+            color: props.Online?"green":"red"
         }}></span>
 
     </li>

@@ -1,9 +1,12 @@
 * {
     box-sizing: border-box;
-    direction: rtl;
-}
-
-#modalLoading {
+    direction: rtl; }
+  
+  #modalServerLoading {
+    padding-top: 3px;
+    color: black;
+    font-weight: bolder;
+    font-size: xx-large;
     display: none;
     z-index: 999999;
     width: 100%;
@@ -13,120 +16,94 @@
     left: 0px;
     text-align: center;
     vertical-align: center;
-    opacity: 0.5
-}
-
-#MaskSymbols * {
-    display: inline-block;
-}
-
-#MaskSymbols signTabHead {
+    opacity: 0.7; }
+  
+  #MaskSymbols * {
+    display: inline-block; }
+  
+  #MaskSymbols signTabHead {
     transform: rotate(-90deg);
     font-size: 95%;
     height: 50px;
-    height: 50px;
-}
-
-#MaskSymbols ul {
-    display: none;
-}
-
-.App .tab-pane {
+    height: 50px; }
+  
+  #MaskSymbols ul {
+    display: none; }
+  
+  .App .tab-pane {
     padding: 3px;
-    background-color: white;
-}
-
-.App {
+    background-color: white; }
+  
+  .App {
     background-color: whitesmoke;
     width: 100%;
-    height: 100%; //position: fixed;
+    height: 100%;
     overflow: auto;
     top: 0px;
     left: 0px;
     padding: 0px 0;
     box-sizing: border-box;
     overflow: hidden;
-    min-width: 800px;
-}
-
-.tab-content div {
-    white-space: normal;
-}
-
-.App .StatusBar {
-    position: relative;
+    min-width: 800px; 
+  padding-top: 200px;
+  
+  }
+  
+  .tab-content div {
+    white-space: normal; }
+  
+  .App .AppMenu{
+    position: fixed;
+    z-index: 999;
+    background-color: white;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 200px;
+    border: black solid 1px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  
+  }  
+  .App .StatusBar {
+    position: fixed;
     display: block;
     width: 100%;
     height: 25px;
     bottom: 0px;
     left: 0px;
-    border: solid 1px gray;
-}
-
-.App .ContentHolder {
-    position: relative;
-}
-
-.App .MainContainer {
+  }
+  .App .ContentHolder {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 25px 200px;
+    overflow: auto
+  }
+  
+  .App .MainContainer {
     position: relative;
     vertical-align: top;
     display: inline-block;
     width: 100%;
-    border: solid 1px blue;
     height: 100%;
-    padding: 0 200px;
-}
-
-.App .SideBar {
+    text-align: center;
+     }
+  
+  .App .SideBar {
     position: absolute;
     top: 0px;
     vertical-align: top;
     display: inline-block;
     width: 200px;
-    border: solid 1px red;
     height: 100%;
-}
-
-.App .SideBar {
-    position: absolute;
-    top: 0px;
-    vertical-align: top;
-    display: inline-block;
-    width: 200px;
-    border: solid 1px red;
-    height: 100%;
-    overflow-y: auto;
-}
-
-.left {
-    left: 0px;
-}
-
-.right {
-    right: 0px;
-}
-
-@keyframes colorAnimation {
-    0% {
-        background-color: whitesmoke;
-        opacity: 0.7
-    }
-    50% {
-        background-color: #7C5151;
-        opacity: 0.2;
-    }
-    100% {
-        background-color: whitesmoke;
-        opacity: 0.7
-    }
-}
-
-.loadingAnimation {
-    animation-name: colorAnimation;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-}
-
-.mreeeee {
-    background: gray;
-}
+    border: black solid 1px;
+    background-color: white;
+     }
+  
+  .left {
+    left: 0px; }
+  
+  .right {
+    right: 0px; }
+  

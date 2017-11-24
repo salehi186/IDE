@@ -48,8 +48,8 @@ class App extends Component {
 
           </div>
           <div
-            id="modalLoading"
-            class="progress-bar progress-bar-striped active">
+            id="modalServerLoading"
+            className="progress-bar progress-bar-striped active">
             <span>در حال ارتباط با سرور ...</span>
           </div>
 

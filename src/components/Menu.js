@@ -6,7 +6,7 @@ const MenuItem = (props) => {
   if (permissions(props.ID)) 
     return <div data-shortkey={props.shortKey ||""} title={props.title||""}
       id={props.ID}
-      className="col-xs-3 col-md-2 col-lg-1 btn btn-default"
+      className="col-xs-3 col-md-2 col-lg-2 btn btn-default"
       onClick={props.Click}
       style={{
       whiteSpace: "nowrap"
@@ -89,7 +89,7 @@ const fontNames = 'BBadr,BBaran,BBardiya,BCompset,BDavat,BElham,BEsfehanBold,BFa
     'BYekan,BZar,BZiba';
 const Menu = function (props) {
 
-  return <div >
+  return <div className="AppMenu" >
     {fontNames
       .split(',')
       .map(x =>< span key = {

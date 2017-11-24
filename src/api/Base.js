@@ -16,19 +16,22 @@ export const permissions = (ID) => {
 
 export const ServerCall = (url, options) => {
     return new Promise((resolve, reject) => {
-        document.getElementById("modalLoading").style.display="";
+        document.getElementById("modalServerLoading").style.display="block";
         fetch(url, options).then(res => {
             if (res.headers.get("Content-Type").indexOf("json") > -1) 
                 return res.json();
             
             return res.text();
         }, err => {
+            document.getElementById("modalServerLoading").style.display="none";
             alert(err);
             reject(err);
-            document.getElementById("modalLoading").style.display="none";
         }).then(res => {
+            document.getElementById("modalServerLoading").style.display="none";
             resolve(res);
-            document.getElementById("modalLoading").style.display="none";
+        }).catch(x=>{
+            document.getElementById("modalServerLoading").style.display="none";
+            
         });
     });
 }
