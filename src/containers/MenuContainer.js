@@ -304,11 +304,13 @@ const mapDispatchToProps = (dispatch) => {
                 .catch(err => alert(err));
 
         },
-        SendPlaylistToServer: () => {
+        SendPlaylistToServer: (isGroup) => {
             let pls = getPlayListFromCanvas();
             let data = new FormData();
             data.append("data", JSON.stringify(pls));
             data.append("VMSID", window.store.getState().VMSGroups.ActiveVMS);
+            data.append("SendToGroup",isGroup?true:false);
+
             ServerCall(window.baseURL + "/VMss/ShowPlayListinVMS", {
                 // 'mode': 'no-cors',
                 method: "POST",
@@ -319,10 +321,7 @@ const mapDispatchToProps = (dispatch) => {
                 },
                 body: data
             })
-            // .then(res => {
-            //     return res.json()
-            // }, err => alert(err))
-            .then(json => {
+              .then(json => {
                 alert(json);
             });
 
@@ -342,10 +341,7 @@ const mapDispatchToProps = (dispatch) => {
                 },
                 body: data
             })
-            // .then(res => {
-            //     return res.json()
-            // }, err => alert(err))
-            
+              
             .then(json => {
                 alert("تغییرات با موفقیت ذخیره گردید.");
 
@@ -393,6 +389,9 @@ const mapDispatchToProps = (dispatch) => {
                 alert("تنظیمات با موفقیت به دستگاه ارسال گردید.");
                 dispatch(actions.PropsSaved());
             });
+        },
+        GetLastSentPlayList:()=>{
+            dispatch(actions.DeviceManager.SelectVMS(window.store.getState().VMSGroups.ActiveVMS, true))
         }
     };
 }

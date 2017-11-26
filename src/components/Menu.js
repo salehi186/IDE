@@ -6,7 +6,7 @@ const MenuItem = (props) => {
   if (permissions(props.ID)) 
     return <div data-shortkey={props.shortKey ||""} title={props.title||""}
       id={props.ID}
-      className="col-xs-3 col-md-2 col-lg-2 btn btn-default"
+      className="col-xs-2 col-md-2 col-lg-2 btn btn-default"
       onClick={props.Click}
       style={{
       whiteSpace: "nowrap"
@@ -26,48 +26,7 @@ const MenuItem = (props) => {
     return "";
   }
 
-const Dialog = (props) => {
-  return <div
-    className="modal fade"
-    id="testModal"
-    role="dialog"
-    aria-labelledby="myModalLabel">
-    <div className="modal-dialog modal-lg" role="document">
-      <div className="modal-content">
-        <div className="modal-header">
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 className="modal-title" id="myModalLabel">مدیریت
-          </h4>
-        </div>
-        <div className="modal-body" style={{
-          padding: 0
-        }}>
-          <img id="modalLoading" alt="loading" src="/loading.gif"/>
-          <iframe
-            title="modal dialog"
-            name="modalDialog"
-            id="modalDialog"
-            width="700px"
-            height="700px"
-            className="modal-lg"
-            onLoad={() => {
-            $("#modalLoading").hide();
-            $("#modalDialog").show();
-          }}></iframe>
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-default" data-dismiss="modal">بازگشت</button>
-          {(props.save)
-            ? <button type="button" className="btn btn-primary">Save changes</button>
-            : ""}
-        </div>
-      </div>
-    </div>
-  </div>
 
-}
 const showDialog = window.showDialog = (url, title, params) => {
   $("#modalLoading").show();
   $("#modalDialog").hide();
@@ -96,7 +55,6 @@ const Menu = function (props) {
         x
       }
       style = {{fontFamily:x}} > </span>)}
-    <Dialog/>
     <ul className="nav nav-tabs" role="tablist">
       <li role="presentation" className="active">
         <a href="#home" aria-controls="home" role="tab" data-toggle="tab">مدیریت VMS</a>
@@ -142,7 +100,8 @@ const Menu = function (props) {
           Click={() => {
           props.changeActivePlayListItem(-1);
           window.showDialog("Images/Index", "انتخاب تصویر از‌ آلبوم")
-        }}/> {/*<MenuItem text="check" icon="fa-plug"/>
+        }}/> 
+        {/*<MenuItem text="check" icon="fa-plug"/>
         <MenuItem text="Import" icon="fa-cloud-download"/>
         <MenuItem text="Add" icon="fa-image"/>
         <MenuItem text="Delete" icon=" fa-trash"/>
@@ -173,16 +132,28 @@ const Menu = function (props) {
           props.SendPlaylistToServer()
         }}/>
         <MenuItem
+          ID="MNU_SEND_PLAYLIST"
+          text="ارسال لیست نمایش گروهی"
+          icon="fa-upload" shortKey="z" title="Alt+Z"
+          Click={() => {
+          props.SendPlaylistToServer(true)
+        }}/>
+        <MenuItem
           ID="MNU_SEND_PROPS"
           text="ارسال تنظیمات"
-          icon="fa-rocket" shortKey="t" title="Alt+T"
+          icon="fa-gears" shortKey="t" title="Alt+T"
           Click={() => props.SaveProperties()}/>
 
         <MenuItem
           ID="MNU_RESET_VMS"
           text="ریست دستگاه"
-          icon="fa-rocket" 
+          icon="fa-flash" 
           Click={() => props.ResetDevice()}/>
+        <MenuItem
+          ID="MNU_RESET_VMS"
+          text="آخرین پیام ارسال  شده"
+          icon="fa-themeisle" 
+          Click={() => props.GetLastSentPlayList()}/>
       </div>
       {permissions("MNU_TAB_IMAGE_EDIT")
         ? <div role="tabpanel" className="tab-pane row" id="MNU_TAB_IMAGE_EDIT">
