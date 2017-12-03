@@ -32,7 +32,7 @@ const showDialog = window.showDialog = (url, title, params) => {
   $("#modalDialog").hide();
   let src = window.baseURL + url + "?vms=" + (window.store.getState().VMSGroups.ActiveVMS || '0');
   for (let p in params) {
-    src = src + "&" + params[p];
+    src = src + "&" +p+"=" + params[p];
   }
 
   $("#testModal")

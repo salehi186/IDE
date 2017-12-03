@@ -231,7 +231,7 @@ export class PlayListItem extends Component {
                         this
                             .props
                             .Edit(p.id, this.refs.canvas.fabric);
-                        window.showDialog("Images/Index", "انتخاب عکس از‌ آلبوم")
+                        window.showDialog("Images/Index", "انتخاب عکس از‌ آلبوم",{singleSelect:false})
                     }}
                         className={"btn btn-default fa fa-folder-open"}>&nbsp;</a>}
 
