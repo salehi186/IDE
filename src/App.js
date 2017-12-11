@@ -23,7 +23,6 @@ global.baseURL = window.baseURL = window
   : "";
 require("bootstrap/dist/js/bootstrap");
 
-
 const Dialog = (props) => {
   return <div
     className="modal fade"
@@ -51,8 +50,14 @@ const Dialog = (props) => {
             height="700px"
             className="modal-lg"
             onLoad={() => {
-            document.getElementById("modalLoading").style.display="none";
-            document.getElementById("modalDialog").style.display="block";
+            document
+              .getElementById("modalLoading")
+              .style
+              .display = "none";
+            document
+              .getElementById("modalDialog")
+              .style
+              .display = "block";
           }}></iframe>
         </div>
         <div className="modal-footer">
@@ -67,14 +72,13 @@ const Dialog = (props) => {
 
 }
 
-
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
 
         <div className="App">
-        <Dialog/>
+          <Dialog/>
 
           <MenuContainer/>
           <div className="ContentHolder">
@@ -94,14 +98,13 @@ class App extends Component {
             <div className="loader"></div>
 
           </div>
-          <div
-            id="modalServerLoading"
-            className="progress-bar progress-bar-striped active">
-            <span>در حال ارتباط با سرور ...</span>
+          
+          <div id="modalServerLoading" className="preloader">
+              <img src="loading.gif" alt="Please Wait" style={{
+                width:300
+              }} />
           </div>
-
-        </div>
-
+      </div>
       </Provider>
     );
   }

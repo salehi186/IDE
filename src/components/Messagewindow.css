@@ -1,5 +1,5 @@
 .MessageWindow {
- }
+  text-align: center; }
 
 .MessageWindow .imageItem .canvas-container {
   margin: 0 auto; }
