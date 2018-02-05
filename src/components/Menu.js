@@ -143,7 +143,7 @@ const Menu = function (props) {
           text="ارسال لیست نمایش گروهی"
           icon="fa-upload" shortKey="z" title="Alt+Z"
           Click={() => {
-          props.SendPlaylistToServer(0)
+          props.SendPlaylistToServer(3)
         }}/>
         <MenuItem
           ID="MNU_SEND_PROPS"
@@ -161,6 +161,13 @@ const Menu = function (props) {
           text="آخرین پیام ارسال  شده"
           icon="fa-themeisle" 
           Click={() => props.GetLastSentPlayList()}/>
+        <MenuItem
+          ID="MNU_PREVIEW_FILE"
+          text="آخرین وضعیت دستگاه"
+          icon="fa-cloud-download" //shortKey="p" title="Alt+P"
+          Click={() => { window.showDialog("VMSs/PreviewFile", "آخرین وضعیت دستگاه")
+        }}/>
+
       </div>
       {permissions("MNU_TAB_IMAGE_EDIT")
         ? <div role="tabpanel" className="tab-pane row" id="MNU_TAB_IMAGE_EDIT">
