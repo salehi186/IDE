@@ -47,7 +47,7 @@ const Dialog = (props) => {
             name="modalDialog"
             id="modalDialog"
             width="700px"
-            height="700px"
+            height="600px"
             className="modal-lg"
             onLoad={() => {
             document
@@ -76,35 +76,41 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
+        <div>
+         <Dialog/>
+          <div className="App">
+           
 
-        <div className="App">
-          <Dialog/>
+            <MenuContainer/>
+            <div className="ContentHolder">
+              <div className="SideBar right">
+                <VisibleVMSList/>
+              </div>
+              <div className="MainContainer">
+                <PlayList/>
+              </div>
 
-          <MenuContainer/>
-          <div className="ContentHolder">
-            <div className="MainContainer">
-              <PlayList/>
+              <div className="SideBar left">
+                <PropertyList/>
+              </div>
+
             </div>
-            <div className="SideBar right">
-              <VisibleVMSList/>
-            </div>
-            <div className="SideBar left">
-              <PropertyList/>
+            <div className="StatusBar">
+
+              <div className="loader"></div>
+
             </div>
 
           </div>
-          <div className="StatusBar">
-
-            <div className="loader"></div>
-
-          </div>
-          
           <div id="modalServerLoading" className="preloader">
-              <img src="loading.gif" alt="Please Wait" style={{
-                width:300
-              }} />
+            <img
+              src="loading.gif"
+              alt="Please Wait"
+              style={{
+              width: 300
+            }}/>
           </div>
-      </div>
+        </div>
       </Provider>
     );
   }

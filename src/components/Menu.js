@@ -2,32 +2,33 @@ import React from 'react';
 import $ from 'jquery';
 import {permissions} from '../api/Base'
 
-const MenuItem = (props) => {
+export const MenuItem = (props) => {
   if (permissions(props.ID)) 
     return <div data-shortkey={props.shortKey ||""} title={props.title||""}
       id={props.ID}
-      className="col-xs-2 col-md-2 col-lg-2 btn btn-default"
+      className={"btn btn-default " + (props.className || "col-xs-2 col-md-2 col-lg-2")}
       onClick={props.Click}
       style={{
       whiteSpace: "nowrap"
     }}>
-      <span
+      <span title={props.text}
         className={"fa " + props.icon}
         style={{
+          padding:"0px 5px",
         fontSize: "x-large"
       }}></span>
-      <p style={{
+      <span style={{
         fontSize: "small"
       }}>
         {props.text}
-      </p>
+      </span>
     </div>
   else 
     return "";
   }
 
 
-const showDialog = window.showDialog = (url, title, params) => {
+export const showDialog = window.showDialog = (url, title, params) => {
   $("#modalLoading").show();
   $("#modalDialog").hide();
   let src = window.baseURL + url + "?vms=" + (window.store.getState().VMSGroups.ActiveVMS || '0');
@@ -167,6 +168,12 @@ const Menu = function (props) {
           icon="fa-cloud-download" //shortKey="p" title="Alt+P"
           Click={() => { window.showDialog("VMSs/PreviewFile", "آخرین وضعیت دستگاه")
         }}/>
+        {/* <MenuItem
+          ID="MNU_TEST_DEVICE"
+          text="تست دستگاه"
+          icon="fa-cloud-download" //shortKey="p" title="Alt+P"
+          Click={() => { window.showDialog("VMSs/DeviceTest", "آخرین وضعیت دستگاه")
+        }}/> */}
 
       </div>
       {permissions("MNU_TAB_IMAGE_EDIT")

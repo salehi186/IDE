@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Properties.css'
+import {MenuItem} from './Menu';
 export default class Properties extends Component {
 
     render() {
@@ -8,6 +9,16 @@ export default class Properties extends Component {
         }}>
             <form >
                 <ul>
+                    <li >
+
+        <MenuItem
+          ID="MNU_TEST_DEVICE"  className="col-xs-12 col-md-12 col-lg-12"
+          text="تست رنگ"
+          icon="fa-user-md" //shortKey="p" title="Alt+P"
+          Click={() => { window.showDialog("VMSs/DeviceTest", "تست رنگ")
+        }}/>
+                    </li>
+
                     {this
                         .props
                         .propsList
