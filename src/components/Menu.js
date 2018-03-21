@@ -158,7 +158,7 @@ const Menu = function (props) {
           icon="fa-flash" 
           Click={() => props.ResetDevice()}/>
         <MenuItem
-          ID="MNU_RESET_VMS"
+          ID="MNU_LAST_MESSAGE"
           text="آخرین پیام ارسال  شده"
           icon="fa-themeisle" 
           Click={() => props.GetLastSentPlayList()}/>

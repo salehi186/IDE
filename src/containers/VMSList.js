@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onDeviceSelect: (id) => {
-      dispatch(actions.DeviceManager.SelectVMS(id));
+      dispatch(actions.DeviceManager.SelectVMS(id,true));
     },
     doFilter:(filterExpr)=>{
       dispatch(actions.DeviceManager.FilterVMS(filterExpr));
