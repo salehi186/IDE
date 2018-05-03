@@ -146,11 +146,7 @@ const Menu = function (props) {
           Click={() => {
           props.SendPlaylistToServer(3)
         }}/>
-        <MenuItem
-          ID="MNU_SEND_PROPS"
-          text="ارسال تنظیمات"
-          icon="fa-gears" shortKey="t" title="Alt+T"
-          Click={() => props.SaveProperties()}/>
+        
 
         <MenuItem
           ID="MNU_RESET_VMS"
@@ -167,6 +163,12 @@ const Menu = function (props) {
           text="آخرین وضعیت دستگاه"
           icon="fa-cloud-download" //shortKey="p" title="Alt+P"
           Click={() => { window.showDialog("VMSs/PreviewFile", "آخرین وضعیت دستگاه")
+        }}/>
+        <MenuItem
+          ID="MNU_GPRS_SETTING"
+          text="سایر تنظیمات"
+          icon="fa-cloud-download" //shortKey="p" title="Alt+P"
+          Click={() => { window.showDialog("VMSs/GPRSSetting", "سایر تنظیمات")
         }}/>
         {/* <MenuItem
           ID="MNU_TEST_DEVICE"

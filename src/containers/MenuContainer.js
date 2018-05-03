@@ -351,45 +351,6 @@ const mapDispatchToProps = (dispatch) => {
                 });
 
         },
-        SaveProperties: () => {
-            let props = window
-                .store
-                .getState()
-                .CurrentVMS
-                .VMSProps;
-            let VMSID = window
-                .store
-                .getState()
-                .VMSGroups
-                .ActiveVMS;
-            if (!props) {
-                alert("هنوز هیچ دستگاهی انتخاب نشده است");
-                return;
-            }
-
-            let data = new FormData();
-            data.append("props", JSON.stringify(props));
-            data.append("vmsid", VMSID);
-
-            ServerCall(window.baseURL + "/VMss/Vms_SetProperties", {
-                // 'mode': 'no-cors',
-                method: "POST",
-                credentials: 'include',
-                header: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                },
-                body: data
-            })
-            // .then(res => {
-            //     return res.json()
-            // }, err => alert(err))
-            
-            .then(json => {
-                alert("تنظیمات با موفقیت به دستگاه ارسال گردید.");
-                dispatch(actions.PropsSaved());
-            });
-        },
         GetLastSentPlayList:()=>{
             dispatch(actions.DeviceManager.SelectVMS(window.store.getState().VMSGroups.ActiveVMS, true))
         }
