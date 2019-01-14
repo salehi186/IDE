@@ -17,6 +17,7 @@ export default class Properties extends Component {
           icon="fa-user-md" //shortKey="p" title="Alt+P"
           Click={() => { window.showDialog("VMSs/DeviceTest", "تست رنگ")
         }}/>
+
         <MenuItem
           ID="MNU_SEND_PROPS" className="col-xs-12 col-md-12 col-lg-12"
           text="ارسال تنظیمات"

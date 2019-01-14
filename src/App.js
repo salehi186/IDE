@@ -83,23 +83,32 @@ class App extends Component {
 
             <MenuContainer/>
             <div className="ContentHolder">
-              <div className="SideBar right">
+              <div className="SideBar right FixedContent" ref="rightPanel">
+                <button className="AutoHide" value="sadas" onClick={()=>{
+                  this.refs.rightPanel.style.right=this.refs.rightPanel.style.right=="-180px"?"0px":"-180px";
+                }
+                  } />
                 <VisibleVMSList/>
               </div>
-              <div className="MainContainer">
+              <div className="MainContainer FixedContent">
                 <PlayList/>
               </div>
 
-              <div className="SideBar left">
+              <div className="SideBar left FixedContent" ref="leftPanel">
+                  <button className="AutoHide" value="sadas" onClick={()=>{
+                      this.refs.leftPanel.style.left=this.refs.leftPanel.style.left=="-180px"?"0px":"-180px";
+                    }
+                  } />
+
                 <PropertyList/>
               </div>
 
             </div>
-            <div className="StatusBar">
+            {/* <div className="StatusBar">
 
               <div className="loader"></div>
 
-            </div>
+            </div> */}
 
           </div>
           <div id="modalServerLoading" className="preloader">

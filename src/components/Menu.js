@@ -130,14 +130,14 @@ const Menu = function (props) {
           text="ارسال لیست نمایش "
           icon="fa-send" shortKey="z" title="Alt+Z"
           Click={() => {
-          props.SendPlaylistToServer(1)
+            if(window.confirm('آیا مایل به ارسال لیست جاری هستید؟')) props.SendPlaylistToServer(1)
         }}/>
        <MenuItem
           ID="MNU_SEND_PLAYLIST"
           text="ارسال لیست نمایش با سناریو"
           icon="fa-random" shortKey="z" title="Alt+Z"
           Click={() => {
-          props.SendPlaylistToServer(2)
+            if(window.confirm('آیا مایل به ارسال لیست جاری با سناریو مشخص هستید؟')) props.SendPlaylistToServer(2)
         }}/>
         <MenuItem
           ID="MNU_SEND_PLAYLIST"
