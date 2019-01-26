@@ -35,7 +35,7 @@ export const showDialog = window.showDialog = (url, title, params) => {
   for (let p in params) {
     src = src + "&" +p+"=" + params[p];
   }
-
+  src="http://localhost:3000/";
   $("#testModal")
     .modal()
     .find("iframe")
@@ -137,11 +137,7 @@ const Menu = function (props) {
           text="ارسال لیست نمایش با سناریو"
           icon="fa-random" shortKey="z" title="Alt+Z"
           Click={() => {
-<<<<<<< HEAD
-            if(window.confirm('آیا مایل به ارسال لیست جاری با سناریو مشخص هستید؟')) props.SendPlaylistToServer(2)
-=======
             if(window.confirm('لیست نمایش جاری با سناریوی مشخص شده ارسال گردد؟'))props.SendPlaylistToServer(2)
->>>>>>> 730ddc6e385ccbf8471c6cdf5652304cc9aca865
         }}/>
         <MenuItem
           ID="MNU_SEND_PLAYLIST"
