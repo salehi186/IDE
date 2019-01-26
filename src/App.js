@@ -35,7 +35,7 @@ const Dialog = (props) => {
           <button type="button" className="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 className="modal-title" id="myModalLabel">مدیریت
+          <h4 className="modal-title" id="myModalLabel">
           </h4>
         </div>
         <div className="modal-body" style={{
@@ -50,6 +50,7 @@ const Dialog = (props) => {
             height="600px"
             className="modal-lg"
             onLoad={() => {
+              let contenDocument=document.getElementsByTagName("iframe")[0].contentDocument;
             document
               .getElementById("modalLoading")
               .style
@@ -58,6 +59,7 @@ const Dialog = (props) => {
               .getElementById("modalDialog")
               .style
               .display = "block";
+              document.getElementById("myModalLabel").innerHTML=contenDocument ? contenDocument.title :"";
           }}></iframe>
         </div>
         <div className="modal-footer">
