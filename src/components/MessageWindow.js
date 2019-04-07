@@ -33,6 +33,7 @@ export default class MessageWindow extends Component {
                         editMode={p.id === this.props.currentConvas}
                         width={width}
                         height={height}
+                        showRuler={this.props.playList.showRuler}
                         {...this.props}/>)}
                     {!permissions("MNU_ADD_PICTURE")
                         ? ""
@@ -171,7 +172,7 @@ export class PlayListItem extends Component {
                 : ""
         }}>
             <div></div>
-            <div className="imageItem">
+            <div className={`imageItem ${this.props.showRuler? 'withRuler ': ''}`}>
 
                 <canvas id={p.id} width={width} height={height} ref="canvas"></canvas>
                 <div >

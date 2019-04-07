@@ -326,6 +326,9 @@ const mapDispatchToProps = (dispatch) => {
             });
 
         },
+        ToggleRuler:()=>{
+            dispatch( actions.ToggleRuler())
+        },
         SavePlayList: (name) => {
             let pls = getPlayListFromCanvas();
             let data = new FormData();
@@ -341,7 +344,6 @@ const mapDispatchToProps = (dispatch) => {
                 },
                 body: data
             })
-              
             .then(json => {
                 alert("تغییرات با موفقیت ذخیره گردید.");
 

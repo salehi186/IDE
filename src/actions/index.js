@@ -47,7 +47,9 @@ export const PlayListActions = {
     ///به روز رسانی تغییرات یک آیتم
     UPDATE_PLAYLIST_ITEM: "UPDATE_PLAYLIST_ITEM",
     ///زمانی که یک دستگاه جدید انتخاب میشه یا پلی لیست جدیدی انتخاب میشود
-    PLAYLIST_CHANGE: "PLAYLIST_CHANGE"
+    PLAYLIST_CHANGE: "PLAYLIST_CHANGE",
+    TOGGLE_RULER: "TOGGLE_RULER"
+
 
 }
 
@@ -110,6 +112,10 @@ export const ChangeActiveItem = (id, canvas) => {
 
 export const InsertObject = (ObjectType, defaultProps) => {
     return {type: PlayListActions.INSERT_OBJECT, shape: ObjectType, defaults: defaultProps}
+}
+export const ToggleRuler=()=>{
+    console.log('wwwww')
+    return { type: PlayListActions.TOGGLE_RULER }
 }
 
 export const CanvasActions = {

@@ -292,6 +292,10 @@ const Menu = function (props) {
                 type="button" title="بزرگ کردن تا پوشش کل عکس"
                 className="btn btn-default fa fa-arrows-alt"
                 onClick={() => props.onItemClick("dock", {type: "update"})}></button>
+               <button
+                type="button" title=" نمایش/حذف خط کش"
+                className="btn btn-default fa  fa-table"
+                onClick={() => props.ToggleRuler()}></button>
              
               <div title="انتخاب تصویر از کلاینت"
                 className="ImageLoad"

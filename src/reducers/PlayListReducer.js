@@ -129,6 +129,9 @@ export function PlayListReducer(state = stateTree.PlayList, action) {
                     })
             });
             break;
+        case ACTIONS.PlayListActions.TOGGLE_RULER:
+            Object.assign(newState, { showRuler: !newState.showRuler})        
+        break;
 
         default:
             break;
