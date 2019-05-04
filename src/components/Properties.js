@@ -14,6 +14,7 @@ export default class Properties extends Component {
         <MenuItem
           ID="MNU_TEST_DEVICE"  className="col-xs-12 col-md-12 col-lg-12"
           text="تست رنگ"
+          shortKey="k" title="Alt+K"
           icon="fa-user-md" //shortKey="p" title="Alt+P"
           Click={() => { window.showDialog("VMSs/DeviceTest", "تست رنگ")
         }}/>

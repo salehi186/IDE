@@ -85,13 +85,13 @@
   top:0px;
   left: 0px;
   &::before{
-    content: "**";
+    content: "<<";
     position:absolute;
     left:0px;
     top:0px;
   }
   &::after{
-    content: "**";
+    content: ">>";
     position:absolute;
     right:0px;
     top:0px;
