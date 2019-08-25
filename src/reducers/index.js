@@ -15,6 +15,10 @@ function DeviceReducer(state = stateTree.VMSGroups, action) {
                 IsFetching: false,
                 List: action.data
             });
+            case ACTIONS.DeviceManager.DeviceActions.FETCHED_STATUS:
+                return Object.assign({},state,{
+                   List: action.data 
+                })
          case ACTIONS.DeviceManager.DeviceActions.FETCH_VMS_DETAILS_SUCCESS:
             return Object.assign({},state
             ,{IsFetching:true, 
