@@ -18,7 +18,11 @@ const mapDispatchToProps = (dispatch) => {
     },
     doFilter:(filterExpr)=>{
       dispatch(actions.DeviceManager.FilterVMS(filterExpr));
+    },
+    getVmsListState:()=>{
+      dispatch(actions.DeviceManager.GetStatus());
     }
+
   }
 }
 

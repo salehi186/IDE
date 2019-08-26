@@ -8,6 +8,12 @@ export default class DeviceManager extends Component {
         this._currentDevice = null;
 
     }
+    componentDidMount(){
+        this.props.getVmsListState();
+       setInterval(() => {
+        this.props.getVmsListState();
+       }, 60000); 
+    }
     set CurrentDevice(value) {
         this._currentDevice = this.Devices[value];
     }
@@ -17,7 +23,6 @@ export default class DeviceManager extends Component {
 
     refreshDeviceList() {
         alert(this.state.CurrentDevice);
-
     }
 
     DeviceChange(idx) {
@@ -54,11 +59,9 @@ export default class DeviceManager extends Component {
                                         return <Device
                                             Selected={this.props.SelectedVMS === vms.Id}
                                             key={"vmss_" + idx}
-                                            id={vms.Id}
                                             onDeviceSelect={this.props.onDeviceSelect}
                                             icon={this.props.icon}
-                                            name={vms.Name}
-                                            Online={vms.Online}
+                                            {...vms}
                                             />
                                     return ""
                                 })}
@@ -75,17 +78,17 @@ export default class DeviceManager extends Component {
 
 const Device = (props) => {
     return <li
-        data-id={props.id}
+        data-id={props.Id}
         className={"list-group-item" + (props.Selected
         ? " Selected"
         : "")}
-        onClick={() => props.onDeviceSelect(props.id)}>
-        <span className="title">{props.name}</span>
+        onClick={() => props.Enable ? props.onDeviceSelect(props.Id): console.log(props)}>
+        <span className="title">{props.Name}</span>
         <span className={"icon fa " + (props.icon || " fa-television")}></span>
         <span
             className={"icon fa fa-plug"}
             style={{
-            color: props.Online?"green":"red"
+            color: props.Color || 'gray'
         }}></span>
 
     </li>

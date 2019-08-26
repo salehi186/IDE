@@ -1,7 +1,8 @@
 ///Device Manager
 import {ServerCall} from '../api/Base';
-const DeviceUrl = "VMss/VMs_List";
+const DeviceUrl = "VMss/VMs_List2";
 const DeviceDetailsURL = "VMss/VMs_Details?Id=";
+const GetStatusURL='Vmss/Vms_list2'
 
 export const DeviceActions = {
     FILTER: "FILTER_VMS",
@@ -14,6 +15,8 @@ export const DeviceActions = {
     FETCH_STARTED: "FETCH_STARTED",
     FETCH_SUCCESS: "FETCH_SUCCESS",
     FETCH_FAILED: "FETCH_FAILED",
+
+    FETCHED_STATUS:'FETCHED_STATUS'
    }
 
 export const FilterVMS = (filterText) => {
@@ -60,6 +63,12 @@ export const FetchList = () => {
     return (dispatch) => {
         ServerCall(window.baseURL + DeviceUrl, {credentials: 'include'})
           .then(json => dispatch({type: DeviceActions.FETCH_SUCCESS, data: json}));
+    }
+}
 
+export const GetStatus=()=>{
+    return (dispatch)=>{
+        ServerCall(window.baseURL + GetStatusURL, {credentials: 'include'},true)
+        .then(json => dispatch({type: DeviceActions.FETCHED_STATUS, data: json}));
     }
 }

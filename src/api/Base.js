@@ -14,24 +14,29 @@ export const permissions = (ID) => {
             : false);
 }
 
-export const ServerCall = (url, options) => {
+export const ServerCall = (url, options,silent) => {
     return new Promise((resolve, reject) => {
-        document.getElementById("modalServerLoading").style.display="block";
+        if(!silent) 
+            document.getElementById("modalServerLoading").style.display="block";
         fetch(url, options).then(res => {
             if (res.headers.get("Content-Type").indexOf("json") > -1) 
                 return res.json();
             
             return res.text();
         }, err => {
-            document.getElementById("modalServerLoading").style.display="none";
-            alert(err);
+            if(!silent) 
+            {
+                document.getElementById("modalServerLoading").style.display="none";
+                alert(err);
+            }
             reject(err);
         }).then(res => {
-            document.getElementById("modalServerLoading").style.display="none";
+            if(!silent) 
+                document.getElementById("modalServerLoading").style.display="none";
             resolve(res);
         }).catch(x=>{
-            document.getElementById("modalServerLoading").style.display="none";
-            
+            if(!silent) 
+                document.getElementById("modalServerLoading").style.display="none";
         });
     });
 }
