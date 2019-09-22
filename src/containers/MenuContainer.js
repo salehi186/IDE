@@ -304,12 +304,13 @@ const mapDispatchToProps = (dispatch) => {
                 .catch(err => alert(err));
 
         },
-        SendPlaylistToServer: (sendMode) => {
+        SendPlaylistToServer: (sendMode,sendDateTime) => {
             let pls = getPlayListFromCanvas();
             let data = new FormData();
             data.append("data", JSON.stringify(pls));
             data.append("VMSID", window.store.getState().VMSGroups.ActiveVMS);
             data.append("SendMode",sendMode||1);
+            data.append("datetime",sendDateTime);
 
             ServerCall(window.baseURL + "/VMss/ShowPlayListinVMS", {
                 // 'mode': 'no-cors',

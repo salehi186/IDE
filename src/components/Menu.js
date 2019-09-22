@@ -71,14 +71,31 @@ const fontNames =
   "naBold,BTabassom,BTehran,BTitrBold,BTitrTGEBold,BTraffic,BVahidBold,BYagut,BYas," +
   "BYekan,BZar,BZiba";
 class Menu extends React.Component {
+  state = {
+    urgent: true,
+    sendDate: '',
+    sendTime: '',
+    sendType: 1
+  }
   componentDidMount() {
     this.props.refresh();
+  }
+
+  showSendPlayListModal(sendType, title) {
+    this.setState({
+      urgent: true,
+      sendDate: ''
+    })
+    $("#sendPlayListModal .modal-title").text(title)
+    $("#sendPlayListModal").modal({
+      backdrop: false
+    })
   }
 
   render() {
     const props = this.props;
     return (
-      <div className="AppMenu">
+      <div className="AppMenu" >
         {fontNames.split(",").map(x => (
           <span key={x} style={{ fontFamily: x }}>
             {" "}
@@ -187,8 +204,7 @@ class Menu extends React.Component {
               shortKey="z"
               title="Alt+Z"
               Click={() => {
-                if (window.confirm("آیا مایل به ارسال لیست جاری هستید؟"))
-                  props.SendPlaylistToServer(1);
+                this.showSendPlayListModal(1, "آیا مایل به ارسال لیست جاری هستید؟")
               }}
             />
             <MenuItem
@@ -198,12 +214,7 @@ class Menu extends React.Component {
               shortKey="e"
               title="Alt+E"
               Click={() => {
-                if (
-                  window.confirm(
-                    "لیست نمایش جاری با سناریوی مشخص شده ارسال گردد؟"
-                  )
-                )
-                  props.SendPlaylistToServer(2);
+                this.showSendPlayListModal(2, "لیست نمایش جاری با سناریوی مشخص شده ارسال گردد؟")
               }}
             />
             <MenuItem
@@ -213,12 +224,7 @@ class Menu extends React.Component {
               shortKey="g"
               title="Alt+G"
               Click={() => {
-                if (
-                  window.confirm(
-                    "لیست نمایش جاری برای گروه دستگاه ها ارسال گردد؟"
-                  )
-                )
-                  props.SendPlaylistToServer(3);
+                this.showSendPlayListModal(3, "لیست نمایش جاری برای گروه دستگاه ها ارسال گردد؟")
               }}
             />
 
@@ -456,7 +462,7 @@ class Menu extends React.Component {
                     onChange={e => {
                       var file = e.target.files[0];
                       var reader = new FileReader();
-                      reader.onload = function(f) {
+                      reader.onload = function (f) {
                         var data = f.target.result;
                         props.onItemClick("image", {
                           data: data,
@@ -495,9 +501,60 @@ class Menu extends React.Component {
               />
             </div>
           ) : (
-            ""
-          )}
+              ""
+            )}
         </div>
+
+        <div className="modal fade" id="sendPlayListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <table>
+                  <tr>
+                    <td>
+                      ارسال با زمانبندی
+                    </td>
+                    <td>
+                      <input type="text" id='txtSendingDate'
+                        placeholder= "تاریخ"
+                        defaultValue={(new Date()).toLocaleDateString('fa-IR')}
+                        disabled={this.state.urgent}
+                        onChange={(e) => this.setState({ sendDate: e.target.value })}
+                      ></input>
+                      <input type="time" id='txtSendingTime'
+                        placeholder="زمان"
+                        defaultValue="00:00"
+                        disabled={this.state.urgent}
+                        onChange={(e) => this.setState({ sendTime: e.target.value })}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="2" >
+                      <input type="checkbox" checked={this.state.urgent} onClick={() => this.setState({ urgent: !this.state.urgent })}></input> ارسال فوری
+                    </td>
+                  </tr>
+                </table>
+
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                <button type="button" className="saveChange btn btn-primary"
+                  data-dismiss="modal" onClick={() => {
+                    props.SendPlaylistToServer(this.state.sendType, this.state.urgent ? '' : `${this.state.sendDate} ${this.state.sendTime}` )
+                  }}>ارسال</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     );
   }
